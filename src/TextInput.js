@@ -23,7 +23,6 @@ const TextInputStyles = {
 
 	initialContainerStyle: {
 		position: 'relative',
-		//marginTop: '35px',
 		display: 'flex',
 		flexDirection: 'column'
 	},
@@ -179,7 +178,7 @@ class TextInput extends React.Component {
 				{ this.renderLabel(label) }
 				<input
 					defaultValue={ defaultValue }
-					placeHolder={ placeHolder }
+					placeholder={ placeHolder }
 					onBlur={ () => this.onBlur() }
 					onFocus={ () => this.onFocus() }
 					onChange={ () => this.onChange() }
