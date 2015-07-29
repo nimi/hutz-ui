@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextInput, Button } from 'components';
+import { TextInput, Button } from '../../src/components';
 import Radium from 'radium';
 
 @Radium
