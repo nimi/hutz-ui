@@ -1,5 +1,5 @@
-import React from 'react';
-import { TextInput, Button } from '../../src/components';
+import React, { PropTypes } from 'react';
+import { InputText, Button, InputCheckbox } from '../../src/components';
 import Radium from 'radium';
 
 @Radium
@@ -45,20 +45,25 @@ class App extends React.Component {
 
 				<div style={{ width: '300px' }}>
 					<h3>Normal input</h3>
-					<TextInput
+					<InputText
 						placeHolder="Some default text" />
 					<h3>Normal input w/ label</h3>
-					<TextInput
+					<InputText
 						label="Example Label"
 						placeHolder="Some default text" />
 					<h3>Input w/ success</h3>
-					<TextInput
+					<InputText
 						success="true"
 						placeHolder="Some default text" />
 					<h3>Input w/ error</h3>
-					<TextInput
+					<InputText
 						error="Yikes!"
 						placeHolder="Some default text" />
+				</div>
+
+				<h2>Checkboxes</h2>
+				<div>
+					<h3>Single Checkbox</h3>
 				</div>
 			</div>
 		);
