@@ -70,13 +70,15 @@ class Button extends React.Component {
 		type: PropTypes.string
 	}
 
+	shouldComponentUpdate() {
+		return !this.props.disabled;
+	}
+
 	onMouseUp() {
-		if (this.props.disabled) return;
 		this.setState({ active: false });
 	}
 
 	onMouseDown() {
-		if (this.props.disabled) return;
 		this.setState({ active: true });
 	}
 
