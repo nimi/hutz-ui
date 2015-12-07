@@ -1,7 +1,8 @@
 import React, { PropTypes } from 'react';
 import Radium from 'radium';
 import { colors, BLUE, RED, GREEN, GRAY } from './styles';
-import { l, noop } from './utils';
+import { noop } from './utils';
+import PureRender from './decorators/PureRender';
 
 const ButtonStyles = {
 	initialStyle: {
@@ -45,6 +46,7 @@ const ButtonStyles = {
 };
 
 @Radium
+@PureRender
 class Button extends React.Component {
 	constructor(props) {
 		super(props);
