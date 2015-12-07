@@ -1,25 +1,26 @@
 import React from 'react';
 
-function Input({
-	checked,
+function InputTextArea({
+	defaultValue,
+	placeHolder,
 	handleFocus,
 	handleBlur,
 	handleChange,
 	baseStyles,
 	style
 }) {
-	console.log('input checkbox');
+	console.log('input text area', defaultValue);
 
 	return (
-		<input
-			checked={ checked }
+		<textarea
+			defaultValue={ defaultValue }
+			placeholder={ placeHolder }
 			onBlur={ handleBlur }
 			onFocus={ handleFocus }
 			onChange={ handleChange }
 			style={ { ...baseStyles, ...style } }
-			type='checkbox'
 		/>
 	);
 }
 
-export default Input;
+export default InputTextArea;

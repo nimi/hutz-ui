@@ -1,23 +1,25 @@
 import React from 'react';
 
 function Input({
-	checked,
+	defaultValue,
+	placeHolder,
 	handleFocus,
 	handleBlur,
 	handleChange,
 	baseStyles,
 	style
 }) {
-	console.log('input checkbox');
+	console.log('input text');
 
 	return (
 		<input
-			checked={ checked }
+			defaultValue={ defaultValue }
+			placeholder={ placeHolder }
 			onBlur={ handleBlur }
 			onFocus={ handleFocus }
 			onChange={ handleChange }
 			style={ { ...baseStyles, ...style } }
-			type='checkbox'
+			type='text'
 		/>
 	);
 }

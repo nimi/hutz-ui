@@ -1,56 +1,57 @@
-
 // jest.autoMockOff();
 jest.dontMock('../src/Button');
 
-describe('Button', function() {
+import React from 'react';
+import ReactDOM from 'react-dom';
+import TestUtils from 'react-addons-test-utils';
 
-	const React = require('react/addons');
-	const Button = require('../src/Button');
-	const TestUtils = React.addons.TestUtils;
+const Button = require('../src/Button');
 
-	afterEach(function(done) {
+describe('Button', () => {
+
+	afterEach((done) => {
         React.unmountComponentAtNode(document.body);
         document.body.innerHTML = '';
         setTimeout(done);
     });
 
-	it('should be defined', function() {
+	it('should be defined', () => {
 		expect(Button).toBeDefined();
 	});
 
-	it('should be a valid react component', function() {
+	it('should be a valid react component', () => {
 		const button = TestUtils.renderIntoDocument(<Button>Homer Button</Button>);
 		expect(TestUtils.isCompositeComponent(button)).toBeTruthy();
 	});
 
-	it('should output a button element', function() {
+	it('should output a button element', () => {
 		const button = TestUtils.renderIntoDocument(<Button>Homer Button</Button>);
 		expect(React.findDOMNode(button).nodeName).toEqual('BUTTON');
 	});
 
-	it('should have button type by default', function() {
+	it('should have button type by default', () => {
 		const button = TestUtils.renderIntoDocument(<Button>Homer Button</Button>);
 		expect(React.findDOMNode(button).getAttribute('type')).toBe('button');
 	});
 
-	it('should override button type if one is added', function() {
+	it('should override button type if one is added', () => {
 		const button = TestUtils.renderIntoDocument(<Button type="submit">Homer Button</Button>);
 		expect(React.findDOMNode(button).getAttribute('type')).toBe('submit');
 	});
 
-	it('should have an onClick callback', function() {
+	it('should have an onClick callback', () => {
 		const button = TestUtils.renderIntoDocument(
 			<Button onClick={() => 'Bart Simpson'} >Homer Button</Button>);
 		TestUtils.Simulate.click(React.findDOMNode(button));
 	});
 
-	it('should be have active state during mousedown', function() {
+	it('should be have active state during mousedown', () => {
 		const button = TestUtils.renderIntoDocument(<Button>Homer Button</Button>);
 		TestUtils.Simulate.mouseDown(React.findDOMNode(button));
 		expect(button.state.active).toEqual(true);
 	});
 
-	it('should be not be active during mouseup', function() {
+	it('should be not be active during mouseup', () => {
 		const button = TestUtils.renderIntoDocument(<Button>Homer Button</Button>);
 		TestUtils.Simulate.mouseUp(React.findDOMNode(button));
 		expect(button.state.active).toEqual(false);

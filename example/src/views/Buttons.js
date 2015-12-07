@@ -1,7 +1,6 @@
 import React from 'react';
 import { Button } from '../../../src/components';
 
-
 export default class Buttons extends React.Component {
 
 	static displayName = 'Buttons'
@@ -16,7 +15,6 @@ export default class Buttons extends React.Component {
 	}
 
 	handleChange(event) {
-		console.log(event.target.value);
 		this.setState( {status: event.target.value} );
 	}
 
@@ -27,8 +25,6 @@ export default class Buttons extends React.Component {
 						status="${ status }"
 						disabled={${ disabled }}
 					/>`;
-
-		console.log(status);
 
 		return (
 			<div>
