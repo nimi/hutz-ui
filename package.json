@@ -14,8 +14,10 @@
   },
   "dependencies": {
     "classnames": "^2.1.2",
+    "immutable": "^3.7.4",
     "radium": "^0.13.4",
     "react": "^0.13.3",
+    "react-router": "^0.13.3",
     "react-style": "^0.5.5"
   },
   "devDependencies": {
