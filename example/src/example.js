@@ -1,73 +1,32 @@
-import React, { PropTypes } from 'react';
-import { InputText, Button, InputCheckbox } from '../../src/components';
-import Radium from 'radium';
+import React from 'react';
+import Router, { Route, DefaultRoute, RouteHandler } from 'react-router';
+import { Home, Buttons, Inputs } from './views';
 
-@Radium
 class App extends React.Component {
-
-	onClick() {
-		console.log('click');
-	}
-
-	render() {
-		return (
-			<div>
-				<h2>Buttons</h2>
-
-				<div style={{ display: 'flex'}}>
-					<div style={{ margin: '10px 20px 10px 0' }}>
-						<h3>Disabled</h3>
-						<Button disabled={true}>Button</Button>
-					</div>
-					<div style={{ margin: '10px 20px 10px 0' }}>
-						<h3>Primary</h3>
-						<Button onClick={ this.onClick }>Button</Button>
-					</div>
-					<div style={{ margin: '10px 20px 10px 0' }}>
-						<h3>Positive</h3>
-						<Button
-							onClick={ this.onClick }
-							status='positive'>
-							Button
-						</Button>
-					</div>
-					<div style={{ margin: '10px 20px 10px 0' }}>
-						<h3>Negative</h3>
-						<Button
-							onClick={ this.onClick }
-							status='negative'>
-							Button
-						</Button>
-					</div>
-				</div>
-
-				<h2>Text Input</h2>
-
-				<div style={{ width: '300px' }}>
-					<h3>Normal input</h3>
-					<InputText
-						placeHolder="Some default text" />
-					<h3>Normal input w/ label</h3>
-					<InputText
-						label="Example Label"
-						placeHolder="Some default text" />
-					<h3>Input w/ success</h3>
-					<InputText
-						success="true"
-						placeHolder="Some default text" />
-					<h3>Input w/ error</h3>
-					<InputText
-						error="Yikes!"
-						placeHolder="Some default text" />
-				</div>
-
-				<h2>Checkboxes</h2>
-				<div>
-					<h3>Single Checkbox</h3>
-				</div>
-			</div>
-		);
-	}
+  render() {
+    return (
+      <div>
+        <h1>Components</h1>
+        <h2>
+          <a href="https://github.com/nicholaslmitchell/hutz-ui">View project on GitHub</a>
+        </h2>
+        <RouteHandler/>
+        <div className="footer">
+          Copyright &copy; 2015 MIT.
+        </div>
+      </div>
+    );
+  }
 }
 
-React.render(<App />, document.getElementById('app'));
+let routes = (
+  <Route handler={App} path="/">
+    <DefaultRoute handler={Home} />
+    <Route path="buttons" handler={Buttons} />
+    <Route path="inputs" handler={Inputs} />
+  </Route>
+);
+
+Router.run(routes, Router.HistoryLocation, function (Handler) {
+  React.render(<Handler/>, document.getElementById('app'));
+});
