@@ -1,7 +1,7 @@
 // jest.autoMockOff();
 jest.dontMock('../src/InputCheckbox');
 
-describe('InputCheckboxSpec.js', function() {
+describe('InputCheckbox', function() {
 
 	const React = require('react/addons');
 	const InputCheckbox = require('../src/InputCheckbox');

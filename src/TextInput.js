@@ -9,7 +9,7 @@ const errorColor = colors[RED].C5;
 const successColor = colors[GREEN].C5;
 const labelColor = colors[GRAY].C5;
 
-const InputTextStyles = {
+const TextInputStyles = {
 	initialInputStyle: {
 		backgroundColor: 'transparent',
 		border: `solid 1px ${initialColor}`,
@@ -60,7 +60,7 @@ const InputTextStyles = {
 };
 
 @Radium
-class InputText extends React.Component {
+class TextInput extends React.Component {
 
 	constructor(props) {
 		super(props);
@@ -71,7 +71,7 @@ class InputText extends React.Component {
 		};
 	}
 
-	static displayName = 'InputText'
+	static displayName = 'TextInput'
 
 	static propTypes: {
 		defaultValue: PropTypes.string,
@@ -117,7 +117,7 @@ class InputText extends React.Component {
 	}
 	renderLabel(label) {
 		if (label) { return (
-			<label style={ InputTextStyles.initialLabelStyle }>
+			<label style={ TextInputStyles.initialLabelStyle }>
 				{ label }
 			</label>
 		); }
@@ -140,7 +140,7 @@ class InputText extends React.Component {
 				successInputStyle,
 				initialContainerStyle,
 				initialIconStyle,
-				activeIconStyle } = InputTextStyles;
+				activeIconStyle } = TextInputStyles;
 
 		let inputStyles = [
 			typeography.input,
@@ -195,4 +195,4 @@ class InputText extends React.Component {
 	}
 }
 
-export default InputText;
+export default TextInput;
