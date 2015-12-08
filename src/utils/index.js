@@ -26,8 +26,6 @@ export function isTransform(name) {
 		name === '-ms-transform';
 }
 
-export function noop() {}
-
 let transitionEnd = null;
 
 if (canUseDOM) {
@@ -44,3 +42,5 @@ export { transitionEnd };
 export function l(...args) {
 	console.log(...args);
 }
+
+export const noop = () => {};

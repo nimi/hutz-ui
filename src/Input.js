@@ -1,79 +1,18 @@
 import React, { PropTypes } from 'react';
-import { colors, GRAY, BLUE, RED, GREEN, typeography } from './styles';
+import { typeography, InputTextStyles } from './styles';
+import { noop } from './utils';
 import Icon from './Icon';
 import Radium from 'radium';
 import InputText from './InputText';
 import InputTextArea from './InputTextArea';
 import InputCheckbox from './InputCheckbox';
 
-const initialColor = colors[GRAY].C4;
-const focusColor = colors[BLUE].C5;
-const errorColor = colors[RED].C5;
-const successColor = colors[GREEN].C5;
-const labelColor = colors[GRAY].C5;
-
-const InputTextStyles = {
-	initialInputStyle: {
-		backgroundColor: 'transparent',
-		border: `solid 1px ${initialColor}`,
-		boxSizing: 'border-box',
-		color: labelColor,
-		outline: 'none',
-		left: 0,
-		width: '100%',
-		padding: '10px'
-	},
-
-	initialContainerStyle: {
-		position: 'relative',
-		display: 'flex',
-		flexDirection: 'column'
-	},
-
-	initialIconStyle: {
-		display: 'none',
-		position: 'absolute',
-		right: '3px',
-		bottom: 0
-	},
-
-	initialLabelStyle: {
-		fontWeight: 500,
-		top: '-35px'
-	},
-
-	activeIconStyle: {
-		display: 'block'
-	},
-
-	focusInputStyle: {
-		border: `solid 2px ${focusColor}`,
-		padding: '9px'
-	},
-
-	errorInputStyle: {
-		border: `solid 2px ${errorColor}`,
-		padding: '9px'
-	},
-
-	successInputStyle: {
-		border: `solid 2px ${successColor}`,
-		padding: '9px'
-	}
-};
-
 class InputBase extends React.Component {
+	static displayName = 'Input'
 
 	constructor(props) {
 		super(props);
-
-		this.state = {
-			focus: false,
-			focusing: false
-		};
 	}
-
-	static displayName = 'Input'
 
 	static propTypes = {
 		defaultValue: PropTypes.string,
@@ -85,10 +24,15 @@ class InputBase extends React.Component {
 		placeHolder: PropTypes.string,
 		success: PropTypes.bool,
 		type: PropTypes.string,
-		value: PropTypes.number
+		value: PropTypes.number,
+		focus: PropTypes.bool
 	}
 
 	static defaultProps = {
+		handleBlur: noop,
+		handleChange: noop,
+		handleFocus: noop,
+		focus: false,
 		type: 'text'
 	}
 
@@ -96,29 +40,11 @@ class InputBase extends React.Component {
 		console.log('change');
 	}
 
-	handleBlur(e) {
-		const { onBlur } = this.props;
-		this.setState({
-			focus: false
-		});
-
-		if (onBlur) { onBlur(e); }
-	}
-
-	handleFocus(e) {
-		const { onFocus } = this.props;
-		this.setState({
-			focus: true
-		});
-
-		if (onFocus) { onFocus(e); }
-	}
-
 	renderIcon({ success, error } = this.props) {
 		if (success) {
-			return <Icon type="check" color={ successColor } />;
+			return <Icon type="check" color={ InputTextStyles.successColor } />;
 		} else if (error) {
-			return <Icon type="close" color={ errorColor } />;
+			return <Icon type="close" color={ InputTextStyles.errorColor } />;
 		}
 	}
 
@@ -130,21 +56,15 @@ class InputBase extends React.Component {
 		); }
 	}
 
-	renderTextInput() {
-		const { inputStyles } = this.componentStyles();
-
+	renderTextInput(inputStyles) {
 		return <InputText {...this.props} baseStyles={ inputStyles } />;
 	}
 
-	renderTextArea() {
-		const { inputStyles } = this.componentStyles();
-
+	renderTextArea(inputStyles) {
 		return <InputTextArea {...this.props} baseStyles={ inputStyles } />;
 	}
 
-	renderCheckbox() {
-		const { inputStyles } = this.componentStyles();
-
+	renderCheckbox(inputStyles) {
 		return <InputCheckbox {...this.props} baseStyles={ inputStyles } />;
 	}
 
@@ -161,8 +81,8 @@ class InputBase extends React.Component {
 	}
 
 	componentStyles() {
-		const { error, success } = this.props;
-		const { focus } = this.state;
+		const { error, success, focus } = this.props;
+		console.log(InputTextStyles);
 		const { initialInputStyle,
 				focusInputStyle,
 				errorInputStyle,
@@ -200,20 +120,16 @@ class InputBase extends React.Component {
 			}
 		}
 
-		return {
-			inputStyles,
-			containerStyles,
-			iconStyles
-		};
+		return { inputStyles, containerStyles, iconStyles };
 	}
 
 	render() {
-		const { containerStyles, iconStyles } = this.componentStyles();
+		const { containerStyles, iconStyles, inputStyles } = this.componentStyles();
 
 		return (
 			<div style={ containerStyles }>
 				{ this.renderLabel() }
-				{ this.renderInput() }
+				{ this.renderInput(inputStyles) }
 				<div
 					style={ iconStyles }>
 					{ this.renderIcon() }
