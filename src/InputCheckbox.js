@@ -8,8 +8,6 @@ function Input({
 	baseStyles,
 	style
 }) {
-	console.log('input checkbox');
-
 	return (
 		<input
 			checked={ checked }

@@ -9,8 +9,6 @@ function Input({
 	baseStyles,
 	style
 }) {
-	console.log('input text');
-
 	return (
 		<input
 			defaultValue={ defaultValue }

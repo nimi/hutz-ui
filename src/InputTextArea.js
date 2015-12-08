@@ -9,8 +9,6 @@ function InputTextArea({
 	baseStyles,
 	style
 }) {
-	console.log('input text area', defaultValue);
-
 	return (
 		<textarea
 			defaultValue={ defaultValue }
