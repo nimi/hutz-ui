@@ -57,6 +57,7 @@ class InputBase extends React.Component {
 	}
 
 	renderTextInput(inputStyles) {
+		console.log(inputStyles);
 		return <InputText {...this.props} baseStyles={ inputStyles } />;
 	}
 
@@ -68,15 +69,15 @@ class InputBase extends React.Component {
 		return <InputCheckbox {...this.props} baseStyles={ inputStyles } />;
 	}
 
-	renderInput() {
+	renderInput(inputStyles) {
 		const { type } = this.props;
 
 		if (type === 'text') {
-			return this.renderTextInput();
+			return this.renderTextInput(inputStyles);
 		} else if (type === 'textarea') {
-			return this.renderTextArea();
+			return this.renderTextArea(inputStyles);
 		} else if (type === 'checkbox') {
-			return this.renderCheckbox();
+			return this.renderCheckbox(inputStyles);
 		}
 	}
 
@@ -91,10 +92,10 @@ class InputBase extends React.Component {
 				initialIconStyle,
 				activeIconStyle } = InputTextStyles;
 
-		let inputStyles = [
-			typeography.input,
-			initialInputStyle
-		];
+		let inputStyles = {
+			...typeography.input,
+			...initialInputStyle
+		};
 
 		let containerStyles = [
 			initialContainerStyle
@@ -105,18 +106,18 @@ class InputBase extends React.Component {
 		];
 
 		if (focus) {
-			inputStyles.push(focusInputStyle);
+			inputStyles = { ...inputStyles, ...focusInputStyle};
 		}
 
 		if (error || success) {
 			iconStyles.push(activeIconStyle);
 
 			if (error) {
-				inputStyles.push(errorInputStyle);
+				inputStyles = { ...inputStyles, ...errorInputStyle};
 			}
 
 			if (success) {
-				inputStyles.push(successInputStyle);
+				inputStyles = { ...inputStyles, ...successInputStyle};
 			}
 		}
 

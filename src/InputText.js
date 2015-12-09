@@ -9,6 +9,7 @@ function Input({
 	baseStyles,
 	style
 }) {
+	console.log(baseStyles);
 	return (
 		<input
 			defaultValue={ defaultValue }
@@ -16,7 +17,7 @@ function Input({
 			onBlur={ handleBlur }
 			onFocus={ handleFocus }
 			onChange={ handleChange }
-			style={ { ...baseStyles, ...style } }
+			style={ baseStyles }
 			type='text'
 		/>
 	);
