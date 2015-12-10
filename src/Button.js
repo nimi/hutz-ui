@@ -18,12 +18,11 @@ const ButtonStyles = {
 		textAlign: 'center',
 		lineHeight: '16px',
 		backgroundColor: colors[BLUE].C5,
-		boxShadow: `0px 3px 0px 0px ${colors[BLUE].C6}`
-	},
-
-	activeStyle: {
-		top: '2px',
-		boxShadow: `0px 1px 0px 0px ${colors[GRAY].C7}`
+		boxShadow: `0px 3px 0px 0px ${colors[BLUE].C6}`,
+		':active': {
+			top: '2px',
+			boxShadow: `0px 1px 0px 0px ${colors[GRAY].C7}`
+		}
 	},
 
 	positiveStyle: {
@@ -48,23 +47,17 @@ const ButtonStyles = {
 class Button extends React.Component {
 	constructor(props) {
 		super(props);
-
-		this.state = {
-			active: false
-		};
 	}
 
 	static displayName = 'Button'
 
 	static defaultProps = {
-		disabled: false,
-		onClick: noop
+		disabled: false
 	}
 
 	static propTypes = {
 		children: PropTypes.node,
 		disabled: PropTypes.bool,
-		onClick: PropTypes.func,
 		status: PropTypes.string,
 		styles: PropTypes.array,
 		type: PropTypes.string
@@ -74,30 +67,17 @@ class Button extends React.Component {
 		return !this.props.disabled;
 	}
 
-	onMouseUp() {
-		this.setState({ active: false });
-	}
-
-	onMouseDown() {
-		this.setState({ active: true });
-	}
-
 	render() {
-
 		const { initialStyle,
 				activeStyle,
 				disabledStyle } = ButtonStyles;
 
 		const { children,
 				disabled,
-				onClick,
 				type,
 				status } = this.props;
 
-		let styles = [
-			// some other styles
-			initialStyle
-		];
+		let styles = [ initialStyle ];
 
 		if (status === 'positive' || status === 'negative') {
 			styles.push(ButtonStyles[status + 'Style']);
@@ -107,15 +87,12 @@ class Button extends React.Component {
 			styles.push(disabledStyle);
 		}
 
-		if (this.state.active) {
+		if (this.props.active) {
 			styles.push(activeStyle);
 		}
 
 		return (
 			<button
-				onMouseUp={ () => this.onMouseUp() }
-				onMouseDown={ () => this.onMouseDown() }
-				onClick={ onClick }
 				style={ styles }
 				role='button'
 				status={ status }
