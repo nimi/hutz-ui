@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react';
 import Radium from 'radium';
 import { colors, BLUE, RED, GREEN, GRAY } from './styles';
-import { noop } from './utils';
-import PureRender from './decorators/PureRender';
+// import PureRender from './decorators/PureRender';
+// import { pipe } from 'ramda';
 
 const ButtonStyles = {
 	initialStyle: {

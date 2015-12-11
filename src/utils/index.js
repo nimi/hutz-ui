@@ -1,3 +1,5 @@
+import R from 'ramda';
+
 const transitions = {
 	'WebkitTransition': 'WebkitTransitionEnd',
 	'MozTransition': 'transitionend',
@@ -44,3 +46,14 @@ export function l(...args) {
 }
 
 export const noop = () => {};
+
+function changeFirstCase(fn) {
+	return (string) => {
+		const chr = string.charAt(0);
+		const trailing = string.slice(1);
+
+		return fn(chr) + trailing;
+	};
+}
+
+export const capitalize = changeFirstCase(R.toUpper);

@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import { typeography, InputTextStyles } from './styles';
-import { noop } from './utils';
+import { noop, capitalize } from './utils';
 import Icon from './Icon';
 import Radium from 'radium';
 import InputText from './InputText';
@@ -17,6 +17,7 @@ class InputBase extends React.Component {
 	static propTypes = {
 		defaultValue: PropTypes.string,
 		error: PropTypes.string,
+		focus: PropTypes.bool,
 		handleBlur: PropTypes.func,
 		handleChange: PropTypes.func,
 		handleFocus: PropTypes.func,
@@ -24,8 +25,7 @@ class InputBase extends React.Component {
 		placeHolder: PropTypes.string,
 		success: PropTypes.bool,
 		type: PropTypes.string,
-		value: PropTypes.number,
-		focus: PropTypes.bool
+		value: PropTypes.number
 	}
 
 	static defaultProps = {
@@ -34,10 +34,6 @@ class InputBase extends React.Component {
 		handleFocus: noop,
 		focus: false,
 		type: 'text'
-	}
-
-	handleChange() {
-		console.log('change');
 	}
 
 	renderIcon({ success, error } = this.props) {
@@ -49,19 +45,19 @@ class InputBase extends React.Component {
 	}
 
 	renderLabel({ label } = this.props) {
-		if (label) { return (
-			<label style={ InputTextStyles.initialLabelStyle }>
-				{ label }
-			</label>
-		); }
+		if (!label) { return null; }
+			return (
+				<label style={ InputTextStyles.initialLabelStyle }>
+					{ label }
+				</label>
+			);
 	}
 
-	renderTextInput(inputStyles) {
-		console.log(inputStyles);
+	renderText(inputStyles) {
 		return <InputText {...this.props} baseStyles={ inputStyles } />;
 	}
 
-	renderTextArea(inputStyles) {
+	renderTextarea(inputStyles) {
 		return <InputTextArea {...this.props} baseStyles={ inputStyles } />;
 	}
 
@@ -70,20 +66,11 @@ class InputBase extends React.Component {
 	}
 
 	renderInput(inputStyles) {
-		const { type } = this.props;
-
-		if (type === 'text') {
-			return this.renderTextInput(inputStyles);
-		} else if (type === 'textarea') {
-			return this.renderTextArea(inputStyles);
-		} else if (type === 'checkbox') {
-			return this.renderCheckbox(inputStyles);
-		}
+		return this[`render${capitalize(this.props.type)}`](inputStyles);
 	}
 
 	componentStyles() {
 		const { error, success, focus } = this.props;
-		console.log(InputTextStyles);
 		const { initialInputStyle,
 				focusInputStyle,
 				errorInputStyle,
