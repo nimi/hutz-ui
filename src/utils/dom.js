@@ -1,8 +1,8 @@
 const transitions = {
+	'transition': 'transitionEnd',
 	'WebkitTransition': 'WebkitTransitionEnd',
-	'MozTransition': 'transitionend',
-	'OTransition': 'oTransitionEnd',
-	'transition': 'transitionend'
+	'MozTransition': 'MozTransitionEnd',
+	'OTransition': 'transitionEnd'
 };
 
 const canUseDOM = Boolean(
@@ -26,25 +26,14 @@ const isTransform = name => {
 		name === '-ms-transform';
 };
 
-const transitionEndFn = (ts) => {
+const whichTransitionEnd = (ts) => {
 	if (!canUseDOM) { return null; }
 	const el = document.createElement('div');
 	return Object.keys(ts)
-		.filter(k => el.style[ts[k]])[0];
+		.filter(k => el.style.hasOwnProperty(k))[0];
 };
 
-let transitionEnd = null;
-
-if (canUseDOM) {
-	const div = document.createElement('div');
-	for (let t in transitions) {
-		if (div.style[t]) {
-			transitionEnd = transitions[t];
-		}
-	}
-}
-
-const tEnd = transitionEndFn(transitions);
+const transitionEnd = whichTransitionEnd(transitions);
 
 const mm = window.matchMedia;
 
@@ -54,5 +43,4 @@ export { canUseViewport };
 export { isTouchDevice };
 export { isTransform };
 export { transitionEnd };
-export { tEnd };
 export { mm };
