@@ -17,7 +17,6 @@ class InputBase extends React.Component {
 	static propTypes = {
 		defaultValue: PropTypes.string,
 		error: PropTypes.string,
-		focus: PropTypes.bool,
 		handleBlur: PropTypes.func,
 		handleChange: PropTypes.func,
 		handleFocus: PropTypes.func,
@@ -32,7 +31,6 @@ class InputBase extends React.Component {
 		handleBlur: noop,
 		handleChange: noop,
 		handleFocus: noop,
-		focus: false,
 		type: 'text'
 	}
 
@@ -46,11 +44,11 @@ class InputBase extends React.Component {
 
 	renderLabel({ label } = this.props) {
 		if (!label) { return null; }
-			return (
-				<label style={ InputTextStyles.initialLabelStyle }>
-					{ label }
-				</label>
-			);
+		return (
+			<label style={ InputTextStyles.initialLabelStyle }>
+				{ label }
+			</label>
+		);
 	}
 
 	renderText(inputStyles) {
@@ -70,9 +68,8 @@ class InputBase extends React.Component {
 	}
 
 	componentStyles() {
-		const { error, success, focus } = this.props;
+		const { error, success } = this.props;
 		const { initialInputStyle,
-				focusInputStyle,
 				errorInputStyle,
 				successInputStyle,
 				initialContainerStyle,
@@ -91,10 +88,6 @@ class InputBase extends React.Component {
 		let iconStyles = [
 			initialIconStyle
 		];
-
-		if (focus) {
-			inputStyles = { ...inputStyles, ...focusInputStyle};
-		}
 
 		if (error || success) {
 			iconStyles.push(activeIconStyle);
