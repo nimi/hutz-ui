@@ -1,60 +1,71 @@
-// jest.autoMockOff();
-jest.dontMock('../src/Button');
-
-import React from 'react';
-import ReactDOM from 'react-dom';
+import test from 'blue-tape';
 import TestUtils from 'react-addons-test-utils';
+import ReactDOM from 'react-dom';
+import React from 'react';
+import jsdomify from 'jsdomify';
+import Button from '../src/Button';
 
-const Button = require('../src/Button');
+const before = test;
+const after = test;
 
-describe('Button', () => {
+const setup = () => {
+	const button = TestUtils.renderIntoDocument(<Button>Homer Button</Button>);
+	const submitButton = TestUtils.renderIntoDocument(<Button type="submit">Homer Button</Button>);
+	const clickButton = TestUtils.renderIntoDocument(
+		<Button onClick={() => 'Bart Simpson'} >Homer Button</Button>);
 
-	afterEach((done) => {
-        React.unmountComponentAtNode(document.body);
-        document.body.innerHTML = '';
-        setTimeout(done);
-    });
+	const fixtures = { button, submitButton, clickButton };
 
-	it('should be defined', () => {
-		expect(Button).toBeDefined();
-	});
+	return { ...fixtures };
+};
 
-	it('should be a valid react component', () => {
-		const button = TestUtils.renderIntoDocument(<Button>Homer Button</Button>);
-		expect(TestUtils.isCompositeComponent(button)).toBeTruthy();
-	});
+const teardown = (fixtures) => {
+  // Dispose of your fixtures here.
+};
 
-	it('should output a button element', () => {
-		const button = TestUtils.renderIntoDocument(<Button>Homer Button</Button>);
-		expect(React.findDOMNode(button).nodeName).toEqual('BUTTON');
-	});
+before('create dom instance', (assert) => {
+	jsdomify.create();
 
-	it('should have button type by default', () => {
-		const button = TestUtils.renderIntoDocument(<Button>Homer Button</Button>);
-		expect(React.findDOMNode(button).getAttribute('type')).toBe('button');
-	});
+	assert.end();
+});
 
-	it('should override button type if one is added', () => {
-		const button = TestUtils.renderIntoDocument(<Button type="submit">Homer Button</Button>);
-		expect(React.findDOMNode(button).getAttribute('type')).toBe('submit');
-	});
+test('button definition', (assert) => {
+	const { button } = setup();
+	assert.ok(button, 'should be defined');
 
-	it('should have an onClick callback', () => {
-		const button = TestUtils.renderIntoDocument(
-			<Button onClick={() => 'Bart Simpson'} >Homer Button</Button>);
-		TestUtils.Simulate.click(React.findDOMNode(button));
-	});
+	assert.end();
+});
 
-	it('should be have active state during mousedown', () => {
-		const button = TestUtils.renderIntoDocument(<Button>Homer Button</Button>);
-		TestUtils.Simulate.mouseDown(React.findDOMNode(button));
-		expect(button.state.active).toEqual(true);
-	});
+test('button component', (assert) => {
+	const { button } = setup();
+	assert.ok(TestUtils.isCompositeComponent(button), 'should be a valid react component');
 
-	it('should be not be active during mouseup', () => {
-		const button = TestUtils.renderIntoDocument(<Button>Homer Button</Button>);
-		TestUtils.Simulate.mouseUp(React.findDOMNode(button));
-		expect(button.state.active).toEqual(false);
-	});
+	assert.end();
+});
 
+test('button type', (assert) => {
+	const { button, submitButton } = setup();
+	assert.equal(ReactDOM.findDOMNode(button).getAttribute('type'), 'button',
+		'should have a default button type');
+
+	assert.equal(ReactDOM.findDOMNode(submitButton).getAttribute('type'), 'submit',
+		'should have a valid button type when set');
+
+	assert.end();
+});
+
+test('should have an onClick callback', (assert) => {
+	const { clickButton } = setup();
+	TestUtils.Simulate.click(ReactDOM.findDOMNode(clickButton));
+
+	assert.end();
+});
+
+after('destroy dom', (assert) => {
+    ReactDOM.unmountComponentAtNode(document.body);
+    document.body.innerHTML = '';
+
+    jsdomify.destroy();
+
+    assert.end();
 });

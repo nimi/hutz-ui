@@ -1,51 +1,41 @@
-// jest.autoMockOff();
-jest.dontMock('../src/InputText');
+import test from 'blue-tape';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import jsdomify from 'jsdomify';
+import TestUtils from 'react-addons-test-utils';
+import InputText from '../src/InputText';
 
-describe('InputText', function() {
+const before = test;
+const after = test;
 
-	const React = require('react/addons');
-	const InputText = require('../src/InputText');
-	const TestUtils = React.addons.TestUtils;
+const setup = () => {
+	const input = TestUtils.renderIntoDocument(<InputText />);
 
-	afterEach(function(done) {
-        React.unmountComponentAtNode(document.body);
-        document.body.innerHTML = '';
-        setTimeout(done);
-    });
+	const fixtures = { input };
 
-	it('should be defined', function() {
-		expect(InputText).toBeDefined();
-	});
+	return { ...fixtures };
+};
 
-	it('should be a valid react component', function() {
-		const input = TestUtils.renderIntoDocument(<InputText />);
-		expect(TestUtils.isCompositeComponent(input)).toBeTruthy();
-	});
+const teardown = (fixtures) => {
+  // Dispose of your fixtures here.
+};
 
-	it('should have a div wrapper', function() {
-		const input = TestUtils.renderIntoDocument(<InputText />);
-		expect(React.findDOMNode(input).nodeName).toEqual('DIV');
-	});
+before('create dom instance', (assert) => {
+	jsdomify.create();
 
-	it('should output a input element in wrapper', function() {
-		const input = TestUtils.renderIntoDocument(<InputText />);
-		expect(React.findDOMNode(input).children[0].nodeName).toEqual('INPUT');
-	});
+	assert.end();
+});
 
-	it('should have input type by default', function() {
-		const input = TestUtils.renderIntoDocument(<InputText />);
-		expect(React.findDOMNode(input).children[0].getAttribute('type')).toBe('text');
-	});
+test('input checkbox definition', (assert) => {
+	const { input } = setup();
+	assert.ok(input, 'should be defined');
 
-	it('should override input type if one is added', function() {
-		const input = TestUtils.renderIntoDocument(<InputText type="email" />);
-		expect(React.findDOMNode(input).children[0].getAttribute('type')).toBe('email');
-	});
+	assert.end();
+});
 
-	it('should have an onChange callback', function() {
-		const input = TestUtils.renderIntoDocument(
-			<InputText onChange={() => 'Homer Simpson'} />);
-		TestUtils.Simulate.click(React.findDOMNode(input));
-	});
+test('input checkbox component', (assert) => {
+	const { input } = setup();
+	assert.ok(TestUtils.isCompositeComponent(input), 'should be a valid react component');
 
+	assert.end();
 });

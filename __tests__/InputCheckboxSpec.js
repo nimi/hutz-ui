@@ -1,25 +1,41 @@
-// jest.autoMockOff();
-jest.dontMock('../src/InputCheckbox');
+import test from 'blue-tape';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import jsdomify from 'jsdomify';
+import TestUtils from 'react-addons-test-utils';
+import InputCheckbox from '../src/InputCheckbox';
 
-describe('InputCheckbox', function() {
+const before = test;
+const after = test;
 
-	const React = require('react/addons');
-	const InputCheckbox = require('../src/InputCheckbox');
-	const TestUtils = React.addons.TestUtils;
+const setup = () => {
+	const input = TestUtils.renderIntoDocument(<InputCheckbox />);
 
-	afterEach(function(done) {
-        React.unmountComponentAtNode(document.body);
-        document.body.innerHTML = '';
-        setTimeout(done);
-    });
+	const fixtures = { input };
 
-	it('should be defined', function() {
-		expect(InputCheckbox).toBeDefined();
-	});
+	return { ...fixtures };
+};
 
-	it('should be a valid react component', function() {
-		const checkbox = TestUtils.renderIntoDocument(<InputCheckbox />);
-		expect(TestUtils.isCompositeComponent(checkbox)).toBeTruthy();
-	});
+const teardown = (fixtures) => {
+  // Dispose of your fixtures here.
+};
 
+before('create dom instance', (assert) => {
+	jsdomify.create();
+
+	assert.end();
+});
+
+test('input checkbox definition', (assert) => {
+	const { input } = setup();
+	assert.ok(input, 'should be defined');
+
+	assert.end();
+});
+
+test('input checkbox component', (assert) => {
+	const { input } = setup();
+	assert.ok(TestUtils.isCompositeComponent(input), 'should be a valid react component');
+
+	assert.end();
 });
