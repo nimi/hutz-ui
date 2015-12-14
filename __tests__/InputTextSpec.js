@@ -1,41 +1,43 @@
-import test from 'blue-tape';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import jsdomify from 'jsdomify';
 import TestUtils from 'react-addons-test-utils';
+import { suite, t, statelessComponent } from './helpers';
 import InputText from '../src/InputText';
 
-const before = test;
-const after = test;
+let fixtures = null;
 
-const setup = () => {
-	const input = TestUtils.renderIntoDocument(<InputText />);
+const setup = (p = {}) => {
+	const props = {
+		checked: false,
+		handleFocus: () => {},
+		handleBlur: () => {},
+		handleChange: () => {},
+		style: {},
+		baseStyles: {},
+		...p
+	};
 
-	const fixtures = { input };
+	const input = statelessComponent(
+		<InputText { ...props } />
+	);
+
+	fixtures = { input };
 
 	return { ...fixtures };
 };
 
-const teardown = (fixtures) => {
-  // Dispose of your fixtures here.
+const teardown = () => {
+	fixtures = null;
 };
 
-before('create dom instance', (assert) => {
-	jsdomify.create();
+suite('InputText', () => {
 
-	assert.end();
-});
+	t('InputText definition', (assert) => {
+		const { input } = setup();
+		assert.ok(input.instance, 'should be defined');
 
-test('input checkbox definition', (assert) => {
-	const { input } = setup();
-	assert.ok(input, 'should be defined');
+		teardown();
+		assert.end();
+	});
 
-	assert.end();
-});
-
-test('input checkbox component', (assert) => {
-	const { input } = setup();
-	assert.ok(TestUtils.isCompositeComponent(input), 'should be a valid react component');
-
-	assert.end();
 });

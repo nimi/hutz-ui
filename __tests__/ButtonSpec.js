@@ -1,12 +1,8 @@
-import test from 'blue-tape';
 import TestUtils from 'react-addons-test-utils';
 import ReactDOM from 'react-dom';
 import React from 'react';
-import jsdomify from 'jsdomify';
+import { suite, t, statelessComponent } from './helpers';
 import Button from '../src/Button';
-
-const before = test;
-const after = test;
 
 const setup = () => {
 	const button = TestUtils.renderIntoDocument(<Button>Homer Button</Button>);
@@ -20,52 +16,41 @@ const setup = () => {
 };
 
 const teardown = (fixtures) => {
-  // Dispose of your fixtures here.
+  fixtures = null;
 };
 
-before('create dom instance', (assert) => {
-	jsdomify.create();
+suite('Button', () => {
 
-	assert.end();
-});
+	t('button definition', (assert) => {
+		const { button } = setup();
+		assert.ok(button, 'should be defined');
 
-test('button definition', (assert) => {
-	const { button } = setup();
-	assert.ok(button, 'should be defined');
+		assert.end();
+	});
 
-	assert.end();
-});
+	t('button component', (assert) => {
+		const { button } = setup();
+		assert.ok(TestUtils.isCompositeComponent(button), 'should be a valid react component');
 
-test('button component', (assert) => {
-	const { button } = setup();
-	assert.ok(TestUtils.isCompositeComponent(button), 'should be a valid react component');
+		assert.end();
+	});
 
-	assert.end();
-});
+	t('button type', (assert) => {
+		const { button, submitButton } = setup();
+		assert.equal(ReactDOM.findDOMNode(button).getAttribute('type'), 'button',
+			'should have a default button type');
 
-test('button type', (assert) => {
-	const { button, submitButton } = setup();
-	assert.equal(ReactDOM.findDOMNode(button).getAttribute('type'), 'button',
-		'should have a default button type');
+		assert.equal(ReactDOM.findDOMNode(submitButton).getAttribute('type'), 'submit',
+			'should have a valid button type when set');
 
-	assert.equal(ReactDOM.findDOMNode(submitButton).getAttribute('type'), 'submit',
-		'should have a valid button type when set');
+		assert.end();
+	});
 
-	assert.end();
-});
+	t('should have an onClick callback', (assert) => {
+		const { clickButton } = setup();
+		TestUtils.Simulate.click(ReactDOM.findDOMNode(clickButton));
 
-test('should have an onClick callback', (assert) => {
-	const { clickButton } = setup();
-	TestUtils.Simulate.click(ReactDOM.findDOMNode(clickButton));
+		assert.end();
+	});
 
-	assert.end();
-});
-
-after('destroy dom', (assert) => {
-    ReactDOM.unmountComponentAtNode(document.body);
-    document.body.innerHTML = '';
-
-    jsdomify.destroy();
-
-    assert.end();
 });
