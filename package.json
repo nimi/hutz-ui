@@ -13,12 +13,9 @@
     "url": "https://github.com/nicholaslmitchell/hutz/issues"
   },
   "dependencies": {
-    "babel-preset-stage-0": "^6.3.13",
     "classnames": "^2.1.2",
-    "es6-symbol": "^3.0.1",
     "history": "^1.14.0",
     "immutable": "^3.7.5",
-    "jest": "^0.1.40",
     "radium": "^0.15.3",
     "ramda": "^0.18.0",
     "react": "^0.14.3",
@@ -53,10 +50,12 @@
     "jsdom": "^7.2.1",
     "jsdomify": "^1.0.2",
     "karma": "^0.13.15",
+    "onchange": "^2.0.0",
     "react-addons-test-utils": "^0.14.3",
     "react-component-gulp-tasks": "^0.7.0",
     "react-tools": "^0.13.3",
     "run-sequence": "^1.1.2",
+    "skin-deep": "^0.13.0",
     "symbol": "^0.2.1",
     "tap-spec": "^4.1.1"
   },
@@ -71,6 +70,7 @@
     "release": "gulp release",
     "start": "gulp dev",
     "test": "babel-tape-runner ./__tests__/*.js | tap-spec",
+    "test:watch": "onchange 'src/**/*.js' '__tests__/*.js' -- npm test",
     "watch": "gulp watch:lib"
   },
   "keywords": [
