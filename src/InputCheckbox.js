@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
+import { noop } from './utils';
 
-function Input({
+function InputCheckbox({
 	checked,
 	handleFocus,
 	handleBlur,
 	handleChange,
 	baseStyles,
-	style
+	style,
+	...props
 }) {
 	return (
 		<input
@@ -16,8 +18,26 @@ function Input({
 			onChange={ handleChange }
 			style={ { ...baseStyles, ...style } }
 			type='checkbox'
+			{ ...props }
 		/>
 	);
 }
 
-export default Input;
+InputCheckbox.propTypes = {
+	baseStyles: PropTypes.object,
+	checked: PropTypes.bool,
+	handleBlur: PropTypes.func,
+	handleChange: PropTypes.func,
+	handleFocus: PropTypes.func,
+	style: PropTypes.object
+};
+
+InputCheckbox.defaultProps = {
+	checked: false,
+	handleBlur: noop,
+	handleChange: noop,
+	handleFocus: noop,
+	style: {}
+};
+
+export default InputCheckbox;
