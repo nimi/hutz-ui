@@ -15,7 +15,7 @@ export function statelessComponent(Component) {
 
 	return {
 		instance: tree.getMountedInstance(),
-		dom: tree.getRenderOutput(),
+		vdom: tree.getRenderOutput(),
 		style: tree.getRenderOutput().props.style
 	};
 }
@@ -37,11 +37,11 @@ export function suite(name, startTests) {
 	startTests();
 
 	after('destroy dom', (assert) => {
-	    ReactDOM.unmountComponentAtNode(document.body);
-	    document.body.innerHTML = '';
+		ReactDOM.unmountComponentAtNode(document.body);
+		document.body.innerHTML = '';
 
-	    jsdomify.destroy();
+		jsdomify.destroy();
 
-	    assert.end();
+		assert.end();
 	});
 }
