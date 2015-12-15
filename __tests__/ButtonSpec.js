@@ -1,7 +1,7 @@
 import TestUtils from 'react-addons-test-utils';
 import ReactDOM from 'react-dom';
 import React from 'react';
-import { suite, t, statelessComponent } from './helpers';
+import { suite, t } from './helpers';
 import Button from '../src/Button';
 
 const setup = () => {
