@@ -1,51 +1,43 @@
-// jest.autoMockOff();
-jest.dontMock('../src/InputText');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import TestUtils from 'react-addons-test-utils';
+import { suite, t, statelessComponent } from './helpers';
+import InputText from '../src/InputText';
 
-describe('InputText', function() {
+let fixtures = null;
 
-	const React = require('react/addons');
-	const InputText = require('../src/InputText');
-	const TestUtils = React.addons.TestUtils;
+const setup = (p = {}) => {
+	const props = {
+		checked: false,
+		handleFocus: () => {},
+		handleBlur: () => {},
+		handleChange: () => {},
+		style: {},
+		baseStyles: {},
+		...p
+	};
 
-	afterEach(function(done) {
-        React.unmountComponentAtNode(document.body);
-        document.body.innerHTML = '';
-        setTimeout(done);
-    });
+	const input = statelessComponent(
+		<InputText { ...props } />
+	);
 
-	it('should be defined', function() {
-		expect(InputText).toBeDefined();
-	});
+	fixtures = { input };
 
-	it('should be a valid react component', function() {
-		const input = TestUtils.renderIntoDocument(<InputText />);
-		expect(TestUtils.isCompositeComponent(input)).toBeTruthy();
-	});
+	return { ...fixtures };
+};
 
-	it('should have a div wrapper', function() {
-		const input = TestUtils.renderIntoDocument(<InputText />);
-		expect(React.findDOMNode(input).nodeName).toEqual('DIV');
-	});
+const teardown = () => {
+	fixtures = null;
+};
 
-	it('should output a input element in wrapper', function() {
-		const input = TestUtils.renderIntoDocument(<InputText />);
-		expect(React.findDOMNode(input).children[0].nodeName).toEqual('INPUT');
-	});
+suite('InputText', () => {
 
-	it('should have input type by default', function() {
-		const input = TestUtils.renderIntoDocument(<InputText />);
-		expect(React.findDOMNode(input).children[0].getAttribute('type')).toBe('text');
-	});
+	t('InputText definition', (assert) => {
+		const { input } = setup();
+		assert.ok(input.instance, 'should be defined');
 
-	it('should override input type if one is added', function() {
-		const input = TestUtils.renderIntoDocument(<InputText type="email" />);
-		expect(React.findDOMNode(input).children[0].getAttribute('type')).toBe('email');
-	});
-
-	it('should have an onChange callback', function() {
-		const input = TestUtils.renderIntoDocument(
-			<InputText onChange={() => 'Homer Simpson'} />);
-		TestUtils.Simulate.click(React.findDOMNode(input));
+		teardown();
+		assert.end();
 	});
 
 });

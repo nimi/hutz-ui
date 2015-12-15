@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Input({
+function InputTextArea({
 	defaultValue,
 	placeHolder,
 	handleFocus,
@@ -9,18 +9,16 @@ function Input({
 	baseStyles,
 	style
 }) {
-	console.log(baseStyles);
 	return (
-		<input
+		<textarea
 			defaultValue={ defaultValue }
 			placeholder={ placeHolder }
 			onBlur={ handleBlur }
 			onFocus={ handleFocus }
 			onChange={ handleChange }
-			style={ baseStyles }
-			type='text'
+			style={ { ...baseStyles, ...style } }
 		/>
 	);
 }
 
-export default Input;
+export default InputTextArea;

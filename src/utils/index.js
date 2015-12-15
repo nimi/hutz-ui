@@ -1,46 +1,16 @@
-const transitions = {
-	'WebkitTransition': 'WebkitTransitionEnd',
-	'MozTransition': 'transitionend',
-	'OTransition': 'oTransitionEnd',
-	'transition': 'transitionend'
-};
+import { toUpper } from 'ramda';
 
-export const canUseDOM = !!(
-	!Object.is(window, undefined) &&
-	window.document &&
-	window.document.createElement
-);
+function changeFirstCase(fn) {
+	return (string) => {
+		const chr = string.charAt(0);
+		const trailing = string.slice(1);
 
-export const canUseEventListeners =
-	canUseDOM && !!(window.addEventListener || window.attachEvent);
-
-export const canUseViewport = canUseDOM && !!window.screen;
-
-export const isTouchDevice = canUseDOM && !!window.ontouchtart;
-
-export function isTransform(name) {
-	return name === 'transform' ||
-		name === '--webkit-transform' ||
-		name === '-moz-transform' ||
-		name === '-o-transform' ||
-		name === '-ms-transform';
+		return fn(chr) + trailing;
+	};
 }
 
-export function noop() {}
+export const l = (...args) => console.log(...args);
 
-let transitionEnd = null;
+export const noop = () => {};
 
-if (canUseDOM) {
-	const div = document.createElement('div');
-	for (let t in transitions) {
-		if (div.style[t]) {
-			transitionEnd = transitions[t];
-		}
-	}
-}
-
-export { transitionEnd };
-
-export function l(...args) {
-	console.log(...args);
-}
+export const capitalize = changeFirstCase(toUpper);

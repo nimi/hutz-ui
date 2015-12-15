@@ -9,7 +9,6 @@ const IconStyles = {
 	}
 };
 
-@Radium
 class Icon extends React.Component {
 	constructor(props) {
 		super(props);
@@ -49,4 +48,4 @@ class Icon extends React.Component {
 	}
 }
 
-export default Icon;
+export default Radium(Icon);
