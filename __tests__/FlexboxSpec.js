@@ -4,6 +4,8 @@ import TestUtils from 'react-addons-test-utils';
 import FlexBox from '../src/FlexBox';
 import { suite, t, statelessComponent } from './helpers';
 
+const __ = undefined;
+
 const baseStyles = {
 	display: 'flex',
     flexWrap: null,
@@ -55,4 +57,54 @@ suite('FlexBox Component', () => {
 		assert.end();
 	});
 
+	t('flex direction column', (assert) => {
+		const { flexBox } = setup(__, { direction: 'column' });
+		const style = { ...baseStyles, flexDirection: 'column' };
+
+		assert.deepEqual(flexBox.style, style, 'should set flex direction to column');
+
+		teardown();
+		assert.end();
+	});
+
+	t('flex direction column-reverse', (assert) => {
+		const { flexBox } = setup(__, { direction: 'column-reverse' });
+		const style = { ...baseStyles, flexDirection: 'column-reverse' };
+
+		assert.deepEqual(flexBox.style, style, 'should set flex direction to column-reverse');
+
+		teardown();
+		assert.end();
+	});
+
+	t('flex direction row-reverse', (assert) => {
+		const { flexBox } = setup(__, { direction: 'row-reverse' });
+		const style = { ...baseStyles, flexDirection: 'row-reverse' };
+
+		assert.deepEqual(flexBox.style, style, 'should set flex direction to row-reverse');
+
+		teardown();
+		assert.end();
+	});
+
+	t('flex direction row-reverse', (assert) => {
+		const { flexBox } = setup(__, { direction: 'row-reverse' });
+		const style = { ...baseStyles, flexDirection: 'row-reverse' };
+
+		assert.deepEqual(flexBox.style, style, 'should set flex direction to row-reverse');
+
+		teardown();
+		assert.end();
+	});
+
+
+	t('flex align', (assert) => {
+		const { flexBox } = setup(__, { align: 'stretch' });
+		const style = { ...baseStyles, alignItems: 'stretch' };
+
+		assert.deepEqual(flexBox.style, style, 'should set item alignment to stretch');
+
+		teardown();
+		assert.end();
+	});
 });
