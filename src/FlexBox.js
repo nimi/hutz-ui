@@ -9,7 +9,7 @@ const styleDisplay = (sizes) =>
 			!Object.keys(sizes).some(v => sizes[v]));
 
 function FlexBox({
-	wrap, col, align, justify, gutter, sm, md, lg,
+	wrap, direction, align, justify, gutter, sm, md, lg,
 	...props
 }) {
 
@@ -20,7 +20,7 @@ function FlexBox({
 		height: '100%',
 		alignItems: align || null,
 		flexWrap: wrap ? 'wrap' : null,
-		flexDirection: col ? 'column' : null,
+		flexDirection: direction || null,
 		justifyContent: justify || null,
 		marginLeft: gutter ? -scale[gutter] : null,
 		marginRight: gutter ? -scale[gutter] : null
@@ -42,7 +42,12 @@ FlexBox.propTypes = {
 		'flex-start',
 		'flex-end'
 	]),
-	col: PropTypes.bool,
+	direction: PropTypes.oneOf([
+		'row',
+		'row-reverse',
+		'column',
+		'column-reverse'
+	]),
 	gutter: PropTypes.oneOf([0, 1, 2, 3, 4]),
 	justify: PropTypes.oneOf([
 		'center',
