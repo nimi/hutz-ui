@@ -6,7 +6,7 @@ const transitions = {
 };
 
 const canUseDOM = Boolean(
-	!Object.is(window, undefined) &&
+	typeof window !== 'undefined' &&
 	window.document &&
 	window.document.createElement
 );
@@ -35,7 +35,7 @@ const whichTransitionEnd = (ts) => {
 
 const transitionEnd = whichTransitionEnd(transitions);
 
-const mm = window.matchMedia;
+const mm = canUseDOM ? window.matchMedia : () => {};
 
 export { canUseDOM };
 export { canUseEventListeners };

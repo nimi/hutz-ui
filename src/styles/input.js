@@ -1,11 +1,13 @@
-import { colors, GRAY, BLUE, RED, GREEN } from './colors';
+import { colors } from './colors';
 import { typeography } from './typeography';
 
-const initialColor = colors[GRAY].C4;
-const focusColor = colors[BLUE].C5;
-const errorColor = colors[RED].C5;
-const successColor = colors[GREEN].C5;
-const labelColor = colors[GRAY].C5;
+const { GRAY, BLUE, RED, GREEN } = colors;
+
+const initialColor = GRAY.C4;
+const focusColor = BLUE.C5;
+const errorColor = RED.C5;
+const successColor = GREEN.C5;
+const labelColor = GRAY.C5;
 
 export const InputTextStyles = {
 	initialInputStyle: {
@@ -16,7 +18,11 @@ export const InputTextStyles = {
 		outline: 'none',
 		left: 0,
 		width: '100%',
-		padding: '10px'
+		padding: '10px',
+		':focus': {
+			border: `solid 2px ${focusColor}`,
+			padding: '9px'
+		}
 	},
 
 	initialContainerStyle: {
@@ -39,11 +45,6 @@ export const InputTextStyles = {
 
 	activeIconStyle: {
 		display: 'block'
-	},
-
-	focusInputStyle: {
-		border: `solid 2px ${focusColor}`,
-		padding: '9px'
 	},
 
 	errorInputStyle: {
