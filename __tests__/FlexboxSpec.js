@@ -24,11 +24,14 @@ const setup = (name = 'flexBox', p = {}) => {
 		...p
 	};
 
+	const scale = [0, 8, 16, 32, 64];
+
 	const flexBox = statelessComponent(
 		<FlexBox { ...props } />
 	);
 
 	fixtures[name] = flexBox;
+	fixtures.scale = scale;
 
 	return { ...fixtures };
 };
@@ -38,7 +41,6 @@ const teardown = () => {
 };
 
 suite('FlexBox Component', () => {
-
 	t('definition', (assert) => {
 		const { flexBox } = setup();
 		assert.ok(flexBox.instance, 'should be defined');
@@ -103,6 +105,46 @@ suite('FlexBox Component', () => {
 		const style = { ...baseStyles, alignItems: 'stretch' };
 
 		assert.deepEqual(flexBox.style, style, 'should set item alignment to stretch');
+
+		teardown();
+		assert.end();
+	});
+
+	t('flex gutter', (assert) => {
+		const { flexBox, scale } = setup(__, { gutter: 1 });
+		const style = { ...baseStyles, marginLeft: -scale[1], marginRight: -scale[1] };
+
+		assert.deepEqual(flexBox.style, style, 'should set margin left and right based on scale');
+
+		teardown();
+		assert.end();
+	});
+
+	t('flex justify', (assert) => {
+		const { flexBox } = setup(__, { justify: 'center' });
+		const style = { ...baseStyles, justifyContent: 'center' };
+
+		assert.deepEqual(flexBox.style, style, 'should set justify-content to center');
+
+		teardown();
+		assert.end();
+	});
+
+	t('flex justify', (assert) => {
+		const { flexBox } = setup(__, { justify: 'center' });
+		const style = { ...baseStyles, justifyContent: 'center' };
+
+		assert.deepEqual(flexBox.style, style, 'should set justify content to center');
+
+		teardown();
+		assert.end();
+	});
+
+	t('flex wrap', (assert) => {
+		const { flexBox } = setup(__, { wrap: true });
+		const style = { ...baseStyles, flexWrap: 'wrap' };
+
+		assert.deepEqual(flexBox.style, style, 'should set flex-wrap value when wrap true');
 
 		teardown();
 		assert.end();
