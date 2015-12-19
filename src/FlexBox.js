@@ -9,13 +9,13 @@ const styleDisplay = (sizes) =>
 			!Object.keys(sizes).some(v => sizes[v]));
 
 function FlexBox({
-	wrap, direction, align, justify, gutter, sm, md, lg,
+	wrap, direction, align, justify, gutter, sm, md, lg, style = {},
 	...props
 }) {
 
 	const display = styleDisplay({sm, md, lg}) ? 'flex' : 'block';
 
-	const style = {
+	const flexBoxStyle = {
 		display,
 		height: '100%',
 		alignItems: align || null,
@@ -29,10 +29,12 @@ function FlexBox({
 	return (
 		<div
 			{ ...props }
-			style={ style }
+			style={{ ...flexBoxStyle, ...style }}
 		/>
 	);
 }
+
+FlexBox.displayName = 'FlexBox';
 
 FlexBox.propTypes = {
 	align: PropTypes.oneOf([
@@ -60,12 +62,6 @@ FlexBox.propTypes = {
 	md: PropTypes.bool,
 	sm: PropTypes.bool,
 	wrap: PropTypes.bool
-};
-
-FlexBox.defaultProps = {
-	lg: false,
-	md: false,
-	sm: false
 };
 
 export default FlexBox;

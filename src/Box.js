@@ -2,30 +2,28 @@ import React, { PropTypes } from 'react';
 import { scale, breakpoints } from './styles';
 import { mm, transitionEnd } from './utils/dom';
 
-console.log(transitionEnd);
-
-const w = (v) => {
+const w = (v = 12) => {
 	return v ? (v / 12 * 100) + '%' : null;
 };
 
-const styleWidth = (sizes) => {
-	const size = Object.keys(sizes)
+const styleWidth = ({sm = 12, md = 12, lg = 12}) => {
+	const size = Object.keys({sm, md, lg})
 		.map(key => ({ key, bp: breakpoints[key] }))
-		.filter(s => mm(s.bp).matches)
+		.filter(s => mm(s.bp) && mm(s.bp).matches)
 		.slice(-1);
 
 	return size.length && size[0].key;
 };
 
 function Box({
-	p, px, py, pt, pb, pl, pr, fill, col, sm, md, lg, align,
+	p, px, py, pt, pb, pl, pr, fill, col, sm, md, lg, align, style = {},
 	...props
 }) {
-	const sizes = {sm, md, lg};
+	const sizes = { sm, md, lg };
 	const widthProp = styleWidth(sizes);
 	const width = ( widthProp && !col ) ? w(sizes[widthProp]) : w(col);
 
-	const style = {
+	const boxStyle = {
 		alignSelf: align || null,
 		boxSizing: 'border-box',
 		flex: fill ? '1 1 auto' : null,
@@ -42,10 +40,12 @@ function Box({
 	return (
 		<div
 			{ ...props }
-			style={ style }
+			style={{ ...boxStyle, ...style }}
 		/>
 	);
 }
+
+Box.displayName = 'Box';
 
 Box.propTypes = {
 	align: PropTypes.oneOf([
@@ -67,13 +67,6 @@ Box.propTypes = {
 	px: PropTypes.oneOf([0, 1, 2, 3, 4]),
 	py: PropTypes.oneOf([0, 1, 2, 3, 4]),
 	sm: PropTypes.oneOf([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])
-};
-
-Box.defaultProps = {
-	col: 12,
-	lg: 12,
-	md: 12,
-	sm: 12
 };
 
 export default Box;
