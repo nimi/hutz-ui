@@ -1,4 +1,5 @@
 import React from 'react';
+import { Example } from '../components';
 import { Button, ButtonGroup, Box, FlexBox } from '../../../src/components';
 import jsxStringify from '../utils/jsxToString';
 import Highlight from 'react-highlight';
@@ -27,14 +28,22 @@ export default class Buttons extends React.Component {
 			Component
 		);
 
-		return <Highlight>{ code }</Highlight>
+		return <Highlight>{ code }</Highlight>;
 	}
 
 	renderButton(props = {}) {
 		const buttonProps = { ...this.state, ...props };
-		return <Button { ...buttonProps }>
+		return <Button { ...buttonProps } raised>
 			{this.randomSimpson()}
 		</Button>;
+	}
+
+	renderButtons() {
+		return (
+			<FlexBox justify='space-around' style={{ width: '100%' }}>
+				{['blue', 'green', 'red', 'yellow', 'orange', 'purple']
+					.map(color => this.renderButton({ color }))}
+			</FlexBox>);
 	}
 
 	renderButtonGroup() {
@@ -68,13 +77,13 @@ export default class Buttons extends React.Component {
 				</Box>
 				<Box>
 					<h3 style={{ marginTop: 0, marginBottom: '2em' }}>Primary Button</h3>
-					{ this.renderComponentWithCode(
-						this.renderButton()
-					) }
+					<Example>
+						{this.renderButtons()}
+					</Example>
 					<h3 style={{ marginTop: 0, marginBottom: '2em' }}>Button Group</h3>
-					{ this.renderComponentWithCode(
-						this.renderButtonGroup()
-					) }
+					<Example>
+						{this.renderButtonGroup()}
+					</Example>
 				</Box>
 			</FlexBox>
 		);
