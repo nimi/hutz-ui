@@ -39,11 +39,12 @@ class Button extends React.Component {
 		if (fill) { styles.push(fillStyle); }
 		if (groupStyle) { styles.push(groupStyle); }
 		if (raised) { styles.push(raisedStyle); }
+		if (this.props.style) { styles.push(this.props.style) }
 
 		return (
 			<button
 				{ ...this.props }
-				style={ styles }
+				style={styles}
 			/>
 		);
 	}
