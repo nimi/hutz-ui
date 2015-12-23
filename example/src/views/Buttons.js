@@ -8,6 +8,7 @@ export default class Buttons extends React.Component {
 
 	static displayName = 'Buttons'
 	static simpsons = ['Homer', 'Bart', 'Lisa', 'Marge', 'Maggie']
+	static colors = ['blue', 'green', 'red', 'yellow', 'orange', 'purple']
 
 	constructor() {
 		super();
@@ -33,22 +34,21 @@ export default class Buttons extends React.Component {
 
 	renderButton(props = {}) {
 		const buttonProps = { ...this.state, ...props };
-		return <Button { ...buttonProps } raised>
+		return <Button { ...buttonProps }>
 			{this.randomSimpson()}
 		</Button>;
 	}
 
-	renderButtons() {
+	renderButtons(props = {}) {
 		return (
 			<FlexBox justify='space-around' style={{ width: '100%' }}>
-				{['blue', 'green', 'red', 'yellow', 'orange', 'purple']
-					.map(color => this.renderButton({ color }))}
+				{Buttons.colors.map(color => this.renderButton({ ...props, color }))}
 			</FlexBox>);
 	}
 
-	renderButtonGroup() {
+	renderButtonGroup(props = {}) {
 		return (
-			<ButtonGroup vertical>
+			<ButtonGroup { ...props }>
 				{this.renderButton()}
 				{this.renderButton()}
 				{this.renderButton()}
@@ -76,13 +76,17 @@ export default class Buttons extends React.Component {
 					<h2>Buttons</h2>
 				</Box>
 				<Box>
-					<h3 style={{ marginTop: 0, marginBottom: '2em' }}>Primary Button</h3>
-					<Example>
+					<Example heading='Basic Buttons'>
 						{this.renderButtons()}
 					</Example>
-					<h3 style={{ marginTop: 0, marginBottom: '2em' }}>Button Group</h3>
-					<Example>
+					<Example heading='Raised Buttons'>
+						{this.renderButtons({ raised: true })}
+					</Example>
+					<Example heading='Button Group'>
 						{this.renderButtonGroup()}
+					</Example>
+					<Example heading='Button Group (vertical)'>
+						{this.renderButtonGroup({ vertical: true })}
 					</Example>
 				</Box>
 			</FlexBox>
