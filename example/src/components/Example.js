@@ -8,7 +8,8 @@ export default class Example extends Component {
 	static displayName = 'Buttons'
 
 	static propTypes = {
-		expanded: PropTypes.bool
+		expanded: PropTypes.bool,
+		heading: PropTypes.string
 	}
 
 	constructor(props) {
@@ -37,20 +38,26 @@ export default class Example extends Component {
 
 		return (
 			<FlexBox direction='column'>
+				<h3 style={{ margin: '2em 0' }}>
+					{ this.props.heading }
+				</h3>
 				<Box p={3} style={ { backgroundColor: '#FFF' } }>
 					<FlexBox justify='space-around'>
 						{component}
 					</FlexBox>
 				</Box>
-				<Box style={codeStyle}>
-					{ this.renderCode(component) }
-				</Box>
-				<Box>
+				<Box py={ 1 }>
 					<Button
+						color='gray'
 						onClick={this.handleClick}
 						fill>
 							view source
 					</Button>
+				</Box>
+				<Box
+					style={codeStyle}
+				>
+					{ this.renderCode(component) }
 				</Box>
 			</FlexBox>
 		);
