@@ -9,7 +9,6 @@ const baseStyles = {
 	boxSizing: 'border-box',
 	flex: null,
 	flexBasis: '100%',
-	height: null,
 	padding: null,
 	paddingBottom: null,
 	paddingLeft: null,
@@ -19,16 +18,6 @@ const baseStyles = {
 };
 
 let fixtures = {};
-
-// col: PropTypes.oneOf([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
-// fill: PropTypes.bool,
-// p: PropTypes.oneOf([0, 1, 2, 3, 4]),
-// pb: PropTypes.oneOf([0, 1, 2, 3, 4]),
-// pl: PropTypes.oneOf([0, 1, 2, 3, 4]),
-// pr: PropTypes.oneOf([0, 1, 2, 3, 4]),
-// pt: PropTypes.oneOf([0, 1, 2, 3, 4]),
-// px: PropTypes.oneOf([0, 1, 2, 3, 4]),
-// py: PropTypes.oneOf([0, 1, 2, 3, 4]),
 
 const setup = (name = 'box', p = {}) => {
 	const props = {
@@ -63,7 +52,7 @@ suite('Box Component', () => {
 		const { box } = setup();
 		const style = { ...baseStyles };
 
-		assert.deepEqual(box.style, style, 'should have no style by default');
+		assert.deepEqual(box.style, style, 'should have no new style by default');
 
 		teardown();
 		assert.end();

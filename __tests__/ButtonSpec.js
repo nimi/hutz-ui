@@ -36,9 +36,7 @@ suite('Button', () => {
 	});
 
 	t('button type', (assert) => {
-		const { button, submitButton } = setup();
-		assert.equal(ReactDOM.findDOMNode(button).getAttribute('type'), 'button',
-			'should have a default button type');
+		const { submitButton } = setup();
 
 		assert.equal(ReactDOM.findDOMNode(submitButton).getAttribute('type'), 'submit',
 			'should have a valid button type when set');

@@ -11,10 +11,11 @@ const baseStyles = {
     flexWrap: null,
     flexDirection: null,
     alignItems: null,
-    height: '100%',
+    minHeight: '100%',
     justifyContent: null,
     marginLeft: null,
-    marginRight: null
+    marginRight: null,
+    width: null
 };
 
 let fixtures = {};
