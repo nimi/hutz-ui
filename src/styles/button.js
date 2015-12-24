@@ -4,7 +4,6 @@ export default function buttonStyles(c = 'blue') {
 	const BASE_COLOR = c;
 
 	return {
-		
 		initialStyle: {
 			cursor: 'pointer',
 			position: 'relative',
