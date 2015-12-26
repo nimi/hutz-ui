@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { typeography, InputTextStyles } from './styles';
+import { typeography, InputStyles } from './styles';
 import { noop, capitalize } from './utils';
 import Icon from './Icon';
 import Radium from 'radium';
@@ -16,36 +16,31 @@ class InputBase extends React.Component {
 
 	static propTypes = {
 		defaultValue: PropTypes.string,
-		error: PropTypes.string,
-		handleBlur: PropTypes.func,
-		handleChange: PropTypes.func,
-		handleFocus: PropTypes.func,
+		error: PropTypes.bool,
 		label: PropTypes.string,
 		placeHolder: PropTypes.string,
+		size: PropTypes.string,
 		success: PropTypes.bool,
 		type: PropTypes.string,
 		value: PropTypes.number
 	}
 
 	static defaultProps = {
-		handleBlur: noop,
-		handleChange: noop,
-		handleFocus: noop,
 		type: 'text'
 	}
 
 	renderIcon({ success, error } = this.props) {
 		if (success) {
-			return <Icon type="check" color={ InputTextStyles.successColor } />;
+			return <Icon type="check" color={ InputStyles.successColor } />;
 		} else if (error) {
-			return <Icon type="close" color={ InputTextStyles.errorColor } />;
+			return <Icon type="close" color={ InputStyles.errorColor } />;
 		}
 	}
 
 	renderLabel({ label } = this.props) {
 		if (!label) { return null; }
 		return (
-			<label style={ InputTextStyles.initialLabelStyle }>
+			<label style={ InputStyles.initialLabelStyle }>
 				{ label }
 			</label>
 		);
@@ -68,13 +63,13 @@ class InputBase extends React.Component {
 	}
 
 	componentStyles() {
-		const { error, success } = this.props;
+		const { error, success, size } = this.props;
 		const { initialInputStyle,
 				errorInputStyle,
 				successInputStyle,
 				initialContainerStyle,
 				initialIconStyle,
-				activeIconStyle } = InputTextStyles;
+				activeIconStyle } = InputStyles;
 
 		let inputStyles = {
 			...typeography.input,
@@ -93,12 +88,16 @@ class InputBase extends React.Component {
 			iconStyles.push(activeIconStyle);
 
 			if (error) {
-				inputStyles = { ...inputStyles, ...errorInputStyle};
+				inputStyles = { ...inputStyles, ...errorInputStyle };
 			}
 
 			if (success) {
-				inputStyles = { ...inputStyles, ...successInputStyle};
+				inputStyles = { ...inputStyles, ...successInputStyle };
 			}
+		}
+
+		if (size === 'fill') {
+			containerStyles.push({ width: '100%' });
 		}
 
 		return { inputStyles, containerStyles, iconStyles };
