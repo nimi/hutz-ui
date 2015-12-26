@@ -1,5 +1,6 @@
 import React from 'react';
 import { Input } from '../../../src/components';
+import { Example } from '../components';
 
 export default class Home extends React.Component {
 
@@ -7,36 +8,52 @@ export default class Home extends React.Component {
 		console.log('click', this);
 	}
 
+	renderInput(moreProps = {}) {
+		const baseProps = {
+			type: 'text',
+			placeholder: 'Some placeholder text'
+		};
+
+		const props = { ...baseProps, ...moreProps };
+
+		return (
+			<Input { ...props } />
+		);
+	}
+
 	render() {
 		return (
 			<div>
 				<h2>Text Input</h2>
-
-				<div style={{ width: '300px' }}>
-					<h3>Normal text input</h3>
-					<Input
-						type="text"
-						placeHolder="Some default text"
-						handleChange={ (e) => console.log('changing', e) } />
-					<h3>Normal text input w/ label</h3>
-					<Input
-						label="Example Label"
-						placeHolder="Some other default text"
-						handleChange={ (e) => console.log('changing', e) } />
-					<h3>Text input w/ success</h3>
-					<Input
-						success={true}
-						placeHolder="Some default text"
-						handleChange={ (e) => console.log('changing', e) } />
-					<h3>Text input w/ error</h3>
-					<Input
-						error="Yikes!"
-						placeHolder="Some default text"
-						handleChange={ (e) => console.log('changing', e) } />
-					<h3>Textarea</h3>
-					<Input type="textarea"/>
+				<div>
+					<Example heading='Text Input'>
+						{ this.renderInput({ size: 'fill' }) }
+					</Example>
+					<Example heading='Text Input w/ label'>
+						{ this.renderInput({
+							size: 'fill',
+							label: 'Some Cool Label'
+						}) }
+					</Example>
+					<Example heading='Text Input w/ success'>
+						{ this.renderInput({
+							size: 'fill',
+							success: true
+						}) }
+					</Example>
+					<Example heading='Text Input w/ success'>
+						{ this.renderInput({
+							size: 'fill',
+							error: true
+						}) }
+					</Example>
+					<Example heading='TextArea Input'>
+						{ this.renderInput({
+							size: 'fill',
+							type: 'textarea'
+						}) }
+					</Example>
 				</div>
-				
 			</div>
 		);
 	}

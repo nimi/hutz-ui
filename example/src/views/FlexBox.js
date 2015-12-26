@@ -1,5 +1,5 @@
 import React from 'react';
-import { Block } from '../components';
+import { Block, Example } from '../components';
 import { Box, FlexBox } from '../../../src/components';
 import jsxStringify from '../utils/jsxToString';
 import Highlight from 'react-highlight';
@@ -37,28 +37,18 @@ export default class Buttons extends React.Component {
 
 		return (
 			<FlexBox direction='column'>
-				<Block height='200px' color={null}>
-					<h2>FlexBox</h2>
-				</Block>
-				<Block height='400px' color='#eee' p={1}>
-					<FlexBox wrap>
-						{range(1, 12).map((_, i) =>
-							<Box col={(i % 2 === 0 ? 13 - i : i)} p={1}>
-								<Block height='25px' color='#efe' />
-							</Box>
-						)}
-					</FlexBox>
-				</Block>
 				<Box>
-					{ this.renderCode(
-						<FlexBox wrap>
-							{range(1, 12).map((_, i) =>
-								<Box col={(i % 2 === 0 ? 12 - i : i)} p={1}>
-									<Block height='25px' color='#efe' name='block' />
+					<Example heading='FlexBox Grid'>
+						<FlexBox wrap width='100%'>
+							{range(1, 13).map((v) =>
+								<Box col={(v % 2 === 0 ? 13 - v : v)} p={1}>
+									<Block height='25px' color='#efe' center>
+										{(v % 2 === 0 ? 13 - v : v)}
+									</Block>
 								</Box>
 							)}
 						</FlexBox>
-					) }
+					</Example>
 				</Box>
 			</FlexBox>
 		);
