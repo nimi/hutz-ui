@@ -1,26 +1,32 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
-function Input({
+function InputText({
 	defaultValue,
 	placeHolder,
-	handleFocus,
-	handleBlur,
-	handleChange,
 	baseStyles,
-	style
+	style,
+	...props
 }) {
-	console.log(baseStyles);
 	return (
 		<input
 			defaultValue={ defaultValue }
 			placeholder={ placeHolder }
-			onBlur={ handleBlur }
-			onFocus={ handleFocus }
-			onChange={ handleChange }
-			style={ baseStyles }
+			style={ { ...baseStyles, ...style } }
 			type='text'
+			{ ...props }
 		/>
 	);
 }
 
-export default Input;
+InputText.propTypes = {
+	baseStyles: PropTypes.object,
+	defaultValue: PropTypes.string,
+	placeHolder: PropTypes.string,
+	style: PropTypes.object
+};
+
+InputText.defaultProps = {
+	style: {}
+};
+
+export default InputText;

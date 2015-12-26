@@ -7,7 +7,8 @@ function InputTextArea({
 	handleBlur,
 	handleChange,
 	baseStyles,
-	style
+	style,
+	...props
 }) {
 	return (
 		<textarea
@@ -17,6 +18,7 @@ function InputTextArea({
 			onFocus={ handleFocus }
 			onChange={ handleChange }
 			style={ { ...baseStyles, ...style } }
+			{ ...props }
 		/>
 	);
 }
