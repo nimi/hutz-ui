@@ -1,28 +1,21 @@
-import { colors } from './colors';
-import { typeography } from './typeography';
+import color from './colors';
 
-const { GRAY, BLUE, RED, GREEN } = colors;
+const initialColor = color.gray;
+const focusColor = color.blue;
+const errorColor = color.red;
+const successColor = color.green;
+const labelColor = color.gray;
 
-const initialColor = GRAY.C4;
-const focusColor = BLUE.C5;
-const errorColor = RED.C5;
-const successColor = GREEN.C5;
-const labelColor = GRAY.C5;
-
-export const InputTextStyles = {
+const InputStyles = {
 	initialInputStyle: {
 		backgroundColor: 'transparent',
-		border: `solid 1px ${initialColor}`,
+		border: 'none',
 		boxSizing: 'border-box',
 		color: labelColor,
 		outline: 'none',
 		left: 0,
 		width: '100%',
-		padding: '10px',
-		':focus': {
-			border: `solid 2px ${focusColor}`,
-			padding: '9px'
-		}
+		padding: '10px'
 	},
 
 	initialContainerStyle: {
@@ -34,8 +27,8 @@ export const InputTextStyles = {
 	initialIconStyle: {
 		display: 'none',
 		position: 'absolute',
-		right: '3px',
-		bottom: 0
+		right: 5,
+		bottom: 5
 	},
 
 	initialLabelStyle: {
@@ -43,20 +36,28 @@ export const InputTextStyles = {
 		top: '-35px'
 	},
 
+	inputContainerStyle: {
+		border: `solid 2px ${initialColor}`,
+		boxSizing: 'border-box',
+		':focus': {
+			border: `solid 2px ${focusColor}`
+		}
+	},
+
 	activeIconStyle: {
 		display: 'block'
 	},
 
 	errorInputStyle: {
-		border: `solid 2px ${errorColor}`,
-		padding: '9px'
+		border: `solid 2px ${errorColor}`
 	},
 
 	successInputStyle: {
-		border: `solid 2px ${successColor}`,
-		padding: '9px'
+		border: `solid 2px ${successColor}`
 	},
 
 	successColor,
 	errorColor
 };
+
+export default InputStyles;
