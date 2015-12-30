@@ -9,7 +9,13 @@ function Select(props) {
 		);
 	});
 
+	const selectStyle = {
+		appearance: 'none',
+		WebkitAppearance: 'none'
+	};
+
 	return (
+
 		<div>
 			<label
 				labelFor={props.name}
@@ -17,6 +23,7 @@ function Select(props) {
 				{props.label}
 			</label>
 			<select
+				style={selectStyle}
 				{...props}
 			>
 				{opts}
