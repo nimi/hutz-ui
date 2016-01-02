@@ -96,7 +96,8 @@ module.exports = function (gulp, config) {
 
 			if (dev) {
 				watchBundle(common, 'common.js', dest);
-				watchBundle(bundle, 'bundle.js', dest);
+				// watchBundle(bundle, 'bundle.js', dest);
+				console.log('if dev watch bundle', dest)
 				if (standalone) watchBundle(standalone, 'standalone.js', dest);
 				examples.forEach(function (eg) {
 					watchBundle(eg.bundle, eg.file, dest);

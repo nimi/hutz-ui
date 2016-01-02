@@ -1,13 +1,13 @@
 import React, { PropTypes } from 'react';
 import { typeography, InputStyles } from './styles';
-import { noop, capitalize } from './utils';
+import { capitalize } from './utils';
 import Icon from './Icon';
-import Radium from 'radium';
+import radium from 'radium';
 import InputText from './InputText';
 import InputTextArea from './InputTextArea';
 import InputCheckbox from './InputCheckbox';
 
-class InputBase extends React.Component {
+class Input extends React.Component {
 	static displayName = 'Input'
 
 	constructor(props) {
@@ -47,15 +47,15 @@ class InputBase extends React.Component {
 	}
 
 	renderText(inputStyles) {
-		return <InputText {...this.props} baseStyles={ inputStyles } />;
+		return <InputText {...this.props} style={ inputStyles } />;
 	}
 
 	renderTextarea(inputStyles) {
-		return <InputTextArea {...this.props} baseStyles={ inputStyles } />;
+		return <InputTextArea {...this.props} style={ inputStyles } />;
 	}
 
 	renderCheckbox(inputStyles) {
-		return <InputCheckbox {...this.props} baseStyles={ inputStyles } />;
+		return <InputCheckbox {...this.props} style={ inputStyles } />;
 	}
 
 	renderInput(inputStyles) {
@@ -63,17 +63,23 @@ class InputBase extends React.Component {
 	}
 
 	componentStyles() {
-		const { error, success, size } = this.props;
+		const { error, success, size, type } = this.props;
 		const { initialInputStyle,
 				errorInputStyle,
 				successInputStyle,
 				initialContainerStyle,
 				initialIconStyle,
-				activeIconStyle } = InputStyles;
+				activeIconStyle,
+				inputContainerStyle,
+				textareaInputStyle } = InputStyles;
 
 		let inputStyles = {
 			...typeography.input,
 			...initialInputStyle
+		};
+
+		let inputContainerStyles = {
+			...inputContainerStyle
 		};
 
 		let containerStyles = [
@@ -88,11 +94,11 @@ class InputBase extends React.Component {
 			iconStyles.push(activeIconStyle);
 
 			if (error) {
-				inputStyles = { ...inputStyles, ...errorInputStyle };
+				inputContainerStyles = { ...inputContainerStyles, ...errorInputStyle };
 			}
 
 			if (success) {
-				inputStyles = { ...inputStyles, ...successInputStyle };
+				inputContainerStyles = { ...inputContainerStyles, ...successInputStyle };
 			}
 		}
 
@@ -100,16 +106,22 @@ class InputBase extends React.Component {
 			containerStyles.push({ width: '100%' });
 		}
 
-		return { inputStyles, containerStyles, iconStyles };
+		if (type === 'textarea') {
+			inputContainerStyles = { ...inputContainerStyles, ...textareaInputStyle };
+		}
+
+		return { inputStyles, containerStyles, iconStyles, inputContainerStyles };
 	}
 
 	render() {
-		const { containerStyles, iconStyles, inputStyles } = this.componentStyles();
+		const { containerStyles, iconStyles, inputStyles, inputContainerStyles } = this.componentStyles();
 
 		return (
 			<div style={ containerStyles }>
 				{ this.renderLabel() }
-				{ this.renderInput(inputStyles) }
+				<div style={ inputContainerStyles }>
+					{ this.renderInput(inputStyles) }
+				</div>
 				<div
 					style={ iconStyles }>
 					{ this.renderIcon() }
@@ -119,4 +131,4 @@ class InputBase extends React.Component {
 	}
 }
 
-export default Radium(InputBase);
+export default radium(Input);
