@@ -1,9 +1,17 @@
 import React, { PropTypes } from 'react';
-import radium from 'radium'
-import { colors, typeography } from './styles';
+import radium from 'radium';
+import Container from './Container';
+import { colors, typeography, InputStyles } from './styles';
+import { w } from './utils';
 
-function Select(props) {
-	const opts = props.options.map((o, i) => {
+function Select({
+	col,
+	label,
+	name,
+	options,
+	...props
+}) {
+	const opts = options.map((o, i) => {
 		return (
 			<option key={ i } {...o}>
 				{ o.label }
@@ -12,20 +20,20 @@ function Select(props) {
 	});
 
 	return (
-
-		<div>
+		<Container col={col}>
 			<label
-				labelFor={props.name}
+				labelFor={name}
+				style={style.label}
 			>
-				{props.label}
+				{label}
 			</label>
 			<select
-				style={selectStyle}
+				style={style.select}
 				{...props}
 			>
 				{opts}
 			</select>
-		</div>
+		</Container>
 	);
 }
 
@@ -39,15 +47,18 @@ Select.propTypes = {
 
 export default radium(Select);
 
-var selectStyle = {
-	backgroundColor: colors('gray', 1),
-	color: colors('gray', 5),
-	height: '2.5rem',
-	fontSize: typeography.body1.fontSize,
-	display: 'block',
-	verticalAlign: 'middle',
-	width: '100%',
-	':hover': {
-		backgroundColor: colors('gray', 2)
-	}
+var style = {
+	select: {
+		backgroundColor: colors('gray', 1),
+		color: colors('gray', 5),
+		height: '2.5rem',
+		fontSize: typeography.body1.fontSize,
+		display: 'block',
+		verticalAlign: 'middle',
+		width: '100%',
+		':hover': {
+			backgroundColor: colors('gray', 2)
+		}
+	},
+	label: InputStyles.labelStyle
 };

@@ -10,6 +10,7 @@ export default class SelectView extends Component {
 		return (
 			<Example heading='Dropdown (simple)'>
 				<Select
+					col={6}
 					options={Array.from(Array(10).keys()).map((_, i) => {
 							return { label: `some value ${i}`, value: i };
 						})}
