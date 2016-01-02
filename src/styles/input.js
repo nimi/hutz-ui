@@ -1,27 +1,25 @@
-import { colors } from './colors';
-import { typeography } from './typeography';
+import color from './colors';
+import typeography from './typeography';
 
-const { GRAY, BLUE, RED, GREEN } = colors;
+const initialColor = color.gray;
+const focusColor = color.blue;
+const errorColor = color.red;
+const successColor = color.green;
+const labelColor = color('gray', 3);
 
-const initialColor = GRAY.C4;
-const focusColor = BLUE.C5;
-const errorColor = RED.C5;
-const successColor = GREEN.C5;
-const labelColor = GRAY.C5;
-
-export const InputTextStyles = {
+const InputStyles = {
 	initialInputStyle: {
+		...typeography.body1,
 		backgroundColor: 'transparent',
-		border: `solid 1px ${initialColor}`,
+		border: 'none',
 		boxSizing: 'border-box',
-		color: labelColor,
+		color: color('gray', 4),
 		outline: 'none',
 		left: 0,
 		width: '100%',
-		padding: '10px',
+		padding: '10px 0',
 		':focus': {
-			border: `solid 2px ${focusColor}`,
-			padding: '9px'
+			color: color('black', 4)
 		}
 	},
 
@@ -34,13 +32,25 @@ export const InputTextStyles = {
 	initialIconStyle: {
 		display: 'none',
 		position: 'absolute',
-		right: '3px',
-		bottom: 0
+		right: '0.5em',
+		bottom: '0.15em'
 	},
 
 	initialLabelStyle: {
+		...typeography.body2,
+		color: labelColor,
 		fontWeight: 500,
 		top: '-35px'
+	},
+
+	inputContainerStyle: {
+		borderBottom: `solid 2px ${initialColor}`,
+		boxSizing: 'border-box',
+		color: labelColor,
+		':focus': {
+			borderBottom: `solid 2px ${focusColor}`,
+			color: 'black'
+		}
 	},
 
 	activeIconStyle: {
@@ -48,15 +58,43 @@ export const InputTextStyles = {
 	},
 
 	errorInputStyle: {
-		border: `solid 2px ${errorColor}`,
-		padding: '9px'
+		borderBottom: `solid 2px ${errorColor}`,
+		':focus': {
+			borderBottom: `solid 2px ${errorColor}`
+		}
 	},
 
 	successInputStyle: {
-		border: `solid 2px ${successColor}`,
-		padding: '9px'
+		borderBottom: `solid 2px ${successColor}`,
+		':focus': {
+			borderBottom: `solid 2px ${successColor}`
+		}
+	},
+
+	textareaInputStyle: {
+		borderTop: `solid 2px ${initialColor}`,
+		borderLeft: `solid 2px ${initialColor}`,
+		borderRight: `solid 2px ${initialColor}`,
+		borderBottom: `solid 2px ${initialColor}`,
+		padding: '0 10px',
+		':focus': {
+			borderTop: `solid 2px ${focusColor}`,
+			borderLeft: `solid 2px ${focusColor}`,
+			borderRight: `solid 2px ${focusColor}`,
+			borderBottom: `solid 2px ${focusColor}`
+		}
+	},
+
+	labelStyle: {
+		color: '#999',
+		display: 'inline-block',
+		fontSize: '0.85rem',
+		fontWeight: 600,
+		textTransform: 'uppercase'
 	},
 
 	successColor,
 	errorColor
 };
+
+export default InputStyles;
