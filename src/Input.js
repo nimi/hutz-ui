@@ -63,14 +63,15 @@ class Input extends React.Component {
 	}
 
 	componentStyles() {
-		const { error, success, size } = this.props;
+		const { error, success, size, type } = this.props;
 		const { initialInputStyle,
 				errorInputStyle,
 				successInputStyle,
 				initialContainerStyle,
 				initialIconStyle,
 				activeIconStyle,
-				inputContainerStyle } = InputStyles;
+				inputContainerStyle,
+				textareaInputStyle } = InputStyles;
 
 		let inputStyles = {
 			...typeography.input,
@@ -103,6 +104,10 @@ class Input extends React.Component {
 
 		if (size === 'fill') {
 			containerStyles.push({ width: '100%' });
+		}
+
+		if (type === 'textarea') {
+			inputContainerStyles = { ...inputContainerStyles, ...textareaInputStyle };
 		}
 
 		return { inputStyles, containerStyles, iconStyles, inputContainerStyles };
