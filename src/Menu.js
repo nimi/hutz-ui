@@ -16,10 +16,12 @@ function Menu({
 	styles = inline ? { ...styles, ...style.inline } : style;
 
 	return (
-		<List inline>
-			{React.Children.map(props.children, menuItem =>
-				<MenuItem>{menuItem}</MenuItem>
-			)}
+		<List
+			inline={inline}
+			px={0}
+			py={0}
+		>
+			{props.children}
 		</List>
 	);
 }
@@ -41,6 +43,6 @@ var style = {
 		width: '100%',
 	},
 	inline: {
-		display: 'inline-flex'
+		display: 'inline-flex',
 	}
 };

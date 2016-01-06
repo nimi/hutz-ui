@@ -7,19 +7,21 @@ import { colors, typeography, InputStyles } from './styles';
 function List({
 	col,
 	inline,
+	px,
+	py,
 	...props
 }) {
 	let styles = {
 		...style.list
 	};
 
-	styles = inline ? { ...styles, ...style.inline } : style;
+	styles = inline ? { ...styles, ...style.inline } : styles;
 
 	return (
 		<Container col={col}>
-			<ul style={styles}>
+			<ul style={[styles]}>
 				{React.Children.map(props.children, listItem =>
-					<ListItem inline={inline}>{listItem}</ListItem>
+					<ListItem inline={inline} px={px} py={py}>{listItem}</ListItem>
 				 )}
 			</ul>
 		</Container>
@@ -41,6 +43,10 @@ var style = {
 		display: 'block',
 		verticalAlign: 'middle',
 		width: '100%',
+		margin: 0,
+		padding: 0,
+		appearance: 'none',
+		WebkitAppearance: 'none'
 	},
 	inline: {
 		display: 'inline-flex'

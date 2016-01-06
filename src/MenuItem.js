@@ -1,20 +1,37 @@
 import React, { PropTypes } from 'react';
 import radium from 'radium';
-import { colors, typeography } from './styles';
+import { colors, typeography, buttonStyles } from './styles';
 
 function MenuItem({
 	icon,
 	inline,
+	name,
+	active,
 	...props
 }) {
 
-	const listItemStyle = inline ?
-		{ ...style.listItem, ...style.listItemInline } : style.listItem;
+	const menuItemStyle = active ?
+		{ ...style.menuItem, ...style.activeMenuItem } : style.menuItem;
+
+	const onClick = (e) => {
+		e.preventDefault();
+		props.onClick(e);
+	};
+
+	const newProps = {
+		...props,
+		onClick: props.onClick ? onClick : null
+	};
 
 	return (
-		<div style={{background: 'red'}}>
-			{props.children}
-		</div>
+
+		<a
+			style={menuItemStyle}
+			href='#'
+			{...newProps}
+		>
+			{name}
+		</a>
 	);
 }
 
@@ -28,12 +45,14 @@ MenuItem.propTypes = {
 export default radium(MenuItem);
 
 var style = {
-	listItem: {
-		display: 'block',
-		padding: '1em 0',
-		verticalAlign: 'middle',
+	menuItem: {
+		...buttonStyles('white').initialStyle,
+		borderRadius: 'none',
+		height: 'inherit',
+		boxSizing: 'border-box',
+		display: 'block'
 	},
-	listItemInline: {
-		padding: '0.5em 1em'
+	activeMenuItem: {
+		...buttonStyles('white').initialStyle[':active']
 	}
 };
