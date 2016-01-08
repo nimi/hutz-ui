@@ -1,89 +1,77 @@
 const font = "'Roboto', 'Helvetica Neue', Helvetica, Arial";
 
-export const typeography = {
+const typeography = {
   display4: {
-    color: 'rgba(0, 0, 0, .54)',
-    fontFamily: font,
-    fontWeight: 300,
-    fontSize: 112,
-    whiteSpace: 'nowrap'
+	color: 'rgba(0, 0, 0, .54)',
+	fontFamily: font,
+	fontWeight: 300,
+	fontSize: '3rem',
+	whiteSpace: 'nowrap'
   },
   display3: {
-    color: 'rgba(0, 0, 0, .54)',
-    fontFamily: font,
-    fontWeight: 400,
-    fontSize: 56,
-    whiteSpace: 'nowrap'
+	color: 'rgba(0, 0, 0, .54)',
+	fontFamily: font,
+	fontWeight: 400,
+	fontSize: '2.5rem',
+	whiteSpace: 'nowrap'
   },
   display2: {
-    color: 'rgba(0, 0, 0, .54)',
-    fontFamily: font,
-    fontWeight: 400,
-    fontSize: 45
+	color: 'rgba(0, 0, 0, .54)',
+	fontFamily: font,
+	fontWeight: 400,
+	fontSize: '2rem'
   },
   display1: {
-    color: 'rgba(0, 0, 0, .54)',
-    fontFamily: font,
-    fontWeight: 400,
-    fontSize: 34
+	color: 'rgba(0, 0, 0, .54)',
+	fontFamily: font,
+	fontWeight: 400,
+	fontSize: '1.5rem'
   },
   headline: {
-    color: 'rgba(0, 0, 0, .87)',
-    fontFamily: font,
-    fontWeight: 400,
-    fontSize: 24
+	color: 'rgba(0, 0, 0, .87)',
+	fontFamily: font,
+	fontWeight: 400,
+	fontSize: '1.333rem'
   },
   title: {
-    color: 'rgba(0, 0, 0, .87)',
-    fontFamily: font,
-    fontWeight: 500,
-    fontSize: 20,
-    whiteSpace: 'nowrap'
+	color: 'rgba(0, 0, 0, .87)',
+	fontFamily: font,
+	fontWeight: 500,
+	fontSize: '1.25rem',
+	whiteSpace: 'nowrap'
   },
   subhead: {
-    color: 'rgba(0, 0, 0, .87)',
-    fontFamily: font,
-    fontWeight: 400,
-    fontSize: 16
+	color: 'rgba(0, 0, 0, .87)',
+	fontFamily: font,
+	fontWeight: 400,
+	fontSize: '1.15rem'
   },
   body2: {
-    color: 'rgba(0, 0, 0, .87)',
-    fontFamily: font,
-    fontWeight: 500,
-    fontSize: 14,
-    lineHeight: ''
+	color: 'rgba(0, 0, 0, .87)',
+	fontFamily: font,
+	fontWeight: 500,
+	fontSize: '1rem',
+	lineHeight: ''
   },
   body1: {
-    color: 'rgba(0, 0, 0, .87)',
-    fontFamily: font,
-    fontWeight: 400,
-    fontSize: 14
+	color: 'rgba(0, 0, 0, .87)',
+	fontFamily: font,
+	fontWeight: 400,
+	fontSize: '1rem'
+  },
+  small: {
+	color: 'rgba(0, 0, 0, .87)',
+	fontFamily: font,
+	fontWeight: 400,
+	fontSize: '0.75rem'
   },
   caption: {
-    color: 'rgba(0, 0, 0, .54)',
-    fontFamily: font,
-    fontWeight: 400,
-    fontSize: 12,
-    whiteSpace: 'nowrap'
-  },
-  menu: {
-    color: 'rgba(0, 0, 0, .87)',
-    fontFamily: font,
-    fontWeight: 500,
-    fontSize: 14,
-    whiteSpace: 'nowrap'
-  },
-  button: {
-    color: 'rgba(0, 0, 0, .87)',
-    fontFamily: font,
-    fontWeight: 500,
-    fontSize: 14,
-    whiteSpace: 'nowrap',
-    textTransform: 'uppercase'
-  },
-  input: {
-    color: 'rgba(0, 0, 0, .87)',
-    fontFamily: font,
-    fontWeight: 400
+	color: 'rgba(0, 0, 0, .54)',
+	fontFamily: font,
+	fontWeight: 400,
+	fontSize: '0.75rem',
+	whiteSpace: 'nowrap'
   }
 };
+
+export default typeography;
