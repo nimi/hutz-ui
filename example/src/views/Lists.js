@@ -10,7 +10,7 @@ export default class ListView extends Component {
 		return (
 			<div>
 				<Example heading='List (vertical)'>
-					<List>
+					<List py={2}>
 						<span>List item 1</span>
 						<span>List item 2</span>
 						<span>List item 3</span>
