@@ -32,14 +32,14 @@ export default class MenuView extends Component {
 		return (
 			<div>
 				<Example heading='Menu (inline)'>
-					<Menu>
+					<Menu inline>
 						<MenuItem name='Menu item 1' />
 						<MenuItem name='Menu item 2' />
 						<MenuItem name='Menu item 3' />
 					</Menu>
 				</Example>
 				<Example heading='Menu with active item (inline)'>
-					<Menu>
+					<Menu inline>
 						<MenuItem
 							name='Menu item 1'
 							active={this.state.oneActive}
@@ -55,6 +55,13 @@ export default class MenuView extends Component {
 							active={this.state.threeActive}
 							onClick={() => this.handleMenuItemClick('three')}
 						/>
+					</Menu>
+				</Example>
+				<Example heading='Menu (vertical)'>
+					<Menu>
+						<MenuItem name='Menu item 1' />
+						<MenuItem name='Menu item 2' />
+						<MenuItem name='Menu item 3' />
 					</Menu>
 				</Example>
 			</div>
