@@ -4,34 +4,42 @@ import { colors, typeography, buttonStyles } from './styles';
 
 function MenuItem({
 	icon,
-	inline,
 	name,
 	active,
+	type,
 	...props
 }) {
+	const baseStyle = {
+		 ...buttonStyles('white').initialStyle,
+		...style.menuItem
+	};
+	const typeStyleMap = new Map([
+		[1, { ...baseStyle }],
+		[2, { ...baseStyle, border: null }],
+		[3, { ...baseStyle,
+			border: null,
+			borderRight: `2px solid ${colors.gray}`,
+			':hover': null,
+			':active': null,
+			':focus': {
+				borderRight: `2px solid ${colors.black}`
+			}
+		}]
+	]);
+
+	const itemStyle = type ? typeStyleMap.get(type) : typeStyleMap.get(1);
 
 	const menuItemStyle = active ?
-		{ ...style.menuItem, ...style.activeMenuItem } : style.menuItem;
-
-	const onClick = (e) => {
-		e.preventDefault();
-		props.onClick(e);
-	};
-
-	const newProps = {
-		...props,
-		onClick: props.onClick ? onClick : null
-	};
+		{ ...itemStyle, ...style.activeMenuItem } : itemStyle;
 
 	return (
-
-		<a
-			style={menuItemStyle}
-			href='#'
-			{...newProps}
-		>
-			{name}
-		</a>
+		<span>
+			{React.Children.map(props.children, (c) =>{
+				 return React.cloneElement(c, {
+					style: menuItemStyle
+				 });
+			 })}
+		</span>
 	);
 }
 
@@ -46,7 +54,7 @@ export default radium(MenuItem);
 
 var style = {
 	menuItem: {
-		...buttonStyles('white').initialStyle,
+		textAlign: null,
 		borderRadius: 'none',
 		height: 'inherit',
 		boxSizing: 'border-box',

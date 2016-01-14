@@ -7,6 +7,8 @@ import { colors, typeography, InputStyles } from './styles';
 function Menu({
 	col,
 	inline,
+	type,
+	activeIndex,
 	...props
 }) {
 	let styles = {
@@ -17,11 +19,21 @@ function Menu({
 
 	return (
 		<List
+			{...props}
 			inline={inline}
 			px={0}
 			py={0}
 		>
-			{props.children}
+			{React.Children.map(props.children, (c, i) => {
+				return (
+					<MenuItem
+						type={type}
+						active={i === activeIndex}
+					 >
+						 {c}
+					 </MenuItem>
+				);
+			})}
 		</List>
 	);
 }
