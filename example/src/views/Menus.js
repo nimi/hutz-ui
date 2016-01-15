@@ -5,63 +5,64 @@ import { Example} from '../components';
 export default class MenuView extends Component {
 
 	static displayName = 'Menus';
-	static activeDefault = {
-		oneActive: false,
-		twoActive: false,
-		threeActive: false
-	}
 
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			...MenuView.activeDefault,
-			twoActive: true
+			activeIndex: 0
 		}
 	}
 
 
-	handleMenuItemClick(n, e) {
-		const active = { [n + 'Active']: true };
-		const st = { ...MenuView.activeDefault, ...active };
-
-		this.setState(st);
+	handleMenuItemClick(activeIndex, e) {
+		e.preventDefault();
+		this.setState({ activeIndex });
 	}
 
 	render() {
 		return (
 			<div>
-				<Example heading='Menu (inline)'>
+				<Example heading='Menu - default (inline)'>
 					<Menu inline>
-						<MenuItem name='Menu item 1' />
-						<MenuItem name='Menu item 2' />
-						<MenuItem name='Menu item 3' />
+						<a href='#'>Menu item 1</a>
+						<a href='#'>Menu item 2</a>
+						<a href='#'>Menu item 3</a>
+					</Menu>
+				</Example>
+				<Example heading='Menu - borderless (inline)'>
+					<Menu inline type={2}>
+						<a href='#'>Menu item 1</a>
+						<a href='#'>Menu item 2</a>
+						<a href='#'>Menu item 3</a>
 					</Menu>
 				</Example>
 				<Example heading='Menu with active item (inline)'>
-					<Menu inline>
-						<MenuItem
-							name='Menu item 1'
-							active={this.state.oneActive}
-							onClick={() => this.handleMenuItemClick('one')}
-						/>
-						<MenuItem
-							name='Menu item 2'
-							active={this.state.twoActive}
-							onClick={() => this.handleMenuItemClick('two')}
-						/>
-						<MenuItem
-							name='Menu item 3'
-							active={this.state.threeActive}
-							onClick={() => this.handleMenuItemClick('three')}
-						/>
+					<Menu inline activeIndex={this.state.activeIndex} type={2}>
+						<a href='#' onClick={(e) => this.handleMenuItemClick(0, e)}>Menu item 1</a>
+						<a href='#' onClick={(e) => this.handleMenuItemClick(1, e)}>Menu item 2</a>
+						<a href='#' onClick={(e) => this.handleMenuItemClick(2, e)}>Menu item 3</a>
 					</Menu>
 				</Example>
-				<Example heading='Menu (vertical)'>
+				<Example heading='Menu - default (vertical)'>
 					<Menu>
-						<MenuItem name='Menu item 1' />
-						<MenuItem name='Menu item 2' />
-						<MenuItem name='Menu item 3' />
+						<a href='#'>Menu item 1</a>
+						<a href='#'>Menu item 2</a>
+						<a href='#'>Menu item 3</a>
+					</Menu>
+				</Example>
+				<Example heading='Menu - borderless (vertical)'>
+					<Menu type={2}>
+						<a href='#'>Menu item 1</a>
+						<a href='#'>Menu item 2</a>
+						<a href='#'>Menu item 3</a>
+					</Menu>
+				</Example>
+				<Example heading='Menu - text (vertical)'>
+					<Menu type={3}>
+						<a href='#'>Menu item 1</a>
+						<a href='#'>Menu item 2</a>
+						<a href='#'>Menu item 3</a>
 					</Menu>
 				</Example>
 			</div>
