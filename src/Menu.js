@@ -5,10 +5,11 @@ import MenuItem from './MenuItem';
 import { colors, typeography, InputStyles } from './styles';
 
 function Menu({
-	col,
 	inline,
 	type,
 	activeIndex,
+	px,
+	py,
 	...props
 }) {
 	let styles = {
@@ -21,8 +22,8 @@ function Menu({
 		<List
 			{...props}
 			inline={inline}
-			px={0}
-			py={0}
+			px={px || 0}
+			py={py || 0}
 		>
 			{React.Children.map(props.children, (c, i) => {
 				return (

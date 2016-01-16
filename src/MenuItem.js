@@ -10,7 +10,7 @@ function MenuItem({
 	...props
 }) {
 	const baseStyle = {
-		 ...buttonStyles('white').initialStyle,
+		 ...buttonStyles().initialStyle,
 		...style.menuItem
 	};
 	const typeStyleMap = new Map([
@@ -19,10 +19,11 @@ function MenuItem({
 		[3, { ...baseStyle,
 			border: null,
 			borderRight: `2px solid ${colors.gray}`,
-			':hover': null,
+			':hover': { textDecoration: 'none' },
 			':active': null,
 			':focus': {
-				borderRight: `2px solid ${colors.black}`
+				borderRight: `2px solid ${colors.black}`,
+				fontWeight: 600
 			}
 		}]
 	]);
@@ -32,6 +33,7 @@ function MenuItem({
 	const menuItemStyle = active ?
 		{ ...itemStyle, ...style.activeMenuItem } : itemStyle;
 
+	console.log(menuItemStyle, 'menuitem');
 	return (
 		<span>
 			{React.Children.map(props.children, (c) =>{
@@ -61,6 +63,6 @@ var style = {
 		display: 'block'
 	},
 	activeMenuItem: {
-		...buttonStyles('white').initialStyle[':active']
+		...buttonStyles().initialStyle[':active']
 	}
 };
