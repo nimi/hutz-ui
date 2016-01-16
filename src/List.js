@@ -12,7 +12,8 @@ function List({
 	...props
 }) {
 	let styles = {
-		...style.list
+		...style.list,
+		textAlign: inline ? 'center' : null
 	};
 
 	styles = inline ? { ...styles, ...style.inline } : styles;
