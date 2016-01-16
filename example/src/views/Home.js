@@ -13,8 +13,6 @@ export default class Home extends React.Component {
 	}
 
 	render() {
-		console.log(jsxStringify(<div a="1" b="2">Hello, world!</div>));
-
 		return (
 			<Box>
 
@@ -27,12 +25,11 @@ export default class Home extends React.Component {
 					</Box>
 					<Box style={{ margin: '10px 20px 10px 0' }}>
 						<h3>Primary</h3>
-						<Button onClick={ this.onClick }>Button</Button>
+						<Button onClick={ () => this.onClick() }>Button</Button>
 					</Box>
 					<Box style={{ margin: '10px 20px 10px 0' }}>
 						<h3>Positive</h3>
 						<Button
-							onClick={ this.onClick }
 							status='positive'
 							onClick
 						>
@@ -42,7 +39,6 @@ export default class Home extends React.Component {
 					<Box style={{ margin: '10px 20px 10px 0' }}>
 						<h3>Negative</h3>
 						<Button
-							onClick={ this.onClick }
 							status='negative'>
 							Button
 						</Button>
@@ -72,7 +68,7 @@ export default class Home extends React.Component {
 							handleChange={ (e) => console.log('changing', e) } />
 						<h3>Text input w/ error</h3>
 						<Input
-							error="Yikes!"
+							error={true}
 							placeHolder="Some default text"
 							label="Some Important Label"
 							handleChange={ (e) => console.log('changing', e) } />

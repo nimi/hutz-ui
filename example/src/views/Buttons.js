@@ -1,6 +1,6 @@
 import React from 'react';
 import { Example } from '../components';
-import { Button, ButtonGroup, Box, FlexBox } from '../../../src/components';
+import { Button, ButtonGroup, Box, FlexBox, Heading } from '../../../src/components';
 import jsxStringify from '../utils/jsxToString';
 import Highlight from 'react-highlight';
 
@@ -34,16 +34,21 @@ export default class Buttons extends React.Component {
 
 	renderButton(props = {}) {
 		const buttonProps = { ...this.state, ...props };
-		return <Button { ...buttonProps }>
-			{this.randomSimpson()}
-		</Button>;
+		return (
+			<Button { ...buttonProps }>
+				{this.randomSimpson()}
+			</Button>
+		);
 	}
 
 	renderButtons(props = {}) {
 		return (
 			<FlexBox justify='space-around' style={{ width: '100%' }}>
-				{Buttons.colors.map(color => this.renderButton({ ...props, color }))}
-			</FlexBox>);
+				{Buttons.colors.map((color, key) =>
+					this.renderButton({ ...props, color, key })
+				)}
+			</FlexBox>
+		);
 	}
 
 	renderButtonGroup(props = {}) {
@@ -73,14 +78,20 @@ export default class Buttons extends React.Component {
 		return (
 			<FlexBox direction='column'>
 				<Box col={ 3 }>
-					<h2>Buttons</h2>
+					<Heading>Buttons</Heading>
 				</Box>
 				<Box>
 					<Example heading='Basic Buttons'>
 						{this.renderButtons()}
 					</Example>
 					<Example heading='Raised Buttons'>
-						{this.renderButtons({ raised: true })}
+						{this.renderButtons({ bt: 'raised' })}
+					</Example>
+					<Example heading='Outline Buttons'>
+						{this.renderButtons({ bt: 'outline' })}
+					</Example>
+					<Example heading='Link Buttons'>
+						{this.renderButtons({ bt: 'link' })}
 					</Example>
 					<Example heading='Button Group'>
 						{this.renderButtonGroup()}

@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { Box, FlexBox, Button } from '../../../src/components';
+import { Box, FlexBox, Button, Text, Heading } from '../../../src/components';
 import jsxStringify from '../utils/jsxToString';
 import Highlight from 'react-highlight';
 
@@ -38,26 +38,35 @@ export default class Example extends Component {
 
 		return (
 			<FlexBox direction='column'>
-				<h3 style={{ margin: '2em 0' }}>
-					{ this.props.heading }
-				</h3>
-				<Box p={3} style={ { backgroundColor: '#FFF' } }>
-					<FlexBox justify='space-around'>
-						{component}
+				<Box>
+					<FlexBox>
+						<Box py={ 2 }>
+							<Heading size={2}>
+								{ this.props.heading }
+							</Heading>
+						</Box>
+						<Box py={ 2 } style={{ textAlign: 'right' }}>
+							<Button
+								color='white'
+								onClick={this.handleClick}
+								fill>
+									{'</>'}
+							</Button>
+						</Box>
 					</FlexBox>
 				</Box>
-				<Box py={ 1 }>
-					<Button
-						color='gray'
-						onClick={this.handleClick}
-						fill>
-							view source
-					</Button>
+				<Box p={ 3 } style={ { backgroundColor: '#FFF' } }>
+					<FlexBox justify='space-around' wrap>
+						{component}
+					</FlexBox>
 				</Box>
 				<Box
 					style={codeStyle}
 				>
 					{ this.renderCode(component) }
+				</Box>
+				<Box py={ 3 }>
+					<hr />
 				</Box>
 			</FlexBox>
 		);

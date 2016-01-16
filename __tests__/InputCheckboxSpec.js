@@ -5,9 +5,9 @@ import InputCheckbox from '../src/InputCheckbox';
 import { suite, t, statelessComponent } from './helpers';
 
 const baseStyles = {
-	boxSizing: 'border-box',
+	// boxSizing: 'border-box',
 	padding: '5px',
-	width: '100%'
+	// width: '100%'
 };
 
 const addedStyle = {
@@ -20,9 +20,7 @@ let fixtures = {};
 const setup = (name = 'input', p = {}) => {
 	const props = {
 		checked: false,
-		handleFocus: () => {},
-		handleBlur: () => {},
-		handleChange: () => {},
+
 		style: addedStyle,
 		baseStyles,
 		...p

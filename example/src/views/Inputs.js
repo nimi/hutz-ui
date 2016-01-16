@@ -1,5 +1,5 @@
 import React from 'react';
-import { Input } from '../../../src/components';
+import { FlexBox, Box, Input, Heading } from '../../../src/components';
 import { Example } from '../components';
 
 export default class Home extends React.Component {
@@ -23,9 +23,12 @@ export default class Home extends React.Component {
 
 	render() {
 		return (
-			<div>
-				<h2>Text Input</h2>
-				<div>
+			<FlexBox direction='column'>
+				<Box>
+					<Heading>Inputs</Heading>
+				</Box>
+
+				<Box>
 					<Example heading='Text Input'>
 						{ this.renderInput({ size: 'fill' }) }
 					</Example>
@@ -53,8 +56,8 @@ export default class Home extends React.Component {
 							type: 'textarea'
 						}) }
 					</Example>
-				</div>
-			</div>
+				</Box>
+			</FlexBox>
 		);
 	}
 }
