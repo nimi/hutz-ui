@@ -8,14 +8,15 @@ const __ = undefined;
 
 const baseStyles = {
 	display: 'flex',
-    flexWrap: null,
-    flexDirection: null,
-    alignItems: null,
-    minHeight: '100%',
-    justifyContent: null,
-    marginLeft: null,
-    marginRight: null,
-    width: null
+	flexWrap: null,
+	flexDirection: null,
+	alignItems: null,
+	minHeight: 0,
+	height: 'auto',
+	justifyContent: null,
+	marginLeft: null,
+	marginRight: null,
+	width: null
 };
 
 let fixtures = {};

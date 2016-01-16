@@ -13,15 +13,16 @@ const styleWidth = ({sm = 12, md = 12, lg = 12}) => {
 };
 
 function Container({
-	p, px, py, pt, pb, pl, pr, col, sm, md, lg, style = {},
+	p, px, py, pt, pb, pl, pr, col, sm, md, lg, shadow, style = {},
 	...props
 }) {
 	const sizes = { sm, md, lg };
 	const widthProp = styleWidth(sizes);
 	const width = ( widthProp && !col ) ? w(sizes[widthProp]) : w(col);
 
-	const boxStyle = {
+	const containerStyle = {
 		boxSizing: 'border-box',
+		boxShadow: shadow? '0 2px 5px 0 rgba(0, 0, 0, 0.26)' : null,
 		padding: p ? scale[p] : null,
 		paddingTop: py ? scale[py] : (pt ? scale[pt] : null),
 		paddingBottom: py ? scale[py] : (pb ? scale[pb] : null),
@@ -33,7 +34,7 @@ function Container({
 	return (
 		<div
 			{ ...props }
-			style={{ ...boxStyle, ...style }}
+			style={{ ...containerStyle, ...style }}
 		/>
 	);
 }
