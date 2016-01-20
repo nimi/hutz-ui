@@ -16,9 +16,10 @@ function Fill(props) {
 	);
 }
 
-function Slider(props) {
+function Slider({ val, active, update }) {
+	console.log(val);
 	const handleStyle = {
-		left: 45,
+		left: val,
 		width: 40,
 		height: 40,
 		borderRadius: 40,
@@ -32,10 +33,9 @@ function Slider(props) {
 	return (
 		<div
 			style={handleStyle}
-			onMouseDown={(e) => {console.log('mousedown handle')}}
-			onClick={(e) => {console.log('click handle')}}
+			onMouseMove={e => active && update(e)}
+			onClick={e => {console.log('click handle')}}
 		/>
-
 	);
 }
 
@@ -46,9 +46,9 @@ function InputRange({
 	val,
 	orient,
 	update,
+	active,
 	...props
 }) {
-
 	const sliderStyle = {
 		background: '#e6e6e6',
 		borderRadius: 10,
@@ -62,12 +62,12 @@ function InputRange({
 
 	return (
 		<div
+			{...props}
 			style={sliderStyle}
 			onClick={() => {}}
-			onMouseDown={update}
 		>
 			<Fill update={update} />
-			<Slider />
+			<Slider val={val} update={update} active={active} />
 		</div>
 	);
 }
@@ -91,7 +91,7 @@ InputRange.defaultProps = {
 };
 
 function update(event, val, step) {
-	console.log('update', event, event.currentTarget, event.view);
+	console.log('update', event);
 	return val + step;
 }
 
