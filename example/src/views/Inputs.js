@@ -4,24 +4,45 @@ import { Example } from '../components';
 
 export default class Home extends React.Component {
 
+	constructor() {
+		super();
+
+		this.state = {
+			rangeVal: 2,
+			rangeActive: false
+		};
+	}
+
 	onClick() {
 		console.log('click', this);
 	}
 
 	renderInput(moreProps = {}) {
-		const baseProps = {
-			type: 'text',
-			placeholder: 'Some placeholder text'
-		};
-
+		const baseProps = { type: 'text' };
 		const props = { ...baseProps, ...moreProps };
 
-		return (
-			<Input { ...props } />
-		);
+		return <Input { ...props } />;
+	}
+
+	updateRangeVal(event) {
+		console.log('df', event, event.clientX, event.pageX, event.currentTarget);
+		this.setState({
+			rangeVal: this.state.rangeVal + 1,
+		});
+	}
+
+	toggleActiveRange(val) {
+		this.setState({
+			rangeActive: val
+		});
 	}
 
 	render() {
+		const inputTextProps = {
+			size: 'fill',
+			placeholder: 'Some placeholder text'
+		};
+
 		return (
 			<FlexBox direction='column'>
 				<Box>
@@ -30,23 +51,23 @@ export default class Home extends React.Component {
 
 				<Box>
 					<Example heading='Text Input'>
-						{ this.renderInput({ size: 'fill' }) }
+						{ this.renderInput(inputTextProps) }
 					</Example>
 					<Example heading='Text Input w/ label'>
 						{ this.renderInput({
-							size: 'fill',
+							...inputTextProps,
 							label: 'Some Cool Label'
 						}) }
 					</Example>
 					<Example heading='Text Input w/ success'>
 						{ this.renderInput({
-							size: 'fill',
+							...inputTextProps,
 							success: true
 						}) }
 					</Example>
 					<Example heading='Text Input w/ success'>
 						{ this.renderInput({
-							size: 'fill',
+							...inputTextProps,
 							error: true
 						}) }
 					</Example>
@@ -54,6 +75,16 @@ export default class Home extends React.Component {
 						{ this.renderInput({
 							size: 'fill',
 							type: 'textarea'
+						}) }
+					</Example>
+					<Example heading='Range Input'>
+						{ this.renderInput({
+							  type: 'range',
+							  val: this.state.rangeVal,
+							  active: this.state.rangeActive,
+							  update: e => this.updateRangeVal(e),
+							  onMouseDown: () => this.toggleActiveRange(true),
+							  onMouseUp: () => this.toggleActiveRange(false)
 						}) }
 					</Example>
 				</Box>
