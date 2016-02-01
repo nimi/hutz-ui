@@ -1,17 +1,15 @@
 import React, { PropTypes } from 'react';
+import radium from 'radium';
 
 function InputText({
 	defaultValue,
 	placeHolder,
-	baseStyles,
-	style,
 	...props
 }) {
 	return (
 		<input
 			defaultValue={ defaultValue }
 			placeholder={ placeHolder }
-			style={ { ...baseStyles, ...style } }
 			type='text'
 			{ ...props }
 		/>
@@ -19,14 +17,8 @@ function InputText({
 }
 
 InputText.propTypes = {
-	baseStyles: PropTypes.object,
 	defaultValue: PropTypes.string,
-	placeHolder: PropTypes.string,
-	style: PropTypes.object
+	placeHolder: PropTypes.string
 };
 
-InputText.defaultProps = {
-	style: {}
-};
-
-export default InputText;
+export default radium(InputText);
