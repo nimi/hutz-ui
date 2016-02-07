@@ -2,6 +2,13 @@ import React from 'react';
 import { FlexBox, Box, Input, Heading } from '../../../src/components';
 import { Example } from '../components';
 
+function maxmin(pos, min, max) {
+	if (pos < min) { return min; }
+	if (pos > max) { return max; }
+	return pos;
+
+}
+
 export default class Home extends React.Component {
 
 	constructor() {
@@ -24,10 +31,23 @@ export default class Home extends React.Component {
 		return <Input { ...props } />;
 	}
 
-	updateRangeVal(event) {
-		console.log('df', event, event.clientX, event.pageX, event.currentTarget);
+	getValueFromPosition(pos) {
+		let percentage, value;
+		percentage = (maxmin(pos, 0, 300) / (100 || 1));
+		value = 1 * Math.round(percentage * (100 - 1) / 1) + 1;
+
+		return value;
+	}
+
+	updateRangeVal(event, slider) {
+		const node = slider;
+		const nodeDirection = node.left;
+		const coordinate = event.clientX;
+		let pos = this.getValueFromPosition(coordinate - nodeDirection);
+
+//		console.log(nodeDirection, coordinate, pos, this.state.rangeVal, this.state.rangeVal - pos);
 		this.setState({
-			rangeVal: this.state.rangeVal + 1,
+			rangeVal: pos
 		});
 	}
 
@@ -82,9 +102,9 @@ export default class Home extends React.Component {
 							  type: 'range',
 							  val: this.state.rangeVal,
 							  active: this.state.rangeActive,
-							  update: e => this.updateRangeVal(e),
+							  update: (e, slider) => this.updateRangeVal(e, slider),
 							  onMouseDown: () => this.toggleActiveRange(true),
-							  onMouseUp: () => this.toggleActiveRange(false)
+							  onMouseUp: () => this.toggleActiveRange(false),
 						}) }
 					</Example>
 				</Box>
