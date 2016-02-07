@@ -17,7 +17,6 @@ function Fill(props) {
 }
 
 function Slider({ val, active, update }) {
-	console.log(val);
 	const handleStyle = {
 		left: val,
 		width: 40,
@@ -30,10 +29,25 @@ function Slider({ val, active, update }) {
 		position: 'absolute'
 	};
 
+	function dragEnd() {
+		console.log('dragend');
+		document.removeEventListener('mousemove', handleMouseMove);
+		document.removeEventListener('mouseup', dragEnd);
+	};
+
+	let handleMouseMove;
+
 	return (
 		<div
 			style={handleStyle}
-			onMouseMove={e => active && update(e)}
+			onMouseDown={e => {
+					handleMouseMove = (event) => {
+						update(event, e.target.parentNode.getBoundingClientRect())
+					};
+
+					document.addEventListener('mousemove', handleMouseMove);
+					document.addEventListener('mouseup', dragEnd)
+			}}
 			onClick={e => {console.log('click handle')}}
 		/>
 	);
@@ -57,7 +71,8 @@ function InputRange({
 		margin: '20px 0',
 		position: 'relative',
 		width: '100%',
-		minWidth: 300
+		minWidth: 300,
+		cursor: active ? 'pointer' : 'default'
 	};
 
 	return (
