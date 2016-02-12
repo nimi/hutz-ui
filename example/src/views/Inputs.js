@@ -2,26 +2,16 @@ import React from 'react';
 import { FlexBox, Box, Input, Heading } from '../../../src/components';
 import { Example } from '../components';
 
-function maxmin(pos, min, max) {
-	if (pos < min) { return min; }
-	if (pos > max) { return max; }
-	return pos;
-
-}
-
 export default class Home extends React.Component {
 
 	constructor() {
 		super();
 
 		this.state = {
-			rangeVal: 2,
+			horizRangeVal: 0,
+			vertRangeVal: 0,
 			rangeActive: false
 		};
-	}
-
-	onClick() {
-		console.log('click', this);
 	}
 
 	renderInput(moreProps = {}) {
@@ -31,30 +21,12 @@ export default class Home extends React.Component {
 		return <Input { ...props } />;
 	}
 
-	getValueFromPosition(pos) {
-		let percentage, value;
-		percentage = (maxmin(pos, 0, 300) / (100 || 1));
-		value = 1 * Math.round(percentage * (100 - 1) / 1) + 1;
-
-		return value;
+	updateHorizRange(position) {
+		this.setState({ horizRangeVal: position });
 	}
 
-	updateRangeVal(event, slider) {
-		const node = slider;
-		const nodeDirection = node.left;
-		const coordinate = event.clientX;
-		let pos = this.getValueFromPosition(coordinate - nodeDirection);
-
-//		console.log(nodeDirection, coordinate, pos, this.state.rangeVal, this.state.rangeVal - pos);
-		this.setState({
-			rangeVal: pos
-		});
-	}
-
-	toggleActiveRange(val) {
-		this.setState({
-			rangeActive: val
-		});
+	updateVertRange(position) {
+		this.setState({ vertRangeVal: position });
 	}
 
 	render() {
@@ -97,16 +69,23 @@ export default class Home extends React.Component {
 							type: 'textarea'
 						}) }
 					</Example>
-					<Example heading='Range Input'>
+					<Example heading='Range Input (Horizontal)'>
 						{ this.renderInput({
 							  type: 'range',
-							  val: this.state.rangeVal,
-							  active: this.state.rangeActive,
-							  update: (e, slider) => this.updateRangeVal(e, slider),
-							  onMouseDown: () => this.toggleActiveRange(true),
-							  onMouseUp: () => this.toggleActiveRange(false),
+							  val: this.state.horizRangeVal,
+							  update: (pos) => this.updateHorizRange(pos),
+							  max: 50
 						}) }
 					</Example>
+					<Example heading='Range Input (Vertical)'>
+						{ this.renderInput({
+							  type: 'range',
+							  val: this.state.vertRangeVal,
+							  update: (pos) => this.updateVertRange(pos),
+							  orient: 'vertical'
+						}) }
+					</Example>
+
 				</Box>
 			</FlexBox>
 		);
