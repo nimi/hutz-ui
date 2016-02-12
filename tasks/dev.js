@@ -7,7 +7,7 @@ module.exports = function (gulp, config) {
 			root: config.example.dist,
 			fallback: path.join(config.example.dist, 'index.html'),
 			port: config.example.port || process.env.PORT || 8000,
-			livereload: true
+			livereload: { port: 35780 }
 		});
 	});
 

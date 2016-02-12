@@ -6,129 +6,78 @@ import radium from 'radium';
 import InputText from './InputText';
 import InputTextArea from './InputTextArea';
 import InputCheckbox from './InputCheckbox';
+import InputRange from './InputRange';
 
-class Input extends React.Component {
-	static displayName = 'Input'
+function Input({
+	defaultValue,
+	error,
+	label,
+	placeholder,
+	size,
+	success,
+	type,
+	value,
+	...props
+}) {
+	const inputStyles = { ...typeography.input, ...InputStyles.base };
+	const iconColor = success ? InputStyles.successColor : InputStyles.errorColor;
+	const containerStyles = {
+		...InputStyles.container,
+		width: size === 'fill' ? '100%' : null
+	};
 
-	constructor(props) {
-		super(props);
-	}
+	let inputContainerStyles = { ...InputStyles.inputContainer };
 
-	static propTypes = {
-		defaultValue: PropTypes.string,
-		error: PropTypes.bool,
-		label: PropTypes.string,
-		placeHolder: PropTypes.string,
-		size: PropTypes.string,
-		success: PropTypes.bool,
-		type: PropTypes.string,
-		value: PropTypes.number
-	}
+	inputContainerStyles = error ?
+		{ ...inputContainerStyles, ...InputStyles.error } : inputContainerStyles;
 
-	static defaultProps = {
-		type: 'text'
-	}
+	inputContainerStyles = success ?
+		{ ...inputContainerStyles, ...InputStyles.success } : inputContainerStyles;
 
-	renderIcon({ success, error } = this.props) {
-		if (success) {
-			return <Icon type="check" color={ InputStyles.successColor } />;
-		} else if (error) {
-			return <Icon type="close" color={ InputStyles.errorColor } />;
-		}
-	}
+	inputContainerStyles = type === 'textarea' ?
+		{ ...inputContainerStyles, ...InputStyles.textarea } : inputContainerStyles;
 
-	renderLabel({ label } = this.props) {
-		if (!label) { return null; }
-		return (
-			<label style={ InputStyles.initialLabelStyle }>
-				{ label }
-			</label>
-		);
-	}
+	inputContainerStyles = type === 'range' ?
+		{ ...inputContainerStyles, ...InputStyles.range } : inputContainerStyles;
 
-	renderText(inputStyles) {
-		return <InputText {...this.props} style={ inputStyles } />;
-	}
-
-	renderTextarea(inputStyles) {
-		return <InputTextArea {...this.props} style={ inputStyles } />;
-	}
-
-	renderCheckbox(inputStyles) {
-		return <InputCheckbox {...this.props} style={ inputStyles } />;
-	}
-
-	renderInput(inputStyles) {
-		return this[`render${capitalize(this.props.type)}`](inputStyles);
-	}
-
-	componentStyles() {
-		const { error, success, size, type } = this.props;
-		const { initialInputStyle,
-				errorInputStyle,
-				successInputStyle,
-				initialContainerStyle,
-				initialIconStyle,
-				activeIconStyle,
-				inputContainerStyle,
-				textareaInputStyle } = InputStyles;
-
-		let inputStyles = {
-			...typeography.input,
-			...initialInputStyle
-		};
-
-		let inputContainerStyles = {
-			...inputContainerStyle
-		};
-
-		let containerStyles = [
-			initialContainerStyle
-		];
-
-		let iconStyles = [
-			initialIconStyle
-		];
-
-		if (error || success) {
-			iconStyles.push(activeIconStyle);
-
-			if (error) {
-				inputContainerStyles = { ...inputContainerStyles, ...errorInputStyle };
-			}
-
-			if (success) {
-				inputContainerStyles = { ...inputContainerStyles, ...successInputStyle };
-			}
-		}
-
-		if (size === 'fill') {
-			containerStyles.push({ width: '100%' });
-		}
-
-		if (type === 'textarea') {
-			inputContainerStyles = { ...inputContainerStyles, ...textareaInputStyle };
-		}
-
-		return { inputStyles, containerStyles, iconStyles, inputContainerStyles };
-	}
-
-	render() {
-		const { containerStyles, iconStyles, inputStyles, inputContainerStyles } = this.componentStyles();
-
-		return (
-			<div style={ containerStyles }>
-				{ this.renderLabel() }
-				<div style={ inputContainerStyles }>
-					{ this.renderInput(inputStyles) }
-				</div>
-				<div
-					style={ iconStyles }>
-					{ this.renderIcon() }
-				</div>
+	return (
+		<div style={ containerStyles }>
+			{!label ? null :
+			<label style={ InputStyles.label }>{label}</label>}
+			<div style={ inputContainerStyles }>
+				{(() => {
+				switch (type) {
+					 case 'textarea': return <InputTextArea {...props} style={ inputStyles } />;
+					 case 'checkbox': return <InputCheckbox {...props} style={ inputStyles } />;
+					 case 'range': return <InputRange {...props} />;
+					 default: return <InputText {...props} style={ inputStyles } />;
+				}
+				})()}
 			</div>
-		);
-	}
+			{!success && !error ? null :
+			<div
+				style={ InputStyles.icon }>
+				{<Icon type="check" color={iconColor} />}
+			</div>}
+		</div>
+	);
 }
+
+Input.displayName = 'Input';
+
+Input.propTypes = {
+	defaultValue: PropTypes.string,
+	error: PropTypes.bool,
+	label: PropTypes.string,
+	placeHolder: PropTypes.string,
+	size: PropTypes.string,
+	success: PropTypes.bool,
+	type: PropTypes.string,
+	value: PropTypes.number
+};
+
+Input.defaultProps = {
+	type: 'text'
+};
 
 export default radium(Input);
