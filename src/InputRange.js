@@ -1,36 +1,43 @@
 import React, { PropTypes } from 'react';
+import { maxmin } from './utils';
 
-function Fill(props) {
+function Fill({val, valLimit, offset, max, min, horizontal}) {
+	const position = getPositionFromValue(val, valLimit, max, min);
 	const fillStyle = {
-		width: 60, // should be dynamic
-		height: '100%',
-		background: '#333333',
+		width: horizontal ? position + offset : '100%',
+		height: horizontal ? '100%' : valLimit - position + offset,
+		background: '#333',
 		borderRadius: 10,
-		position: 'absolute' // may not need this
+		position: 'absolute',
+		bottom: horizontal ? null : 0
 	};
 
-	return (
-		<div
-			style={fillStyle}
-		/>
-	);
+	return <div style={fillStyle} />;
 }
 
-function Slider({ val, active, update }) {
+Fill.propTypes = {
+	offset: PropTypes.number.isRequired,
+	valLimit: PropTypes.number.isRequired,
+	max: PropTypes.number,
+	min: PropTypes.number
+};
+
+function Slider({ val, active, update, size, valLimit, max, min, step, horizontal}) {
+	const position = getPositionFromValue(val, valLimit, max, min);
 	const handleStyle = {
-		left: val,
-		width: 40,
-		height: 40,
-		borderRadius: 40,
-		top: -10,
-		background: '#fff',
-		border: '1px solid blue',
+		left: horizontal ? position : -(size / 2),
+		width: size,
+		height: size,
+		borderRadius: size,
+		top: horizontal ? -(size / 2) : position,
+		background: '#333',
+		border: '1px solid #333',
 		display: 'inline-block',
 		position: 'absolute'
 	};
 
-	function dragEnd() {
-		console.log('dragend');
+	const dragEnd = function dragEnd(e) {
+		e.preventDefault();
 		document.removeEventListener('mousemove', handleMouseMove);
 		document.removeEventListener('mouseup', dragEnd);
 	};
@@ -41,17 +48,39 @@ function Slider({ val, active, update }) {
 		<div
 			style={handleStyle}
 			onMouseDown={e => {
+					const parent = e.target.parentNode.getBoundingClientRect();
+					const direction = horizontal ? parent.left : parent.top;
 					handleMouseMove = (event) => {
-						update(event, e.target.parentNode.getBoundingClientRect())
+						const coordinate = horizontal ?
+							event.clientX : event.clientY;
+
+						console.log(event.clientY);
+
+						const value = getValueFromPosition(
+							coordinate - direction - (size / 2),
+							valLimit,
+							max,
+							min,
+							step,
+							horizontal
+						);
+						event.preventDefault();
+						update(value, event);
 					};
+
+					e.preventDefault();
 
 					document.addEventListener('mousemove', handleMouseMove);
 					document.addEventListener('mouseup', dragEnd)
 			}}
-			onClick={e => {console.log('click handle')}}
 		/>
 	);
 }
+
+Slider.propTypes = {
+	valLimit: PropTypes.number.isRequired,
+	size: PropTypes.number.isRequired
+};
 
 function InputRange({
 	max,
@@ -61,19 +90,24 @@ function InputRange({
 	orient,
 	update,
 	active,
+	width,
+	height,
 	...props
 }) {
+	const horiz = orient === 'horizontal';
 	const sliderStyle = {
 		background: '#e6e6e6',
 		borderRadius: 10,
 		display: 'block',
-		height: 20,
+		height: horiz ? 2 : height,
 		margin: '20px 0',
 		position: 'relative',
 		width: '100%',
-		minWidth: 300,
-		cursor: active ? 'pointer' : 'default'
+		minWidth: horiz ? width : 2,
+		cursor: 'pointer'
 	};
+
+	const valLimit = horiz ? width - 12 : height - 12;
 
 	return (
 		<div
@@ -81,8 +115,26 @@ function InputRange({
 			style={sliderStyle}
 			onClick={() => {}}
 		>
-			<Fill update={update} />
-			<Slider val={val} update={update} active={active} />
+			<Fill
+				offset={12 / 2}
+				valLimit={valLimit}
+				update={update}
+				val={val}
+				min={min}
+				max={max}
+				horizontal={horiz}
+			/>
+			<Slider
+				valLimit={valLimit}
+				size={12}
+				val={val}
+				update={update}
+				active={active}
+				max={max}
+				min={min}
+				step={step}
+				horizontal={horiz}
+			/>
 		</div>
 	);
 }
@@ -93,7 +145,8 @@ InputRange.propTypes = {
 	orient: PropTypes.string,
 	step: PropTypes.number,
 	update: PropTypes.func,
-	val: PropTypes.number
+	val: PropTypes.number,
+	width: PropTypes.number
 };
 
 InputRange.defaultProps = {
@@ -102,12 +155,21 @@ InputRange.defaultProps = {
 	step: 1,
 	val: 0,
 	orient: 'horizontal',
-	update: update
+	width: 300,
+	height: 150
 };
 
-function update(event, val, step) {
-	console.log('update', event);
-	return val + step;
+function getPositionFromValue(value, valueLimit, max, min) {
+	const percentage = (value - min) / (max - min);
+	return Math.round(percentage * (valueLimit));
+}
+
+function getValueFromPosition(pos, posLimit, max, min, step, horizontal) {
+	const percentage = (maxmin(pos, 0, posLimit) / (posLimit  || 1));
+	console.log(pos, percentage, (step * Math.round(percentage * (max - min) / step) + min));
+	return horizontal ?
+		step * Math.round(percentage * (max - min) / step) + min :
+		max - (step * Math.round(percentage * (max - min) / step) + min);
 }
 
 export default InputRange;
