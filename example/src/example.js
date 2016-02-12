@@ -11,7 +11,8 @@ import {
 	FlexBoxView,
 	SelectView,
 	ListView,
-	MenuView
+	MenuView,
+	TextView
 } from './views';
 
 const history = useBasename(createHistory)({
@@ -64,6 +65,7 @@ const routes = (
 	  <Route path="selects" component={SelectView} />
 	  <Route path="lists" components={ListView} />
 	  <Route path="menus" components={MenuView} />
+	  <Route path="text" components={TextView} />
 	</Route>
   </Router>
 );

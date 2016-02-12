@@ -33,41 +33,44 @@ export default class Example extends Component {
 	}
 
 	renderComponentWithCode(component) {
-		const codeStyle = this.state.expanded ?
-			{ display: 'block' } : { display: 'none' };
+		const codeStyle = {
+			display: this.state.expanded ? 'block' : 'none'
+		};
 
 		return (
 			<FlexBox direction='column'>
 				<Box>
-					<FlexBox>
-						<Box py={ 2 }>
+					<FlexBox style={{backgroundColor: 'rgb(234, 234, 234)' }}>
+						<Box px={3} py={1}>
 							<Heading size={2}>
-								{ this.props.heading }
+								{this.props.heading}
 							</Heading>
 						</Box>
-						<Box py={ 2 } style={{ textAlign: 'right' }}>
+						<Box py={1} style={{textAlign: 'right'}}>
 							<Button
-								color='white'
+								bt='link'
+								color='black'
 								onClick={this.handleClick}
 								fill>
-									{'</>'}
+									{'< / >'}
 							</Button>
 						</Box>
 					</FlexBox>
 				</Box>
-				<Box p={ 3 } style={ { backgroundColor: '#FFF' } }>
+				<Box
+					style={{
+							backgroundColor: 'rgb(255, 255, 255)',
+							border: 'solid 2px rgb(234, 234, 234)'
+						}}
+				>
+					<Box style={codeStyle} px={2}>
+						{ this.renderCode(component) }
+					</Box>
 					<FlexBox justify='space-around' wrap>
-						{component}
+						<Box p={3}>{component}</Box>
 					</FlexBox>
 				</Box>
-				<Box
-					style={codeStyle}
-				>
-					{ this.renderCode(component) }
-				</Box>
-				<Box py={ 3 }>
-					<hr />
-				</Box>
+				<Box py={2} />
 			</FlexBox>
 		);
 	}
