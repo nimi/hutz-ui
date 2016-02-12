@@ -13,14 +13,14 @@ export default class TextView extends Component {
 					<Heading>Text</Heading>
 				</Container>
 				<Container>
-					<Example>
+					<Example heading='Text'>
 						<Text
 							content={`You'll release the dogs, or the bees,
 									 or the dogs with bees in their mouths, and when they bark,
 									 they shoot bees at you?`}
 						/>
 					</Example>
-					<Example>
+					<Example heading='Text (w/ capitalization)'>
 						<Text
 							caps
 							content={`You'll release the dogs, or the bees,
@@ -28,7 +28,7 @@ export default class TextView extends Component {
 									 they shoot bees at you?`}
 						/>
 					</Example>
-					<Example>
+					<Example heading='Text (w/centering)'>
 						<Text
 							center
 							content={`You'll release the dogs, or the bees,
