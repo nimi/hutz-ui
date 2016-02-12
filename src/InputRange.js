@@ -3,9 +3,10 @@ import { maxmin } from './utils';
 
 function Fill({val, valLimit, offset, max, min, horizontal}) {
 	const position = getPositionFromValue(val, valLimit, max, min);
+	//console.log(valLimit, position, offset, val);
 	const fillStyle = {
 		width: horizontal ? position + offset : '100%',
-		height: horizontal ? '100%' : valLimit - position + offset,
+		height: horizontal ? '100%' : position + offset,
 		background: '#333',
 		borderRadius: 10,
 		position: 'absolute',
@@ -29,7 +30,7 @@ function Slider({ val, active, update, size, valLimit, max, min, step, horizonta
 		width: size,
 		height: size,
 		borderRadius: size,
-		top: horizontal ? -(size / 2) : position,
+		top: horizontal ? -(size / 2) : valLimit - position,
 		background: '#333',
 		border: '1px solid #333',
 		display: 'inline-block',
@@ -53,8 +54,6 @@ function Slider({ val, active, update, size, valLimit, max, min, step, horizonta
 					handleMouseMove = (event) => {
 						const coordinate = horizontal ?
 							event.clientX : event.clientY;
-
-						console.log(event.clientY);
 
 						const value = getValueFromPosition(
 							coordinate - direction - (size / 2),
@@ -166,7 +165,6 @@ function getPositionFromValue(value, valueLimit, max, min) {
 
 function getValueFromPosition(pos, posLimit, max, min, step, horizontal) {
 	const percentage = (maxmin(pos, 0, posLimit) / (posLimit  || 1));
-	console.log(pos, percentage, (step * Math.round(percentage * (max - min) / step) + min));
 	return horizontal ?
 		step * Math.round(percentage * (max - min) / step) + min :
 		max - (step * Math.round(percentage * (max - min) / step) + min);
