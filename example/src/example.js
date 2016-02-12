@@ -12,7 +12,8 @@ import {
 	SelectView,
 	ListView,
 	MenuView,
-	TextView
+	TextView,
+	CardView
 } from './views';
 
 const history = useBasename(createHistory)({
@@ -44,10 +45,6 @@ class App extends React.Component {
 		}
 	}
 
-	componentDidUpdate() {
-		console.log('ja update');
-	}
-
 	render() {
 		return (
 			<Layout name={this.state.componentName} {...this.props} />
@@ -66,6 +63,7 @@ const routes = (
 	  <Route path="lists" components={ListView} />
 	  <Route path="menus" components={MenuView} />
 	  <Route path="text" components={TextView} />
+	  <Route path="cards" components={CardView} />
 	</Route>
   </Router>
 );

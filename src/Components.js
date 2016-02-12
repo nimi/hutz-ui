@@ -11,3 +11,4 @@ export { default as Menu } from './Menu';
 export { default as MenuItem } from './MenuItem';
 export { default as Text } from './Text';
 export { default as Heading } from './Heading';
+export { default as Card } from './Card';
