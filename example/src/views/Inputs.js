@@ -4,24 +4,37 @@ import { Example } from '../components';
 
 export default class Home extends React.Component {
 
-	onClick() {
-		console.log('click', this);
+	constructor() {
+		super();
+
+		this.state = {
+			horizRangeVal: 0,
+			vertRangeVal: 0,
+			rangeActive: false
+		};
 	}
 
 	renderInput(moreProps = {}) {
-		const baseProps = {
-			type: 'text',
-			placeholder: 'Some placeholder text'
-		};
-
+		const baseProps = { type: 'text' };
 		const props = { ...baseProps, ...moreProps };
 
-		return (
-			<Input { ...props } />
-		);
+		return <Input { ...props } />;
+	}
+
+	updateHorizRange(position) {
+		this.setState({ horizRangeVal: position });
+	}
+
+	updateVertRange(position) {
+		this.setState({ vertRangeVal: position });
 	}
 
 	render() {
+		const inputTextProps = {
+			size: 'fill',
+			placeholder: 'Some placeholder text'
+		};
+
 		return (
 			<FlexBox direction='column'>
 				<Box>
@@ -30,23 +43,23 @@ export default class Home extends React.Component {
 
 				<Box>
 					<Example heading='Text Input'>
-						{ this.renderInput({ size: 'fill' }) }
+						{ this.renderInput(inputTextProps) }
 					</Example>
 					<Example heading='Text Input w/ label'>
 						{ this.renderInput({
-							size: 'fill',
+							...inputTextProps,
 							label: 'Some Cool Label'
 						}) }
 					</Example>
 					<Example heading='Text Input w/ success'>
 						{ this.renderInput({
-							size: 'fill',
+							...inputTextProps,
 							success: true
 						}) }
 					</Example>
 					<Example heading='Text Input w/ success'>
 						{ this.renderInput({
-							size: 'fill',
+							...inputTextProps,
 							error: true
 						}) }
 					</Example>
@@ -56,6 +69,23 @@ export default class Home extends React.Component {
 							type: 'textarea'
 						}) }
 					</Example>
+					<Example heading='Range Input (Horizontal)'>
+						{ this.renderInput({
+							  type: 'range',
+							  val: this.state.horizRangeVal,
+							  update: (pos) => this.updateHorizRange(pos),
+							  max: 50
+						}) }
+					</Example>
+					<Example heading='Range Input (Vertical)'>
+						{ this.renderInput({
+							  type: 'range',
+							  val: this.state.vertRangeVal,
+							  update: (pos) => this.updateVertRange(pos),
+							  orient: 'vertical'
+						}) }
+					</Example>
+
 				</Box>
 			</FlexBox>
 		);
