@@ -22,7 +22,8 @@ var taskConfig = {
 			'react',
 			'react/addons'
 		],
-		lib: 'lib'
+		src: 'src',
+		dist: 'dist'
 	},
 
 	example: {
