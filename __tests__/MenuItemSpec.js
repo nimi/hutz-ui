@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
 import { suite, t, statelessComponent } from './helpers';
-import MenuItem from '../src/MenuItem';
+import MenuItem from '../src/components/Menu/MenuItem';
 
 let fixtures = null;
 

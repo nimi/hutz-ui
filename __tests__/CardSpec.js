@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
 import { suite, t, statelessComponent } from './helpers';
-import Card from '../src/Card';
+import {Card} from '../src';
 
 let fixtures = null;
 

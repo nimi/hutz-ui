@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
 import { suite, t, statelessComponent } from './helpers';
-import ListItem from '../src/ListItem';
+import ListItem from '../src/components/List/ListItem';
 
 let fixtures = null;
 
