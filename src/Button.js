@@ -13,7 +13,6 @@ class Button extends React.Component {
 		bt: PropTypes.string,
 		disabled: PropTypes.bool,
 		groupStyle: PropTypes.object,
-		raised: PropTypes.bool,
 		size: PropTypes.string
 	}
 
@@ -25,21 +24,24 @@ class Button extends React.Component {
 		const { initialStyle,
 				disabledStyle,
 				fillStyle,
-				raisedStyle } = buttonStyles(this.props.color);
+				raisedStyle,
+				outlineStyle,
+				linkStyle } = buttonStyles(this.props.color);
 
 		const { bt,
 				disabled,
 				groupStyle,
-				raised,
-				fill } = this.props;
+				size } = this.props;
 
 		let styles = [ initialStyle ];
 
 		if (disabled) { styles.push(disabledStyle); }
-		if (fill) { styles.push(fillStyle); }
+		if (size) { styles.push(fillStyle); }
 		if (groupStyle) { styles.push(groupStyle); }
-		if (raised) { styles.push(raisedStyle); }
-		if (this.props.style) { styles.push(this.props.style) }
+		if (bt === 'raised') { styles.push(raisedStyle); }
+		if (bt === 'outline') { styles.push(outlineStyle); }
+		if (bt === 'link') { styles.push(linkStyle); }
+		if (this.props.style) { styles.push(this.props.style); }
 
 		return (
 			<button

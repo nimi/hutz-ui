@@ -1,10 +1,7 @@
 import React, { PropTypes } from 'react';
 import { scale, breakpoints } from './styles';
+import { w } from './utils';
 import { mm, transitionEnd } from './utils/dom';
-
-const w = (v = 12) => {
-	return v ? (v / 12 * 100) + '%' : null;
-};
 
 const styleWidth = ({sm = 12, md = 12, lg = 12}) => {
 	const size = Object.keys({sm, md, lg})
@@ -16,31 +13,19 @@ const styleWidth = ({sm = 12, md = 12, lg = 12}) => {
 };
 
 function Box({
-	p, px, py, pt, pb, pl, pr, fill, col, sm, md, lg, align, style = {},
+	col, sm, md, lg,
 	...props
 }) {
 	const sizes = { sm, md, lg };
 	const widthProp = styleWidth(sizes);
 	const width = ( widthProp && !col ) ? w(sizes[widthProp]) : w(col);
-
-	const boxStyle = {
-		alignSelf: align || null,
-		boxSizing: 'border-box',
-		flex: fill ? '1 1 auto' : null,
-		flexBasis: width,
-		padding: p ? scale[p] : null,
-		paddingTop: py ? scale[py] : (pt ? scale[pt] : null),
-		paddingBottom: py ? scale[py] : (pb ? scale[pb] : null),
-		paddingLeft: px ? scale[px] : (pl ? scale[pl] : null),
-		paddingRight: px ? scale[px] : (pr ? scale[pr] : null),
-		height: fill ? 'inherit' : null,
-		width
-	};
+	const styleProps = boxStyle({...props, width});
+	const style = { ...styleProps, ...props.style };
 
 	return (
 		<div
 			{ ...props }
-			style={{ ...boxStyle, ...style }}
+			style={style}
 		/>
 	);
 }
@@ -70,3 +55,16 @@ Box.propTypes = {
 };
 
 export default Box;
+
+const boxStyle = ({align, fill, width, p, px, py, pt, pb, pl, pr}) => ({
+	alignSelf: align || null,
+	boxSizing: 'border-box',
+	flex: fill ? '1 1 auto' : null,
+	flexBasis: width,
+	padding: p ? scale[p] : null,
+	paddingTop: py ? scale[py] : (pt ? scale[pt] : null),
+	paddingBottom: py ? scale[py] : (pb ? scale[pb] : null),
+	paddingLeft: px ? scale[px] : (pl ? scale[pl] : null),
+	paddingRight: px ? scale[px] : (pr ? scale[pr] : null),
+	width
+});
