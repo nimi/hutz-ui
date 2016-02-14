@@ -5,7 +5,8 @@ import { suite, t, statelessComponent } from './helpers';
 const __ = undefined;
 
 const containerStyles = {
-	width: 'initial'
+	width: 'initial',
+	maxWidth: null
 };
 
 const buttonStyle = {
