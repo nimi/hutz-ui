@@ -37,10 +37,12 @@ const transitionEnd = whichTransitionEnd(transitions);
 
 const mm = canUseDOM ? window.matchMedia : () => {};
 
-export { canUseDOM };
-export { canUseEventListeners };
-export { canUseViewport };
-export { isTouchDevice };
-export { isTransform };
-export { transitionEnd };
-export { mm };
+export {
+	canUseDOM,
+	canUseEventListeners,
+	canUseViewport,
+	isTouchDevice,
+	isTransform,
+	transitionEnd,
+	mm
+};

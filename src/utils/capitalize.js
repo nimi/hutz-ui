@@ -1,4 +1,4 @@
-import { toUpper } from 'ramda';
+import {toUpper} from 'ramda';
 
 function changeFirstCase(fn) {
 	return (string) => {
