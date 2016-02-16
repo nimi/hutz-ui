@@ -1,48 +1,10 @@
 import React, { PropTypes } from 'react';
 import { colors } from '../../styles';
-import { Box, Container, Heading, Media, Text, Menu } from '../../';
-
-function CardHeading({t, s}) {
-	return (
-		<Container p={2}>
-			<Heading size={3} content={t} style={{margin: '0.25em 0'}} />
-			{(() =>
-				Boolean(s) ?
-				<Heading size={4} content={s} style={{margin: '0.5em 0'}} /> :
-				null
-			 )()}
-		</Container>
-	);
-}
-
-function CardMedia({s}) {
-	return <Container ><Media src={s} /></Container>;
-}
-
-function CardText({t}) {
-	return <Container px={2} py={1}><Text content={t} /></Container>;
-}
-
-function CardActions({as}) {
-	return (
-		<Container py={2}>
-			<Menu inline type={2} fill={false}>
-				{
-					as.map(({action, name}, i) =>
-						<a
-							onClick={action}
-							href='#'
-							key={i}
-							style={{ padding: '0 16px'}}
-						>
-							{name}
-						</a>
-					)
-				}
-			</Menu>
-		</Container>
-	)
-}
+import Box from '../Box';
+import CardHeading from './CardHeading';
+import CardActions from './CardActions';
+import CardMedia from './CardMedia';
+import CardText from './CardText';
 
 function Card({
 	actions,
@@ -52,6 +14,7 @@ function Card({
 	subtitle,
 	...props
 }) {
+	console.log(CardMedia, CardText);
 	return (
 		<Box
 			{ ...props }
@@ -71,11 +34,11 @@ function Card({
 Card.displayName = 'Card';
 
 Card.propTypes = {
-	title: PropTypes.string,
-	subtitle: PropTypes.string,
+	actions: PropTypes.array,
 	imgSrc: PropTypes.string,
+	subtitle: PropTypes.string,
 	text: PropTypes.string,
-	actions: PropTypes.array
+	title: PropTypes.string
 };
 
 export default Card;
