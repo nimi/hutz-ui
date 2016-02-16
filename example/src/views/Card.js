@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Card, Container, FlexBox, Heading} from '../../../src/components';
+import {Card, Container, FlexBox, Heading} from '../../../src';
 import {Example} from '../components';
 
 export default class CardView extends Component {
