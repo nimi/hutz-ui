@@ -1,11 +1,12 @@
 import React from 'react';
-import { ButtonGroup, Button } from '../src/Components';
+import { ButtonGroup, Button } from '../src';
 import { suite, t, statelessComponent } from './helpers';
 
 const __ = undefined;
 
 const containerStyles = {
-	width: 'initial'
+	width: 'initial',
+	maxWidth: null
 };
 
 const buttonStyle = {

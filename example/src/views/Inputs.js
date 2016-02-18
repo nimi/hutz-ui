@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlexBox, Box, Input, Heading } from '../../../src/components';
+import { FlexBox, Box, Input, Heading } from '../../../src';
 import { Example } from '../components';
 
 export default class Home extends React.Component {

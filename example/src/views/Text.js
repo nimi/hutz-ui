@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, Heading, Container } from '../../../src/components';
+import { Text, Heading, Container } from '../../../src';
 import { Example } from '../components';
 
 export default class TextView extends Component {

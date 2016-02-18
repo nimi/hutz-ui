@@ -1,10 +1,12 @@
 import React, { PropTypes } from 'react';
 import radium from 'radium';
-import List from './List';
+import { colors, typeography, InputStyles } from '../../styles';
+import List from '../List';
 import MenuItem from './MenuItem';
-import { colors, typeography, InputStyles } from './styles';
 
 function Menu({
+	align,
+	fill,
 	inline,
 	type,
 	activeIndex,
@@ -22,16 +24,18 @@ function Menu({
 		<List
 			{...props}
 			inline={inline}
+			fill={fill}
 			px={px || 0}
 			py={py || 0}
 		>
-			{React.Children.map(props.children, (c, i) => {
+			{React.Children.map(props.children, (child, i) => {
 				return (
 					<MenuItem
 						type={type}
 						active={i === activeIndex}
+						{...child.props}
 					 >
-						 {c}
+						 {child}
 					 </MenuItem>
 				);
 			})}
@@ -42,6 +46,7 @@ function Menu({
 Menu.displayName = 'Menu';
 
 Menu.propTypes = {
+	fill: PropTypes.bool,
 	inline: PropTypes.bool
 };
 

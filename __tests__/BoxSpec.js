@@ -1,5 +1,5 @@
 import React from 'react';
-import Box from '../src/Box';
+import {Box} from '../src';
 import { suite, t, statelessComponent } from './helpers';
 
 const __ = undefined;

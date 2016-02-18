@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
-import { typeography, InputStyles } from './styles';
-import { capitalize } from './utils';
-import Icon from './Icon';
+import { typeography, InputStyles } from '../../styles';
+import { capitalize } from '../../utils';
+import Icon from '../Icon';
 import radium from 'radium';
 import InputText from './InputText';
 import InputTextArea from './InputTextArea';
