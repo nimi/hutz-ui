@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Select } from '../../../src/components';
+import { Select } from '../../../src';
 import { Example} from '../components';
 
 export default class SelectView extends Component {

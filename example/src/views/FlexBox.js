@@ -1,6 +1,6 @@
 import React from 'react';
 import { Block, Example } from '../components';
-import { Box, FlexBox, Heading } from '../../../src/components';
+import { Box, FlexBox, Heading } from '../../../src';
 import jsxStringify from '../utils/jsxToString';
 import Highlight from 'react-highlight';
 import { range } from 'ramda';

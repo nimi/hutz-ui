@@ -26,7 +26,7 @@ export default class CardView extends Component {
 	}
 
 	render() {
-		const  props = this.getCardProps(this.props);
+		const props = this.getCardProps(this.props);
 
 		return (
 			<Container>

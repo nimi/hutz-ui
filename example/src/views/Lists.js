@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { List, ListItem } from '../../../src/components';
+import { List, ListItem } from '../../../src';
 import { Example} from '../components';
 
 export default class ListView extends Component {
