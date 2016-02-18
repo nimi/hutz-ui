@@ -14,7 +14,6 @@ function Card({
 	subtitle,
 	...props
 }) {
-	console.log(CardMedia, CardText);
 	return (
 		<Box
 			{ ...props }
