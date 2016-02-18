@@ -1,6 +1,6 @@
 import React from 'react';
 import { Example } from '../components';
-import { Button, ButtonGroup, Box, FlexBox, Heading } from '../../../src/components';
+import { Button, ButtonGroup, Box, FlexBox, Heading } from '../../../src';
 import jsxStringify from '../utils/jsxToString';
 import Highlight from 'react-highlight';
 
@@ -43,7 +43,7 @@ export default class Buttons extends React.Component {
 
 	renderButtons(props = {}) {
 		return (
-			<FlexBox justify='space-around' style={{ width: '100%' }}>
+			<FlexBox justify='space-around' wrap>
 				{Buttons.colors.map((color, key) =>
 					this.renderButton({ ...props, color, key })
 				)}

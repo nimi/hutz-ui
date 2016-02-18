@@ -6,3 +6,4 @@ export { default as SelectView } from './Selects';
 export { default as ListView } from './Lists';
 export { default as MenuView} from './Menus';
 export { default as TextView } from './Text';
+export { default as CardView } from './Card';

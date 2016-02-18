@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Menu, MenuItem } from '../../../src/components';
+import { Menu, MenuItem } from '../../../src';
 import { Example} from '../components';
 
 export default class MenuView extends Component {
@@ -11,7 +11,7 @@ export default class MenuView extends Component {
 
 		this.state = {
 			activeIndex: 0
-		}
+		};
 	}
 
 

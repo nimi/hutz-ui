@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
 import { suite, t, statelessComponent } from './helpers';
-import InputText from '../src/InputText';
+import InputText from '../src/components/Input/InputText';
 
 let fixtures = null;
 

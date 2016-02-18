@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import Radium from 'radium';
-import icons from './icons';
+import icons from '../../icons';
 
 const IconStyles = {
 	normalStyle: {

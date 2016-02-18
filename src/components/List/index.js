@@ -1,11 +1,12 @@
 import React, { PropTypes } from 'react';
 import radium from 'radium';
-import Container from './Container';
+import { colors, typeography, InputStyles } from '../../styles';
+import Container from '../Container';
 import ListItem from './ListItem';
-import { colors, typeography, InputStyles } from './styles';
 
 function List({
 	col,
+	fill,
 	inline,
 	px,
 	py,
@@ -22,7 +23,7 @@ function List({
 		<Container col={col}>
 			<ul style={[styles]}>
 				{React.Children.map(props.children, listItem =>
-					<ListItem inline={inline} px={px} py={py}>{listItem}</ListItem>
+					<ListItem fill={fill} inline={inline} px={px} py={py}>{listItem}</ListItem>
 				 )}
 			</ul>
 		</Container>

@@ -1,13 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
-import InputCheckbox from '../src/InputCheckbox';
+import InputCheckbox from '../src/components/Input/InputCheckbox';
 import { suite, t, statelessComponent } from './helpers';
 
 const baseStyles = {
-	// boxSizing: 'border-box',
 	padding: '5px',
-	// width: '100%'
 };
 
 const addedStyle = {

@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
 import { suite, t, statelessComponent } from './helpers';
-import {Menu} from '../src';
+import {Card} from '../src';
 
 let fixtures = null;
 
@@ -11,12 +11,11 @@ const setup = (p = {}) => {
 		...p
 	};
 
-
-	const menu = statelessComponent(
-		<Menu { ...props } />
+	const card = statelessComponent(
+		<Card { ...props } />
 	);
 
-	fixtures = { menu };
+	fixtures = { card };
 
 	return { ...fixtures };
 };
@@ -25,11 +24,11 @@ const teardown = () => {
 	fixtures = null;
 };
 
-suite('Menu', () => {
+suite('Card', () => {
 
-	t('Menu definition', (assert) => {
-		const { menu } = setup();
-		assert.ok(menu.instance, 'should be defined');
+	t('Card definition', (assert) => {
+		const { card } = setup();
+		assert.ok(card.instance, 'should be defined');
 
 		teardown();
 		assert.end();

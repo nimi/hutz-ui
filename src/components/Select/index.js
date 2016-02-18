@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react';
 import radium from 'radium';
-import Container from './Container';
-import { colors, typeography, InputStyles } from './styles';
-import { w } from './utils';
+import { w } from '../../utils';
+import { colors, typeography, InputStyles } from '../../styles';
+import Container from '../Container';
 
 function Select({
 	col,
@@ -47,7 +47,7 @@ Select.propTypes = {
 
 export default radium(Select);
 
-var style = {
+const style = {
 	select: {
 		backgroundColor: colors('gray', 1),
 		color: colors('gray', 5),

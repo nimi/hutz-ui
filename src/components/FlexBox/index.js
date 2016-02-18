@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
-import { scale, breakpoints } from './styles';
-import { mm } from './utils/dom';
+import { scale, breakpoints } from '../../styles';
+import { mm } from '../../utils/dom';
 
 const styleDisplay = (sizes) =>
 	Object.keys(sizes)
@@ -9,7 +9,7 @@ const styleDisplay = (sizes) =>
 			!Object.keys(sizes).some(v => sizes[v]));
 
 function FlexBox({
-	wrap, direction, align, justify, gutter, sm, md, lg, style = {},
+	width, wrap, direction, align, justify, gutter, sm, md, lg, style = {},
 	...props
 }) {
 
@@ -17,7 +17,9 @@ function FlexBox({
 
 	const flexBoxStyle = {
 		display,
-		height: '100%',
+		width: width || null,
+		minHeight: 0,
+		height: 'auto',
 		alignItems: align || null,
 		flexWrap: wrap ? 'wrap' : null,
 		flexDirection: direction || null,

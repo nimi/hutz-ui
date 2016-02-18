@@ -1,9 +1,9 @@
 import React, { PropTypes } from 'react';
-import { maxmin } from './utils';
+import { maxmin } from '../../utils';
 
 function Fill({val, valLimit, offset, max, min, horizontal}) {
 	const position = getPositionFromValue(val, valLimit, max, min);
-	//console.log(valLimit, position, offset, val);
+	console.log(horizontal, 'horizontal');
 	const fillStyle = {
 		width: horizontal ? position + offset : '100%',
 		height: horizontal ? '100%' : position + offset,
@@ -22,6 +22,10 @@ Fill.propTypes = {
 	max: PropTypes.number,
 	min: PropTypes.number
 };
+
+Fill.defaultProps = {
+	horizontal: true
+}
 
 function Slider({ val, active, update, size, valLimit, max, min, step, horizontal}) {
 	const position = getPositionFromValue(val, valLimit, max, min);
@@ -78,8 +82,13 @@ function Slider({ val, active, update, size, valLimit, max, min, step, horizonta
 
 Slider.propTypes = {
 	valLimit: PropTypes.number.isRequired,
-	size: PropTypes.number.isRequired
+	size: PropTypes.number.isRequired,
+	horizontal: PropTypes.bool
 };
+
+Slider.defaultProps = {
+	horizontal: true
+}
 
 function InputRange({
 	max,
@@ -107,6 +116,8 @@ function InputRange({
 	};
 
 	const valLimit = horiz ? width - 12 : height - 12;
+
+	console.log(horiz, 'horiz');
 
 	return (
 		<div

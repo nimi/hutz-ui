@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import radium from 'radium';
-import { colors, typeography, buttonStyles } from './styles';
+import { colors, typeography, buttonStyles } from '../../styles';
 
 function MenuItem({
 	icon,
@@ -33,12 +33,11 @@ function MenuItem({
 	const menuItemStyle = active ?
 		{ ...itemStyle, ...style.activeMenuItem } : itemStyle;
 
-	console.log(menuItemStyle, 'menuitem');
 	return (
 		<span>
 			{React.Children.map(props.children, (c) =>{
 				 return React.cloneElement(c, {
-					style: menuItemStyle
+					style: { ...menuItemStyle, ...props.style }
 				 });
 			 })}
 		</span>
@@ -54,7 +53,7 @@ MenuItem.propTypes = {
 
 export default radium(MenuItem);
 
-var style = {
+const style = {
 	menuItem: {
 		textAlign: null,
 		borderRadius: 'none',

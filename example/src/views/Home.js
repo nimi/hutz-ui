@@ -1,6 +1,6 @@
 import React from 'react';
 import jsxStringify from '../utils/jsxToString';
-import { Input, Button, FlexBox, Box } from '../../../src/components';
+import { Input, Button, FlexBox, Box } from '../../../src';
 
 export default class Home extends React.Component {
 
