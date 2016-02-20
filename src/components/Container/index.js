@@ -13,7 +13,21 @@ const styleWidth = ({sm = 12, md = 12, lg = 12}) => {
 };
 
 function Container({
-	p, px, py, pt, pb, pl, pr, col, sm, md, lg, shadow, style = {},
+	p,
+	px,
+	py,
+	pt,
+	pb,
+	pl,
+	pr,
+	col,
+	sm,
+	md,
+	lg,
+	shadow,
+	fill = true,
+	center,
+	style = {},
 	...props
 }) {
 	const sizes = { sm, md, lg };
@@ -28,7 +42,7 @@ function Container({
 		paddingBottom: py ? scale[py] : (pb ? scale[pb] : null),
 		paddingLeft: px ? scale[px] : (pl ? scale[pl] : null),
 		paddingRight: px ? scale[px] : (pr ? scale[pr] : null),
-		width
+		width: fill ? width : null
 	};
 
 	return (
