@@ -2,13 +2,6 @@ import React, { PropTypes } from 'react';
 import Radium from 'radium';
 import icons from '../../icons';
 
-const IconStyles = {
-	normalStyle: {
-		height: '25px',
-		width: '25px'
-	}
-};
-
 class Icon extends React.Component {
 	constructor(props) {
 		super(props);
@@ -18,7 +11,12 @@ class Icon extends React.Component {
 
 	static propTypes = {
 		color: PropTypes.string,
+		size: PropTypes.number,
 		type: PropTypes.string
+	}
+
+	static defaultProps = {
+		size: 25
 	}
 
 	getIcon(icon) {
@@ -26,19 +24,16 @@ class Icon extends React.Component {
 	}
 
 	render() {
-
-		const { type, color } = this.props;
-		const { normalStyle } = IconStyles;
-		const styles = [normalStyle];
+		const { type, color, size } = this.props;
 
 		return (
 			<svg
 				height="100%"
 				preserveAspectRatio="xMidYMid meet"
-				viewBox="0 0 25 25"
+				viewBox={`0 0 ${size} ${size}`}
 				stroke={ color || 'black' }
 				fill={ color || 'black' }
-				style={ styles }
+				style={{height: `${size}px`, width: `${size}px`}}
 				width="100%">
 				<g id={ type }>
 					<path d={ this.getIcon(type) } />
