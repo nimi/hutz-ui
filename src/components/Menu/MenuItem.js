@@ -18,11 +18,11 @@ function MenuItem({
 		[2, { ...baseStyle, border: null }],
 		[3, { ...baseStyle,
 			border: null,
-			borderRight: `2px solid ${colors.gray}`,
+			boxShadow: `inset -2px 0 0 ${colors.gray}`,
 			':hover': { textDecoration: 'none' },
 			':active': null,
 			':focus': {
-				borderRight: `2px solid ${colors.black}`,
+				boxShadow: `inset -2px 0 0 ${colors.black}`,
 				fontWeight: 600
 			}
 		}]
@@ -35,9 +35,9 @@ function MenuItem({
 
 	return (
 		<span>
-			{React.Children.map(props.children, (c) =>{
+			{React.Children.map(props.children, (c, i) =>{
 				 return React.cloneElement(c, {
-					style: { ...menuItemStyle, ...props.style }
+					 style: { ...menuItemStyle, ...props.style },
 				 });
 			 })}
 		</span>
