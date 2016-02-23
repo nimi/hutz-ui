@@ -3,17 +3,19 @@ import ReactDOM from 'react-dom';
 import Router, { Route, IndexRoute } from 'react-router';
 import { createHistory, useBasename } from 'history';
 import { Nav } from './components';
-import { FlexBox, Box } from '../../src/components';
+import { FlexBox, Box } from '../../src';
 import {
-	Home,
-	Buttons,
-	Inputs,
+	HomeView,
+	ButtonView,
+	InputView,
 	FlexBoxView,
 	SelectView,
 	ListView,
 	MenuView,
 	TextView,
-	CardView
+	CardView,
+	AvatarView,
+	DividerView
 } from './views';
 
 const history = useBasename(createHistory)({
@@ -42,7 +44,7 @@ class App extends React.Component {
 
 		this.state = {
 			componentName: ''
-		}
+		};
 	}
 
 	render() {
@@ -55,15 +57,17 @@ class App extends React.Component {
 const routes = (
   <Router history={history} >
 	<Route path="/" component={App}>
-	  <IndexRoute component={Home} />
-	  <Route path="buttons" component={Buttons} />
-	  <Route path="inputs" component={Inputs} />
+	  <IndexRoute component={HomeView} />
+	  <Route path="buttons" component={ButtonView} />
+	  <Route path="inputs" component={InputView} />
 	  <Route path="flexbox" component={FlexBoxView} />
 	  <Route path="selects" component={SelectView} />
 	  <Route path="lists" components={ListView} />
 	  <Route path="menus" components={MenuView} />
 	  <Route path="text" components={TextView} />
 	  <Route path="cards" components={CardView} />
+	  <Route path="avatars" components={AvatarView} />
+	  <Route path="dividers" components={DividerView} />
 	</Route>
   </Router>
 );

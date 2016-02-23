@@ -3,6 +3,7 @@ import radium from 'radium';
 import { colors, typeography, InputStyles } from '../../styles';
 import List from '../List';
 import MenuItem from './MenuItem';
+import Divider from '../Divider';
 
 function Menu({
 	align,
@@ -12,6 +13,7 @@ function Menu({
 	activeIndex,
 	px,
 	py,
+	menuItemStyle,
 	...props
 }) {
 	let styles = {
@@ -27,17 +29,26 @@ function Menu({
 			fill={fill}
 			px={px || 0}
 			py={py || 0}
+			itemStyle={menuItemStyle}
 		>
 			{React.Children.map(props.children, (child, i) => {
-				return (
-					<MenuItem
-						type={type}
-						active={i === activeIndex}
-						{...child.props}
-					 >
-						 {child}
-					 </MenuItem>
-				);
+				 if (child.type.displayName === 'Divider') {
+					 return React.cloneElement(child, {
+						 key: i,
+						 ...child.props
+					 });
+				 } else {
+					 return (
+						 <MenuItem
+							 type={type}
+							 active={i === activeIndex}
+							 {...child.props}
+							 key={i}
+						 >
+							 {child}
+						 </MenuItem>
+					 );
+				 }
 			})}
 		</List>
 	);
@@ -47,7 +58,8 @@ Menu.displayName = 'Menu';
 
 Menu.propTypes = {
 	fill: PropTypes.bool,
-	inline: PropTypes.bool
+	inline: PropTypes.bool,
+	menuItemStyle: PropTypes.object
 };
 
 export default radium(Menu);

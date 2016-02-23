@@ -11,3 +11,5 @@ export { default as Text } from './components/Text';
 export { default as Heading } from './components/Heading';
 export { default as Card } from './components/Card';
 export { default as Media } from './components/Media';
+export { default as Avatar } from './components/Avatar';
+export { default as Divider } from './components/Divider';
