@@ -9,15 +9,17 @@ function ListItem({
 	px,
 	py,
 	fill,
+	style = {},
 	...props
 }) {
-	const listItemStyle = style(fill);
+	const listItemStyle = listStyle(fill);
 	const styles = {
 		...listItemStyle,
 		paddingTop: py ? scale[py] : null,
 		paddingBottom: py ? scale[py] : null,
 		paddingLeft: px ? scale[px] : null,
-		paddingRight: px ? scale[px] : null
+		paddingRight: px ? scale[px] : null,
+		...style
 	};
 
 	return <li style={styles} {...props} />;
@@ -37,7 +39,7 @@ ListItem.defaultProps = {
 
 export default radium(ListItem);
 
-const style = (fill) => ({
+const listStyle = (fill) => ({
 	display: 'block',
 	minWidth: 0,
 	minHeight: 0,
