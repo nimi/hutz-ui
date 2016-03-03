@@ -1,9 +1,9 @@
-import React, { PropTypes } from 'react';
-import { maxmin } from '../../utils';
+import React, {PropTypes} from 'react';
+import {maxmin} from '../../utils';
+import pure from '../../decorators/pure';
 
 function Fill({val, valLimit, offset, max, min, horizontal}) {
 	const position = getPositionFromValue(val, valLimit, max, min);
-	console.log(horizontal, 'horizontal');
 	const fillStyle = {
 		width: horizontal ? position + offset : '100%',
 		height: horizontal ? '100%' : position + offset,
@@ -17,15 +17,16 @@ function Fill({val, valLimit, offset, max, min, horizontal}) {
 }
 
 Fill.propTypes = {
-	offset: PropTypes.number.isRequired,
-	valLimit: PropTypes.number.isRequired,
+	horizontal: PropTypes.bool,
 	max: PropTypes.number,
-	min: PropTypes.number
+	min: PropTypes.number,
+	offset: PropTypes.number.isRequired,
+	valLimit: PropTypes.number.isRequired
 };
 
 Fill.defaultProps = {
 	horizontal: true
-}
+};
 
 function Slider({ val, active, update, size, valLimit, max, min, step, horizontal}) {
 	const position = getPositionFromValue(val, valLimit, max, min);
@@ -74,21 +75,21 @@ function Slider({ val, active, update, size, valLimit, max, min, step, horizonta
 					e.preventDefault();
 
 					document.addEventListener('mousemove', handleMouseMove);
-					document.addEventListener('mouseup', dragEnd)
+					document.addEventListener('mouseup', dragEnd);
 			}}
 		/>
 	);
 }
 
 Slider.propTypes = {
-	valLimit: PropTypes.number.isRequired,
+	horizontal: PropTypes.bool,
 	size: PropTypes.number.isRequired,
-	horizontal: PropTypes.bool
+	valLimit: PropTypes.number.isRequired
 };
 
 Slider.defaultProps = {
 	horizontal: true
-}
+};
 
 function InputRange({
 	max,
@@ -111,13 +112,11 @@ function InputRange({
 		margin: '20px 0',
 		position: 'relative',
 		width: '100%',
-		minWidth: horiz ? width : 2,
+		maxWidth: horiz ? width : 2,
 		cursor: 'pointer'
 	};
 
 	const valLimit = horiz ? width - 12 : height - 12;
-
-	console.log(horiz, 'horiz');
 
 	return (
 		<div
@@ -181,4 +180,4 @@ function getValueFromPosition(pos, posLimit, max, min, step, horizontal) {
 		max - (step * Math.round(percentage * (max - min) / step) + min);
 }
 
-export default InputRange;
+export default pure(InputRange);

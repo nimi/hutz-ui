@@ -44,6 +44,7 @@ function Input({
 		<div style={ containerStyles }>
 			{!label ? null :
 			<label style={ InputStyles.label }>{label}</label>}
+
 			<div style={ inputContainerStyles }>
 				{(() => {
 				switch (type) {

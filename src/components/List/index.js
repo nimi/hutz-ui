@@ -10,6 +10,7 @@ function List({
 	inline,
 	px,
 	py,
+	itemStyle,
 	...props
 }) {
 	let styles = {
@@ -20,10 +21,12 @@ function List({
 	styles = inline ? { ...styles, ...style.inline } : styles;
 
 	return (
-		<Container col={col}>
+		<Container col={col} style={props.style || null}>
 			<ul style={[styles]}>
-				{React.Children.map(props.children, listItem =>
-					<ListItem fill={fill} inline={inline} px={px} py={py}>{listItem}</ListItem>
+				{React.Children.map(props.children, (listItem, i) =>
+					<ListItem fill={fill} inline={inline} px={px} py={py} key={i} style={itemStyle}>
+						{listItem}
+					</ListItem>
 				 )}
 			</ul>
 		</Container>
@@ -33,7 +36,8 @@ function List({
 List.displayName = 'List';
 
 List.propTypes = {
-	inline: PropTypes.bool
+	inline: PropTypes.bool,
+	itemStyle: PropTypes.object
 };
 
 export default radium(List);
