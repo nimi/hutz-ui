@@ -19,7 +19,7 @@ function Input({
 	value,
 	...props
 }) {
-	const inputStyles = { ...typeography.input, ...InputStyles.base };
+	const inputStyles = { ...typeography.input, ...InputStyles.base, ...props.style };
 	const iconColor = success ? InputStyles.successColor : InputStyles.errorColor;
 	const containerStyles = {
 		...InputStyles.container,

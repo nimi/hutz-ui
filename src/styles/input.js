@@ -17,7 +17,7 @@ const InputStyles = {
 		outline: 'none',
 		left: 0,
 		width: '100%',
-		padding: '10px 0',
+		padding: '6px 1px',
 		':focus': {
 			color: color('black', 4)
 		}
@@ -33,7 +33,7 @@ const InputStyles = {
 		display: 'block',
 		position: 'absolute',
 		right: '0.5em',
-		bottom: '0.15em'
+		bottom: '0'
 	},
 
 	label: {
