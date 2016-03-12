@@ -34,10 +34,16 @@ class Icon extends React.Component {
 				stroke={ color || 'black' }
 				fill={ color || 'black' }
 				style={{height: `${size}px`, width: `${size}px`}}
-				width="100%">
-				<g id={ type }>
-					<path d={ this.getIcon(type) } />
-				</g>
+				width="100%"
+				{...this.props}
+			>
+				{(() => {
+					 return this.props.children ?
+						 this.props.children :
+						 <g id={ type }>
+							 <path d={ this.getIcon(type) } />
+						 </g>;
+				 })()}
 			</svg>
 		);
 	}
