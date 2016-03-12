@@ -1,46 +1,46 @@
 const font = "'Roboto', 'Helvetica Neue', Helvetica, Arial";
 
 const typeography = {
-  display4: {
+  heading1: {
 	color: 'rgba(0, 0, 0, .54)',
 	fontFamily: font,
-	fontWeight: 300,
-	fontSize: '3rem',
+	fontWeight: 100,
+	fontSize: '2rem',
 	whiteSpace: 'nowrap'
   },
-  display3: {
+  heading2: {
 	color: 'rgba(0, 0, 0, .54)',
 	fontFamily: font,
 	fontWeight: 400,
-	fontSize: '2.5rem',
+	fontSize: '1.5rem',
 	whiteSpace: 'nowrap'
   },
-  display2: {
+  heading3: {
 	color: 'rgba(0, 0, 0, .54)',
 	fontFamily: font,
 	fontWeight: 400,
-	fontSize: '2rem'
+	fontSize: '1.25rem'
   },
-  display1: {
+  heading4: {
 	color: 'rgba(0, 0, 0, .54)',
 	fontFamily: font,
-	fontWeight: 400,
-	fontSize: '1.5rem'
+	fontWeight: 500,
+	fontSize: '1rem'
   },
-  headline: {
-	color: 'rgba(0, 0, 0, .87)',
-	fontFamily: font,
-	fontWeight: 400,
-	fontSize: '1.333rem'
-  },
-  title: {
+  heading5: {
 	color: 'rgba(0, 0, 0, .87)',
 	fontFamily: font,
 	fontWeight: 500,
-	fontSize: '1.25rem',
+	fontSize: '0.875rem'
+  },
+  heading6: {
+	color: 'rgba(0, 0, 0, .87)',
+	fontFamily: font,
+	fontWeight: 500,
+	fontSize: '0.75rem',
 	whiteSpace: 'nowrap'
   },
-  subhead: {
+  subtitle: {
 	color: 'rgba(0, 0, 0, .87)',
 	fontFamily: font,
 	fontWeight: 400,

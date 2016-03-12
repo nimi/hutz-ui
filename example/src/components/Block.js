@@ -1,13 +1,13 @@
 import React from 'react';
-import { Box } from '../../../src/components';
+import { Box } from '../../../src';
 
 const Block = ({ color, center, ...props }) => (
   <div
-    style={{
+	style={{
 		textAlign: center ? 'center' : null,
 		backgroundColor: color
-    }}>
-    <Box p={1} { ...props } />
+	}}>
+	<Box p={1} { ...props } />
   </div>
 );
 

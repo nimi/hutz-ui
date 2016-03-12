@@ -79,11 +79,11 @@ const COLORS = {
 		C3: [38, 38, 37],
 		C4: [31, 30, 30],
 		C5: [0, 0, 0]
-	}
+	},
 };
 
-export default function color(key, shade = 3, alpha = 1) {
-	return rgba(COLORS[key][`C${shade}`], alpha);
+export default function color(key, shade = 3, a = 1) {
+	return rgba(COLORS[key][`C${shade}`], a);
 }
 
 color.red = rgba(COLORS.red.C1);

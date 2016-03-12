@@ -1,6 +1,6 @@
 import React from 'react';
 import radium from 'radium';
-import { Menu, MenuItem } from '../../../src/Components';
+import { Menu, MenuItem } from '../../../src';
 import { Link, IndexLink } from 'react-router';
 
 const L = radium(Link);
@@ -27,7 +27,7 @@ const navStyle = {
 
 export default class Nav extends React.Component {
 
-	static displayName = 'Buttons'
+	static displayName = 'Nav'
 
 	static defaultProps = {
 		navItems: [

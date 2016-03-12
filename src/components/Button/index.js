@@ -11,6 +11,7 @@ class Button extends Component {
 
 	static propTypes = {
 		bt: PropTypes.string,
+		color: PropTypes.string,
 		disabled: PropTypes.bool,
 		groupStyle: PropTypes.object,
 		size: PropTypes.string

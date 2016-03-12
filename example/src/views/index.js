@@ -9,3 +9,4 @@ export { default as TextView } from './TextView';
 export { default as CardView } from './CardView';
 export { default as AvatarView } from './AvatarView';
 export { default as DividerView } from './DividerView';
+export { default as LoaderView } from './LoaderView';

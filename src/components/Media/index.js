@@ -18,8 +18,8 @@ function Media({
 Media.displayName = 'Media';
 
 Media.propTypes = {
-	type: PropTypes.string,
-	src: PropTypes.string
+	src: PropTypes.string,
+	type: PropTypes.string
 };
 
 export default Media;

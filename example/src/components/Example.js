@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { Box, FlexBox, Button, Text, Heading } from '../../../src/components';
+import { Box, FlexBox, Button, Text, Heading } from '../../../src';
 import jsxStringify from '../utils/jsxToString';
 import Highlight from 'react-highlight';
 
@@ -42,11 +42,11 @@ export default class Example extends Component {
 				<Box>
 					<FlexBox style={{backgroundColor: 'rgb(234, 234, 234)' }}>
 						<Box px={3} py={1}>
-							<Heading size={2}>
+							<Heading size={2} style={{margin: '0.4em 0'}}>
 								{this.props.heading}
 							</Heading>
 						</Box>
-						<Box py={1} style={{textAlign: 'right'}}>
+						<Box pr={3} py={1} style={{textAlign: 'right'}}>
 							<Button
 								bt='link'
 								color='black'
