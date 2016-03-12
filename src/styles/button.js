@@ -1,34 +1,38 @@
 import color from './colors';
 import typeography from './typeography';
 
-export default function buttonStyles(c = 'blue') {
-	const BASE_COLOR = c;
+export default function buttonStyles(c) {
+	const BASE_COLOR = c || 'white';
+	const alpha = c ? 1 : 0;
 	const buttonTypeography = typeography.body1;
 	const isWhite = BASE_COLOR === 'white';
+	const contrastColor = isWhite ? color.black : color.white;
+	const buttonColor = color(BASE_COLOR, 1, alpha);
+	const buttonHoverColor = color(BASE_COLOR, 2);
+	const buttonActiveColor = color(BASE_COLOR, 3);
+	const buttonShadowColor = color(BASE_COLOR, 4);
 
-	return {
+	const styleMap = {
 		BASE_COLOR,
 
 		initialStyle: {
 			...buttonTypeography,
 			cursor: 'pointer',
 			position: 'relative',
-			height: '3em',
 			outline: 'none',
 			border: isWhite ? `solid 1px ${color('gray', 3)}` : 0,
 			borderRadius: 3,
-			color: isWhite ? color.black : color.white,
-			padding: 9,
-			minWidth: '6em',
+			color: contrastColor,
+			padding: '0.75em 1.25em',
 			textAlign: 'center',
-			lineHeight: '16px',
-			backgroundColor: color[BASE_COLOR],
+			lineHeight: '1em',
+			backgroundColor: buttonColor,
 			':hover': {
-				backgroundColor: color(BASE_COLOR, 2),
+				backgroundColor: buttonHoverColor,
 				textDecoration: 'none'
 			},
 			':active': {
-				backgroundColor: color(BASE_COLOR, 3),
+				backgroundColor: buttonActiveColor,
 				textDecoration: 'none'
 			}
 		},
@@ -46,43 +50,44 @@ export default function buttonStyles(c = 'blue') {
 		},
 
 		raisedStyle: {
-			boxShadow: `0px 3px 0px 0px ${color(BASE_COLOR, 4)}`,
+			boxShadow: `0px 3px 0px 0px ${buttonShadowColor}`,
 			':active': {
 				top: '2px',
-				boxShadow: `0px 1px 0px 0px ${color(BASE_COLOR, 4)}`
+				boxShadow: `0px 1px 0px 0px ${buttonShadowColor}`
 			}
 		},
 
 		outlineStyle: {
 			backgroundColor: 'transparent',
-			color: color[BASE_COLOR],
-			border: `1px solid ${color[BASE_COLOR]}`,
+			color: buttonColor,
+			border: `1px solid ${buttonColor}`,
 			':hover': {
 				backgroundColor: 'transparent',
-				color: color(BASE_COLOR, 2),
-				border: `1px solid ${color(BASE_COLOR, 2)}`
+				color: buttonHoverColor,
+				border: `1px solid ${buttonHoverColor}`
 			},
 			':active': {
 				backgroundColor: 'transparent',
-				color: color(BASE_COLOR, 3),
-				border: `1px solid ${color(BASE_COLOR, 3)}`
+				color: buttonActiveColor,
+				border: `1px solid ${buttonActiveColor}`
 			}
 		},
 
 		linkStyle: {
 			backgroundColor: 'transparent',
-			border: 'transparent',
-			color: color[BASE_COLOR],
+			color: buttonColor,
 			':hover': {
 				backgroundColor: 'transparent',
-				color: color(BASE_COLOR, 2),
+				color: buttonHoverColor,
 				textDecoration: 'underline'
 			},
 			':active': {
 				backgroundColor: 'transparent',
-				color: color(BASE_COLOR, 3),
+				color: buttonActiveColor,
 				fontWeight: 400
 			}
 		}
 	};
+
+	return styleMap;
 }
