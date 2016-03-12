@@ -19,7 +19,7 @@ function Input({
 	value,
 	...props
 }) {
-	const inputStyles = { ...typeography.input, ...InputStyles.base };
+	const inputStyles = { ...typeography.input, ...InputStyles.base, ...props.style };
 	const iconColor = success ? InputStyles.successColor : InputStyles.errorColor;
 	const containerStyles = {
 		...InputStyles.container,
@@ -44,6 +44,7 @@ function Input({
 		<div style={ containerStyles }>
 			{!label ? null :
 			<label style={ InputStyles.label }>{label}</label>}
+
 			<div style={ inputContainerStyles }>
 				{(() => {
 				switch (type) {

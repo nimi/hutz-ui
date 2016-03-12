@@ -8,7 +8,7 @@ const successColor = color.green;
 const labelColor = color('gray', 3);
 
 const InputStyles = {
-	initialInputStyle: {
+	base: {
 		...typeography.body1,
 		backgroundColor: 'transparent',
 		border: 'none',
@@ -17,33 +17,34 @@ const InputStyles = {
 		outline: 'none',
 		left: 0,
 		width: '100%',
-		padding: '10px 0',
+		padding: '6px 1px',
 		':focus': {
 			color: color('black', 4)
 		}
 	},
 
-	initialContainerStyle: {
+	container: {
 		position: 'relative',
 		display: 'flex',
 		flexDirection: 'column'
 	},
 
-	initialIconStyle: {
-		display: 'none',
+	icon: {
+		display: 'block',
 		position: 'absolute',
 		right: '0.5em',
-		bottom: '0.15em'
+		bottom: '0'
 	},
 
-	initialLabelStyle: {
+	label: {
 		...typeography.body2,
 		color: labelColor,
 		fontWeight: 500,
-		top: '-35px'
+		top: '-35px',
+		textTransform: 'uppercase'
 	},
 
-	inputContainerStyle: {
+	inputContainer: {
 		borderBottom: `solid 2px ${initialColor}`,
 		boxSizing: 'border-box',
 		color: labelColor,
@@ -53,25 +54,21 @@ const InputStyles = {
 		}
 	},
 
-	activeIconStyle: {
-		display: 'block'
-	},
-
-	errorInputStyle: {
+	error: {
 		borderBottom: `solid 2px ${errorColor}`,
 		':focus': {
 			borderBottom: `solid 2px ${errorColor}`
 		}
 	},
 
-	successInputStyle: {
+	success: {
 		borderBottom: `solid 2px ${successColor}`,
 		':focus': {
 			borderBottom: `solid 2px ${successColor}`
 		}
 	},
 
-	textareaInputStyle: {
+	textarea: {
 		borderTop: `solid 2px ${initialColor}`,
 		borderLeft: `solid 2px ${initialColor}`,
 		borderRight: `solid 2px ${initialColor}`,
@@ -85,7 +82,12 @@ const InputStyles = {
 		}
 	},
 
-	labelStyle: {
+	range: {
+		borderBottom: null,
+		':focus': null
+	},
+
+	label: {
 		color: '#999',
 		display: 'inline-block',
 		fontSize: '0.85rem',
