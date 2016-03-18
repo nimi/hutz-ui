@@ -1,5 +1,6 @@
 import React, { PropTypes, Children, cloneElement } from 'react';
 import Button from '../Button';
+import Container from '../Container';
 
 function ButtonGroup({
 	children,
@@ -12,7 +13,7 @@ function ButtonGroup({
 	const lastButtonRadius = vertical ? '0 0 3px 3px' : '0 3px 3px 0';
 
 	return (
-		<div
+		<Container
 			{ ...props }
 			style={ buttonGroupStyle }
 		>
@@ -22,7 +23,7 @@ function ButtonGroup({
 				const groupStyle = { ...first, ...last };
 				return cloneElement(button, { groupStyle: { ...buttonStyle, ...groupStyle } });
 			})}
-		</div>
+		</Container>
 	);
 }
 

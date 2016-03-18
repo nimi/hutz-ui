@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import Container from '../Container';
 import { colors, typeography, scale } from '../../styles';
 
 function Media({
@@ -7,7 +8,8 @@ function Media({
 	...props
 }) {
 	return (
-		<img
+		<Container
+			tagName='img'
 			style={mediaStyle}
 			src={src}
 			{...props}
@@ -27,6 +29,5 @@ export default Media;
 const mediaStyle = {
 	maxWidth: '100%',
 	minWidth: '100%',
-	verticalAlign: 'top',
-	width: '100%'
+	verticalAlign: 'top'
 };

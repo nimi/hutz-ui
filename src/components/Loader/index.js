@@ -2,20 +2,21 @@ import React, {PropTypes} from 'react';
 import radium from 'radium';
 import colors from '../../styles/colors';
 
+import Container from '../Container';
 import Icon from '../Icon';
 
 function Loader({size, color, ...props}) {
 	const {container, icon, circle} = style(size, color);
 
 	return (
-		<div style={{...container}}>
+		<Container style={{...container}} fill={false}>
 			<Icon
 				size={100}
 				style={icon}
 			>
 				<circle style={circle} cx='50' cy='50' r='45' />
 			</Icon>
-		</div>
+		</Container>
 	);
 }
 

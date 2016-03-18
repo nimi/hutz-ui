@@ -1,8 +1,13 @@
 import React, {PropTypes} from 'react';
 import colors from '../../styles/colors';
+import Container from '../Container';
 
 function Divider({vertical, style = {}, ...props}) {
-	return <hr {...props} style={{...dividerStyle, ...style}} />;
+	return <Container
+			   {...props}
+			   style={{...dividerStyle, ...style}}
+			   tagName='hr'
+		   />;
 }
 
 Divider.displayName = 'Divider';

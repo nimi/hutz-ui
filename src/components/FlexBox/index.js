@@ -1,12 +1,7 @@
 import React, { PropTypes } from 'react';
+import Container from '../Container';
 import { scale, breakpoints } from '../../styles';
 import { mm } from '../../utils/dom';
-
-const styleDisplay = (sizes) =>
-	Object.keys(sizes)
-		.map(k => ({ val: sizes[k], bp: breakpoints[k] }))
-		.some(s => (s.val && mm(s.bp).matches) ||
-			!Object.keys(sizes).some(v => sizes[v]));
 
 function FlexBox({
 	width, wrap, direction, align, justify, gutter, sm, md, lg, style = {},
@@ -29,7 +24,7 @@ function FlexBox({
 	};
 
 	return (
-		<div
+		<Container
 			{ ...props }
 			style={{ ...flexBoxStyle, ...style }}
 		/>
@@ -67,3 +62,9 @@ FlexBox.propTypes = {
 };
 
 export default FlexBox;
+
+const styleDisplay = (sizes) =>
+	Object.keys(sizes)
+		.map(k => ({ val: sizes[k], bp: breakpoints[k] }))
+		.some(s => (s.val && mm(s.bp).matches) ||
+			!Object.keys(sizes).some(v => sizes[v]));

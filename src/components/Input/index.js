@@ -3,6 +3,7 @@ import { typeography, InputStyles } from '../../styles';
 import { capitalize } from '../../utils';
 import Icon from '../Icon';
 import radium from 'radium';
+import Container from '../Container';
 import InputText from './InputText';
 import InputTextArea from './InputTextArea';
 import InputCheckbox from './InputCheckbox';
@@ -41,11 +42,11 @@ function Input({
 		{ ...inputContainerStyles, ...InputStyles.range } : inputContainerStyles;
 
 	return (
-		<div style={ containerStyles }>
+		<Container style={ containerStyles } fill={false}>
 			{!label ? null :
 			<label style={ InputStyles.label }>{label}</label>}
 
-			<div style={ inputContainerStyles }>
+			<Container style={ inputContainerStyles } fill={false}>
 				{(() => {
 				switch (type) {
 					 case 'textarea': return <InputTextArea {...props} style={ inputStyles } />;
@@ -54,13 +55,14 @@ function Input({
 					 default: return <InputText {...props} style={ inputStyles } />;
 				}
 				})()}
-			</div>
+			</Container>
 			{!success && !error ? null :
-			<div
+			<Container
+				fill={false}
 				style={ InputStyles.icon }>
 				{<Icon type="check" color={iconColor} />}
-			</div>}
-		</div>
+			</Container>}
+		</Container>
 	);
 }
 

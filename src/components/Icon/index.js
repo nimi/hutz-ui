@@ -1,52 +1,40 @@
 import React, { PropTypes } from 'react';
-import Radium from 'radium';
+import radium from 'radium';
+import Container from '../Container';
 import icons from '../../icons';
 
-class Icon extends React.Component {
-	constructor(props) {
-		super(props);
-	}
+function Icon({size, type, color, ...props}) {
+	const icon = icons.get(type);
+	const s = size || 25;
 
-	static displayName = 'Icon'
-
-	static propTypes = {
-		color: PropTypes.string,
-		size: PropTypes.number,
-		type: PropTypes.string
-	}
-
-	static defaultProps = {
-		size: 25
-	}
-
-	getIcon(icon) {
-		return icons.get(icon);
-	}
-
-	render() {
-		const { type, color, size } = this.props;
-
-		return (
-			<svg
-				height="100%"
-				preserveAspectRatio="xMidYMid meet"
-				viewBox={`0 0 ${size} ${size}`}
-				stroke={ color || 'black' }
-				fill={ color || 'black' }
-				style={{height: `${size}px`, width: `${size}px`}}
-				width="100%"
-				{...this.props}
-			>
-				{(() => {
-					 return this.props.children ?
-						 this.props.children :
-						 <g id={ type }>
-							 <path d={ this.getIcon(type) } />
-						 </g>;
-				 })()}
-			</svg>
-		);
-	}
+	return (
+		<svg
+			height='100%'
+			preserveAspectRatio='xMidYMid meet'
+			viewBox={`0 0 ${s} ${s}`}
+			stroke={ color || 'black' }
+			fill={ color || 'black' }
+			style={{height: `${s}px`, width: `${s}px`, ...props.style}}
+			width="100%"
+			{...props}
+		>
+			{(() => {
+				 return props.children ?
+					 props.children :
+					 <g id={ type }>
+						 <path d={icon} />
+					 </g>;
+			 })()}
+		</svg>
+	);
 }
 
-export default Radium(Icon);
+export default radium(Icon);
+
+Icon.displayName = 'Icon';
+
+Icon.propTypes = {
+	color: PropTypes.string,
+	size: PropTypes.number,
+	type: PropTypes.string
+};

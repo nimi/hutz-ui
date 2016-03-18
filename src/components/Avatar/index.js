@@ -13,7 +13,7 @@ function Avatar({src, icon, letter, size, color, align, name,  backgroundColor, 
 		<span>{letter}</span>;
 
 	return (
-		<div>
+		<Container fill={false}>
 			{nameAlign === 'right' ?
 			<span style={nameStyle}>{name}</span> : null}
 			<Container style={{...containerStyle, ...props.style}}>
@@ -21,7 +21,7 @@ function Avatar({src, icon, letter, size, color, align, name,  backgroundColor, 
 			</Container>
 			{nameAlign === 'left' ?
 			<span style={nameStyle}>{name}</span> : null}
-		</div>
+		</Container>
 	);
 }
 
