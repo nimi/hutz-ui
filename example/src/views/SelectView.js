@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Select } from '../../../src';
+import { Select, Container, Heading } from '../../../src';
 import { Example} from '../components';
 
 export default class SelectView extends Component {
@@ -8,16 +8,21 @@ export default class SelectView extends Component {
 
 	render() {
 		return (
-			<Example heading='Dropdown (simple)'>
-				<Select
-					col={6}
-					options={Array.from(Array(10).keys()).map((_, i) => {
-							return { label: `some value ${i}`, value: i };
-						})}
-					label='Some dropdown label'
-					name='dropdown'
-				/>
-			</Example>
+			<Container>
+				<Container>
+					<Heading>Selects</Heading>
+				</Container>
+				<Example heading='Dropdown (simple)'>
+					<Select
+						col={6}
+						options={Array.from(Array(10).keys()).map((_, i) => {
+								return { label: `some value ${i}`, value: i };
+							})}
+						label='Some dropdown label'
+						name='dropdown'
+					/>
+				</Example>
+			</Container>
 		);
 	}
 }

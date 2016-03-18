@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Menu, MenuItem } from '../../../src';
+import { Container, Heading, Menu, MenuItem } from '../../../src';
 import { Example} from '../components';
 
 export default class MenuView extends Component {
@@ -23,6 +23,9 @@ export default class MenuView extends Component {
 	render() {
 		return (
 			<div>
+				<Container>
+					<Heading>Icons</Heading>
+				</Container>
 				<Example heading='Menu - default (inline)'>
 					<Menu inline>
 						<a href='#'>Menu item 1</a>

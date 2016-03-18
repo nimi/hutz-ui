@@ -16,7 +16,12 @@ import {
 	CardView,
 	AvatarView,
 	DividerView,
-	LoaderView
+	LoaderView,
+	HeadingView,
+	BannerView,
+	BadgeView,
+	IconView,
+	MediaView
 } from './views';
 
 const history = useBasename(createHistory)({
@@ -70,6 +75,11 @@ const routes = (
 	  <Route path="avatars" components={AvatarView} />
 	  <Route path="dividers" components={DividerView} />
 	  <Route path="loaders" components={LoaderView} />
+	  <Route path="headings" components={HeadingView} />
+	  <Route path="banners" components={BannerView} />
+	  <Route path="badges" components={BadgeView} />
+	  <Route path="icons" components={IconView} />
+	  <Route path="media" components={MediaView} />
 	</Route>
   </Router>
 );

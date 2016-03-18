@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Container, List, Menu, Divider} from '../../../src';
+import {Container, Heading, List, Menu, Divider} from '../../../src';
 import {Example} from '../components';
 
 export default class DividerView extends Component {
@@ -9,6 +9,9 @@ export default class DividerView extends Component {
 	render() {
 		return (
 			<Container>
+				<Container>
+					<Heading>Dividers</Heading>
+				</Container>
 				<Example heading='Divider (horizontal)'>
 					<Divider />
 				</Example>
