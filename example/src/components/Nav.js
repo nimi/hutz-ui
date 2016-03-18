@@ -1,29 +1,10 @@
 import React from 'react';
 import radium from 'radium';
-import { Menu, MenuItem } from '../../../src';
+import { Menu, MenuItem, Container, Text } from '../../../src';
 import { Link, IndexLink } from 'react-router';
 
 const L = radium(Link);
 const IL = radium(IndexLink);
-
-const navStyle = {
-	container: {
-		position: 'fixed',
-		width: 'inherit',
-		height: '100%',
-		backgroundColor: '#0E0E0E'
-	},
-	header: {
-		paddingLeft: '25px',
-		paddingBottom: '25px',
-		paddingTop: '20px'
-	},
-	list: {
-		listStyleType: 'none',
-		margin: 0,
-		padding: 0
-	}
-};
 
 export default class Nav extends React.Component {
 
@@ -67,17 +48,51 @@ export default class Nav extends React.Component {
 
 		return (
 			<nav style={navStyle.container}>
-				<h2 style={navStyle.header}>
-					<IL to="/">
-						HUTZ UI
-					</IL>
-				</h2>
-				<Menu type={3} px={2}>
-					{sortedLinks.map((link) =>
-						<L to={link.to}>{link.label}</L>
+				<Container style={navStyle.header} fill={false}>
+					<h2 style={navStyle.heading}>
+						<IL to="/">
+							<Container tagName='span' color='red'>H</Container>
+							<Container tagName='span' color='green'>U</Container>
+							<Container tagName='span' color='blue'>T</Container>
+							<Container tagName='span' color='yellow'>Z</Container>
+							<span style={{color: '#FFF', fontWeight: 300, textShadow: '3px 0px #B9B9B9'}}>{`UI`}</span>
+						</IL>
+					</h2>
+					<Text style={navStyle.text}>Stateless, functional components</Text>
+				</Container>
+				<Menu type={3} px={1} style={navStyle.list}>
+					{sortedLinks.map((link, i) =>
+						<L to={link.to} key={i}>{link.label}</L>
 					)}
 				</Menu>
 			</nav>
 		);
 	}
 }
+
+const navStyle = {
+	container: {
+		position: 'fixed',
+		width: 'inherit',
+		height: '100%',
+		backgroundColor: '#F7F7F4',
+		overflow: 'scroll'
+	},
+	header: {
+		backgroundColor: '#F7F7F4',
+		margin: 0,
+		padding: '30px 0px 30px 25px',
+		position: 'fixed',
+		zIndex: 1
+	},
+	heading: {
+		fontSize: 40
+	},
+	list: {
+		padding: '185px 0 35px'
+	},
+	text: {
+		fontStyle: 'italic',
+		color: '#8C8C8C'
+	}
+};

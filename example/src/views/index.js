@@ -10,3 +10,8 @@ export { default as CardView } from './CardView';
 export { default as AvatarView } from './AvatarView';
 export { default as DividerView } from './DividerView';
 export { default as LoaderView } from './LoaderView';
+export { default as HeadingView } from './HeadingView';
+export { default as BannerView } from './BannerView';
+export { default as BadgeView } from './BadgeView';
+export { default as IconView } from './IconView';
+export { default as MediaView } from './MediaView';

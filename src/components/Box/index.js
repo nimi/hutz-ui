@@ -2,15 +2,7 @@ import React, { PropTypes } from 'react';
 import { scale, breakpoints } from '../../styles';
 import { w } from '../../utils';
 import { mm, transitionEnd } from '../../utils/dom';
-
-const styleWidth = ({sm = 12, md = 12, lg = 12}) => {
-	const size = Object.keys({sm, md, lg})
-		.map(key => ({ key, bp: breakpoints[key] }))
-		.filter(s => mm(s.bp) && mm(s.bp).matches)
-		.slice(-1);
-
-	return size.length && size[0].key;
-};
+import Container from '../Container';
 
 function Box({
 	col, sm, md, lg,
@@ -23,7 +15,7 @@ function Box({
 	const style = { ...styleProps, ...props.style };
 
 	return (
-		<div
+		<Container
 			{ ...props }
 			style={style}
 		/>
@@ -57,15 +49,19 @@ Box.propTypes = {
 
 export default Box;
 
-const boxStyle = ({align, fill, width, p, px, py, pt, pb, pl, pr}) => ({
+const boxStyle = ({align, fill, width}) => ({
 	alignSelf: align || null,
 	boxSizing: 'border-box',
 	flex: fill ? '1 1 auto' : null,
 	flexBasis: width,
-	padding: p ? scale[p] : null,
-	paddingTop: py ? scale[py] : (pt ? scale[pt] : null),
-	paddingBottom: py ? scale[py] : (pb ? scale[pb] : null),
-	paddingLeft: px ? scale[px] : (pl ? scale[pl] : null),
-	paddingRight: px ? scale[px] : (pr ? scale[pr] : null),
 	width
 });
+
+const styleWidth = ({sm = 12, md = 12, lg = 12}) => {
+	const size = Object.keys({sm, md, lg})
+		.map(key => ({ key, bp: breakpoints[key] }))
+		.filter(s => mm(s.bp) && mm(s.bp).matches)
+		.slice(-1);
+
+	return size.length && size[0].key;
+};

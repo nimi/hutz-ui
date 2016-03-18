@@ -1,56 +1,51 @@
 import React, { PropTypes, Component } from 'react';
-import Radium from 'radium';
+import radium from 'radium';
 import { buttonStyles } from '../../styles';
 
-class Button extends Component {
-	constructor(props) {
-		super(props);
-	}
+function Button({
+	bt,
+	color,
+	disabled,
+	groupStyle,
+	href,
+	size,
+	...props
+}) {
+	const Component = Boolean(href) ? 'a' : 'button';
+	const { initialStyle,
+		disabledStyle,
+		fillStyle,
+		raisedStyle,
+		outlineStyle,
+		linkStyle } = buttonStyles(color);
 
-	static displayName = 'Button'
+	let styles = [ initialStyle ];
 
-	static propTypes = {
-		bt: PropTypes.string,
-		color: PropTypes.string,
-		disabled: PropTypes.bool,
-		groupStyle: PropTypes.object,
-		size: PropTypes.string
-	}
+	if (disabled) { styles.push(disabledStyle); }
+	if (size) { styles.push(fillStyle); }
+	if (groupStyle) { styles.push(groupStyle); }
+	if (bt === 'raised') { styles.push(raisedStyle); }
+	if (bt === 'outline') { styles.push(outlineStyle); }
+	if (bt === 'link') { styles.push(linkStyle); }
+	if (props.style) { styles.push(props.style); }
 
-	shouldComponentUpdate() {
-		return !this.props.disabled;
-	}
+	return (
+		<Component
+			{ ...props }
+			style={styles}
+		/>
+	);
 
-	render() {
-		const { initialStyle,
-				disabledStyle,
-				fillStyle,
-				raisedStyle,
-				outlineStyle,
-				linkStyle } = buttonStyles(this.props.color);
-
-		const { bt,
-				disabled,
-				groupStyle,
-				size } = this.props;
-
-		let styles = [ initialStyle ];
-
-		if (disabled) { styles.push(disabledStyle); }
-		if (size) { styles.push(fillStyle); }
-		if (groupStyle) { styles.push(groupStyle); }
-		if (bt === 'raised') { styles.push(raisedStyle); }
-		if (bt === 'outline') { styles.push(outlineStyle); }
-		if (bt === 'link') { styles.push(linkStyle); }
-		if (this.props.style) { styles.push(this.props.style); }
-
-		return (
-			<button
-				{ ...this.props }
-				style={styles}
-			/>
-		);
-	}
 }
 
-export default Radium(Button);
+export default radium(Button);
+
+Button.displayName = 'Button';
+
+Button.propTypes = {
+	bt: PropTypes.string,
+	color: PropTypes.string,
+	disabled: PropTypes.bool,
+	groupStyle: PropTypes.object,
+	size: PropTypes.string
+};

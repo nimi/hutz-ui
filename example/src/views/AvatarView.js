@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Example } from '../components';
-import { Avatar, Text } from '../../../src';
+import { Avatar, Text, Container, Heading } from '../../../src';
 
 export default class AvatarView extends Component {
 
@@ -8,7 +8,10 @@ export default class AvatarView extends Component {
 
 	render() {
 		return (
-			<div>
+			<Container>
+				<Container>
+					<Heading>Avatars</Heading>
+				</Container>
 				<Example heading='Avatar (letter)'>
 					<div>
 						<Avatar
@@ -32,7 +35,7 @@ export default class AvatarView extends Component {
 						name='Bart Simpson'
 					/>
 				</Example>
-			</div>
+			</Container>
 		);
 	}
 }

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Container, FlexBox, Loader} from '../../../src';
+import {Container, FlexBox, Loader, Heading} from '../../../src';
 import {Example} from '../components';
 
 export default class LoaderView extends Component {
@@ -9,6 +9,9 @@ export default class LoaderView extends Component {
 	render() {
 		return (
 			<Container>
+				<Container>
+					<Heading>Loaders</Heading>
+				</Container>
 				<Example heading='Loader'>
 					<FlexBox>
 						<Loader />

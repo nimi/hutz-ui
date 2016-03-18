@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { List, ListItem } from '../../../src';
+import { Container, List, ListItem, Heading } from '../../../src';
 import { Example} from '../components';
 
 export default class ListView extends Component {
@@ -9,6 +9,9 @@ export default class ListView extends Component {
 	render() {
 		return (
 			<div>
+				<Container>
+					<Heading>Lists</Heading>
+				</Container>
 				<Example heading='List (vertical)'>
 					<List py={2}>
 						<span>List item 1</span>

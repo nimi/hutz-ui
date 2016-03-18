@@ -1,14 +1,18 @@
-import React, { PropTypes, createElement } from 'react';
+import React, {PropTypes} from 'react';
+import Container from '../Container';
 import { colors, typeography as type } from '../../styles';
 
 function Heading({ size, content, ...props }) {
 	const el = elMap.get(size);
 	const style = headingStyle(props, size);
 
-	return createElement(
-		el,
-		{ style: {...style, ...props.style } },
-		content || props.children
+	return (
+		<Container
+			tagName={el}
+			style={{...style, ...props.style}}
+		>
+			{content || props.children}
+		</Container>
 	);
 }
 

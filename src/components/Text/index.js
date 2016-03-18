@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import Container from '../Container';
 import { colors, typeography } from '../../styles';
 
 function Text({ small, caps, center, color, content, ...props }) {
@@ -12,12 +13,14 @@ function Text({ small, caps, center, color, content, ...props }) {
 	};
 
 	return (
-		<p
-			{...props}
+		<Container
+			fill={false}
+			tagName='p'
 			style={style}
+			{...props}
 		>
 			{content || props.children}
-		</p>
+		</Container>
 	);
 }
 

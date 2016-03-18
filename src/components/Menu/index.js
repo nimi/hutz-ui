@@ -30,6 +30,7 @@ function Menu({
 			px={px || 0}
 			py={py || 0}
 			itemStyle={menuItemStyle}
+			style={props.style}
 		>
 			{React.Children.map(props.children, (child, i) => {
 				 if (child.type.displayName === 'Divider') {

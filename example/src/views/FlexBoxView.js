@@ -5,9 +5,9 @@ import jsxStringify from '../utils/jsxToString';
 import Highlight from 'react-highlight';
 import { range } from 'ramda';
 
-export default class Buttons extends React.Component {
+export default class FlexBoxView extends React.Component {
 
-	static displayName = 'Buttons'
+	static displayName = 'FlexBoxView'
 
 	constructor() {
 		super();
@@ -16,10 +16,6 @@ export default class Buttons extends React.Component {
 			status: 'primary',
 			disabled: false
 		};
-	}
-
-	componentDidMount() {
-		console.log('component did mount');
 	}
 
 	handleChange(event) {
@@ -52,7 +48,7 @@ export default class Buttons extends React.Component {
 		return (
 			<FlexBox direction='column'>
 				<Box>
-					<Heading>FlexBox</Heading>
+					<Heading>Layouts</Heading>
 				</Box>
 				<Box>
 					<Example heading='FlexBox Grid'>

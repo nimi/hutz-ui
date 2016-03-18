@@ -16,7 +16,7 @@ export default class Example extends Component {
 		super(props);
 
 		this.state = { expanded: false };
-		this.handleClick = this.handleClick.bind(this)
+		this.handleClick = this.handleClick.bind(this);
 	}
 
 	handleClick() {
@@ -42,7 +42,7 @@ export default class Example extends Component {
 				<Box>
 					<FlexBox style={{backgroundColor: 'rgb(234, 234, 234)' }}>
 						<Box px={3} py={1}>
-							<Heading size={2} style={{margin: '0.4em 0'}}>
+							<Heading size={3} style={{margin: '0.4em 0'}}>
 								{this.props.heading}
 							</Heading>
 						</Box>
