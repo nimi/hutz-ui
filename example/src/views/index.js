@@ -15,3 +15,4 @@ export { default as BannerView } from './BannerView';
 export { default as BadgeView } from './BadgeView';
 export { default as IconView } from './IconView';
 export { default as MediaView } from './MediaView';
+export { default as TooltipView } from './TooltipView';
