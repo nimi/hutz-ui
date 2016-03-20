@@ -20,7 +20,6 @@ export default class Nav extends React.Component {
 			{ to: '/nav', label: 'Navs' },
 			{ to: '/flexbox', label: 'Layout' },
 			{ to: '/headings', label: 'Headings' },
-			{ to: '/notifications', label: 'Notifications' },
 			{ to: '/icons', label: 'Icons' },
 			{ to: '/cards', label: 'Cards' },
 			{ to: '/banners', label: 'Banners' },
@@ -31,7 +30,17 @@ export default class Nav extends React.Component {
 			{ to: '/dividers', label: 'Dividers' },
 			{ to: '/text', label: 'Text' },
 			{ to: '/avatars', label: 'Avatars' },
-			{ to: '/pagination', label: 'Pagination' }
+			{ to: '/pagination', label: 'Pagination' },
+			{ to: '/dropdowns', label: 'Dropdowns' },
+			{ to: '/steptrackers', label: 'StepTrackers' },
+			{ to: '/tooltips', label: 'Tooltips' },
+			{ to: '/switches', label: 'Switches' },
+			{ to: '/breadcrumbs', label: 'Breadcrumbs' },
+			{ to: '/toolbars', label: 'Toolbars' },
+			{ to: '/tables', label: 'Tables' },
+			{ to: '/dialogs', label: 'Dialogs' },
+			{ to: '/alerts', label: 'Alerts' },
+			{ to: '/inputgroups', label: 'InputGroups' }
 		]
 	}
 
