@@ -10,6 +10,7 @@ function Heading({ size, content, ...props }) {
 		<Container
 			tagName={el}
 			style={{...style, ...props.style}}
+			{...props}
 		>
 			{content || props.children}
 		</Container>

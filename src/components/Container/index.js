@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import radium from 'radium';
 import { scale, breakpoints, colors } from '../../styles';
 import { w } from '../../utils';
 import { mm, transitionEnd } from '../../utils/dom';
@@ -71,7 +72,7 @@ Container.propTypes = {
 	])
 };
 
-export default Container;
+export default radium(Container);
 
 const baseStyle = ({bgc = null, c = null, shadow = false, fill = true, width}) => ({
 	backgroundColor: bgc,
