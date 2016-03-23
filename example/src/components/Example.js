@@ -25,11 +25,10 @@ export default class Example extends Component {
 	}
 
 	renderCode(component) {
-		const code = jsxStringify(
-			component
-		);
+		const code = component.length ?
+			component.map(jsxStringify).join('\n') : jsxStringify(component);
 
-		return <Highlight>{ code }</Highlight>;
+		return <Highlight className='jsx'>{ code }</Highlight>;
 	}
 
 	renderComponentWithCode(component) {

@@ -10,16 +10,14 @@ const noChildren = p => p !== 'children';
 const meaningfulChildren = c => c !== true && c !== false && c !== null && c !== ``;
 
 export default function jsxStringify(ReactElement) {
-  return jsxToString({ReactElement});
+	return jsxToString({ReactElement});
 }
 
 function jsxToString({ ReactElement = null, ...options }) {
 	if (is(String, ReactElement) || is(Number, ReactElement)) { return ReactElement; }
 	if (!isElement(ReactElement)) { throw new Error('not a valid react/jsx element'); }
 
-	const output = generateString(ReactElement, { ...options });
-
-	return output;
+	return generateString(ReactElement, { ...options });
 }
 
 function getElementName({ type }) {
@@ -31,39 +29,20 @@ function generateString(element, { level = 0, inline = false }) {
 	const props = formatProps(element.props);
 	const children = React.Children.toArray(element.props.children)
 		.filter(meaningfulChildren);
+	const attributes = {
+		ref: element.ref && getJSXAttr('ref', element.ref),
+		key: element.key && getJSXAttr('key', element.key)
+	};
+	const atts = props.concat(attributes)
+		.filter(v => !isNil(v.name))
+		.map(({val, name}, arr) => (
+			arr.length > 1 || !inline ?
+				`\n${spacer(level + 1)}${formatType(name, val)}` :
+				` ${formatType(name, val)}`
+		)).join('');
 
 	let out = `<${tagName}`;
-
-	const attributes = {
-		ref: hasRefAttribute(element.ref) && getJSXAttr('ref', element.ref),
-		key: hasKeyAttribute(element.key) && getJSXAttr('key', element.key)
-	};
-
-	const attz = pickBy(a => Boolean(a), attributes);
-
-	let atts = [];
-
-	if (!isNil(element.ref)) { atts.push(getJSXAttr('ref', element.ref)); }
-
-	if (hasKeyAttribute(element.key)) {
-		atts.push(getJSXAttr('key', element.key));
-	}
-
-	atts = atts.concat(props);
-
-	atts.forEach(({ val, name}) => {
-		if (atts.length === 1 || inline) {
-			out += ` `;
-		} else {
-			out += `\n${spacer(level + 1)}`;
-		}
-
-		if (/\"true\"/.test(val)) {
-			out += name;
-		} else {
-			out += `${name}=${val}`;
-		}
-	});
+	out += atts;
 
 	if (atts.length > 1 && !inline) {
 		out += `\n${spacer(level)}`;
@@ -104,10 +83,6 @@ function generateString(element, { level = 0, inline = false }) {
 	return out;
 }
 
-function generateHTML(str) {
-	
-}
-
 function hasRefAttribute(ref) {
 	return !isNil(ref);
 }
@@ -129,7 +104,9 @@ function sortObject(o) {
 }
 
 function sanitizeObjectString(s) {
-	return collapseWhiteSpace(s)
+	const str = JSON.stringify(s);
+
+	return collapseWhiteSpace(str)
 		.replace(/{ /g, '{')
 		.replace(/ }/g, '}')
 		.replace(/\[ /g, '[')
@@ -178,18 +155,30 @@ function formatProps(props) {
 		.map(p => getJSXAttr(p, props[p]));
 }
 
+function formatType(name, val) {
+	const value = val.replace(/\"/g, '');
+	if (is(Number, Number(value)) && !isNaN(Number(value))) {
+		return `${name}={${value}}`;
+	} else if (/(true|false)/.test(val)) {
+		return `${name}${val === "false" ? "={false}" : ""}`;
+	} else {
+		return `${name}=${val}`;
+	}
+}
+
+
 function mergePlainStringChildren(prev, cur) {
-  var lastItem = prev[prev.length - 1];
+	var lastItem = prev[prev.length - 1];
 
-  if (typeof lastItem === 'string' && typeof cur === 'string') {
-    prev[prev.length - 1] += cur;
-  } else {
-    prev.push(cur);
-  }
+	if (typeof lastItem === 'string' && typeof cur === 'string') {
+		prev[prev.length - 1] += cur;
+	} else {
+		prev.push(cur);
+	}
 
-  return prev;
+	return prev;
 }
 
 function recurse({level, inline}) {
-  return ReactElement => jsxToString({ReactElement, level, inline});
+	return ReactElement => jsxToString({ReactElement, level, inline});
 }
