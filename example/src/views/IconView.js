@@ -18,6 +18,9 @@ export default class IconView extends Component {
 				<Example heading='Icon (check)'>
 					<Icon type='close'/>
 				</Example>
+				<Example heading='Icon (arrow)'>
+					<Icon type='arrow'/>
+				</Example>
 			</Container>
 		);
 	}

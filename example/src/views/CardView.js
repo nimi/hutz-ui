@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Card, Container, FlexBox, Heading} from '../../../src';
+import {Card, CardHeader, CardFooter, Container, FlexBox, Heading} from '../../../src';
 import {Example} from '../components';
 
 export default class CardView extends Component {
@@ -38,6 +38,16 @@ export default class CardView extends Component {
 				<Container>
 					<Example heading='Card'>
 						<Card {...props} />
+					</Example>
+					<Example heading='Card'>
+						<Card {...props}>
+							<CardHeader>
+								Header
+							</CardHeader>
+							<CardFooter>
+								Footer
+							</CardFooter>
+						</Card>
 					</Example>
 					<Example heading='Card'>
 						<FlexBox>

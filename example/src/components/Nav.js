@@ -26,7 +26,6 @@ export default class Nav extends React.Component {
 			{ to: '/badges', label: 'Badges' },
 			{ to: '/loaders', label: 'Loaders' },
 			{ to: '/media', label: 'Media' },
-			{ to: '/overlays', label: 'Overlays' },
 			{ to: '/dividers', label: 'Dividers' },
 			{ to: '/text', label: 'Text' },
 			{ to: '/avatars', label: 'Avatars' },

@@ -22,3 +22,4 @@ export { default as SwitchView } from './SwitchView';
 export { default as AlertView } from './AlertView';
 export { default as BreadcrumbsView } from './BreadcrumbsView';
 export { default as DialogView } from './DialogView';
+export { default as StepTrackerView } from './StepTrackerView';
