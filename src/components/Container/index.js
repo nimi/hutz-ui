@@ -18,7 +18,8 @@ function Container({
 	tagName,
 	...props
 }) {
-	const bgc = backgroundColor ? colors[backgroundColor] : backgroundColor;
+	const bgc = backgroundColor && colors[backgroundColor] ?
+		colors[backgroundColor] : backgroundColor;
 	const c = color ? colors[color] : color;
 	const sizes = { sm, md, lg };
 	const widthProp = styleWidth(sizes);

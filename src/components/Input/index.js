@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
 import { typeography, InputStyles } from '../../styles';
-import { capitalize } from '../../utils';
 import Icon from '../Icon';
 import radium from 'radium';
 import Container from '../Container';
@@ -42,26 +41,28 @@ function Input({
 		{ ...inputContainerStyles, ...InputStyles.range } : inputContainerStyles;
 
 	return (
-		<Container style={ containerStyles } fill={false}>
-			{!label ? null :
-			<label style={ InputStyles.label }>{label}</label>}
+		<Container  fill={false} {...props}>
+			<div style={ containerStyles }>
+				{!label ? null :
+					<label style={ InputStyles.label }>{label}</label>}
 
-			<Container style={ inputContainerStyles } fill={false}>
-				{(() => {
-				switch (type) {
-					 case 'textarea': return <InputTextArea {...props} style={ inputStyles } />;
-					 case 'checkbox': return <InputCheckbox {...props} style={ inputStyles } />;
-					 case 'range': return <InputRange {...props} />;
-					 default: return <InputText {...props} style={ inputStyles } />;
-				}
-				})()}
-			</Container>
-			{!success && !error ? null :
-			<Container
-				fill={false}
-				style={ InputStyles.icon }>
-				{<Icon type="check" color={iconColor} />}
-			</Container>}
+					<div style={ inputContainerStyles }>
+						{(() => {
+							 switch (type) {
+								 case 'textarea': return <InputTextArea {...props} style={ inputStyles } />;
+								 case 'checkbox': return <InputCheckbox {...props} style={ inputStyles } />;
+								 case 'range': return <InputRange {...props} />;
+								 default: return <InputText {...props} style={ inputStyles } />;
+							 }
+						 })()}
+					</div>
+					{!success && !error ? null :
+						<Container
+							fill={false}
+							style={ InputStyles.icon }>
+							{<Icon type="check" color={iconColor} />}
+						</Container>}
+			</div>
 		</Container>
 	);
 }
