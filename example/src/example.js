@@ -28,7 +28,8 @@ import {
 	SwitchView,
 	AlertView,
 	BreadcrumbsView,
-	DialogView
+	DialogView,
+	StepTrackerView
 } from './views';
 
 const history = useBasename(createHistory)({
@@ -94,6 +95,7 @@ const routes = (
 	  <Route path="alerts" components={AlertView} />
 	  <Route path="breadcrumbs" components={BreadcrumbsView} />
 	  <Route path="dialogs" components={DialogView} />
+	  <Route path="steptrackers" components={StepTrackerView} />
 	</Route>
   </Router>
 );
