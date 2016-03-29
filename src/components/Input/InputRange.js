@@ -28,6 +28,8 @@ Fill.defaultProps = {
 	horizontal: true
 };
 
+const PureFill = pure(Fill);
+
 function Slider({ val, active, update, size, valLimit, max, min, step, horizontal}) {
 	const position = getPositionFromValue(val, valLimit, max, min);
 	const handleStyle = {
@@ -91,6 +93,8 @@ Slider.defaultProps = {
 	horizontal: true
 };
 
+const PureSlider = pure(Slider);
+
 function InputRange({
 	max,
 	min,
@@ -124,7 +128,7 @@ function InputRange({
 			style={sliderStyle}
 			onClick={() => {}}
 		>
-			<Fill
+			<PureFill
 				offset={12 / 2}
 				valLimit={valLimit}
 				update={update}
@@ -133,7 +137,7 @@ function InputRange({
 				max={max}
 				horizontal={horiz}
 			/>
-			<Slider
+			<PureSlider
 				valLimit={valLimit}
 				size={12}
 				val={val}

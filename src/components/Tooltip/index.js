@@ -84,8 +84,10 @@ const style = ({bgc = 'black', c = 'white', width}) => ({
 		position: 'absolute',
 		top: '100%',
 		left: '50%',
-		border: '6px solid transparent',
-		borderTopColor: bgc,
+		borderLeft: '6px solid transparent',
+		borderTop: `6px solid ${bgc}`,
+		borderBottom: '6px solid transparent',
+		borderRight: '6px solid transparent',
 		transform: 'translateX(-50%)'
 	}
 });
