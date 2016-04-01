@@ -27,3 +27,4 @@ export { default as Alert } from './components/Alert';
 export { default as Breadcrumbs } from './components/Breadcrumbs';
 export { default as Dialog } from './components/Dialog';
 export { default as StepTracker } from './components/StepTracker';
+export { default as Block } from './components/Block';
