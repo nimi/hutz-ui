@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Container, FlexBox, Heading, Button, StepTracker} from '../../../src';
+import {Container, FlexBox, Heading, Button, ButtonGroup, StepTracker} from '../../../src';
 import {Example} from '../components';
 
 export default class StepTrackerView extends Component {
@@ -31,6 +31,13 @@ export default class StepTrackerView extends Component {
 		this.setState({activeIndex: index});
 	}
 
+	previous() {
+		const {activeIndex} = this.state;
+		const index = activeIndex > 0 ? activeIndex - 1 : 0;
+
+		this.setState({activeIndex: index});
+	}
+
 	render() {
 		return (
 			<Container>
@@ -48,8 +55,10 @@ export default class StepTrackerView extends Component {
 						active={this.state.activeIndex}
 					/>
 					<Container mt={4} style={{textAlign: 'center'}}>
-						<Button onClick={() => this.previous()}>Previous</Button>
-						<Button onClick={() => this.next()} color='green'>Continue</Button>
+						<ButtonGroup>
+							<Button onClick={() => this.previous()}>Previous</Button>
+							<Button onClick={() => this.next()} color='green'>Continue</Button>
+						</ButtonGroup>
 					</Container>
 				</Example>
 			</Container>
