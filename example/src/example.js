@@ -29,7 +29,8 @@ import {
 	AlertView,
 	BreadcrumbsView,
 	DialogView,
-	StepTrackerView
+	StepTrackerView,
+	BlockView
 } from './views';
 
 const history = useBasename(createHistory)({
@@ -96,6 +97,7 @@ const routes = (
 	  <Route path="breadcrumbs" components={BreadcrumbsView} />
 	  <Route path="dialogs" components={DialogView} />
 	  <Route path="steptrackers" components={StepTrackerView} />
+	  <Route path="blocks" components={BlockView} />
 	</Route>
   </Router>
 );

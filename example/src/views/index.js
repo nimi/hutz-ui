@@ -23,3 +23,4 @@ export { default as AlertView } from './AlertView';
 export { default as BreadcrumbsView } from './BreadcrumbsView';
 export { default as DialogView } from './DialogView';
 export { default as StepTrackerView } from './StepTrackerView';
+export { default as BlockView } from './BlockView';
