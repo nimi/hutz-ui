@@ -17,7 +17,7 @@ export default class BadgeView extends Component {
 						<Container>
 							<Container>
 								<Badge mx={1}>Cool</Badge>
-								<Badge backgroundColor='green' mx={1}>Great</Badge>
+								<Badge backgroundColor='green@0.7' mx={1}>Great</Badge>
 								<Badge backgroundColor='yellow' mx={1}>Careful</Badge>
 								<Badge backgroundColor='red' mx={1}>Bad</Badge>
 								<Badge backgroundColor='purple' mx={1}>Neat</Badge>

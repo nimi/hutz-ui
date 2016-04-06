@@ -1,4 +1,5 @@
-import { rgba } from '../utils';
+import {rgba} from '../utils';
+import {isNil} from 'ramda';
 
 const COLORS = {
 	blue: {
@@ -82,8 +83,42 @@ const COLORS = {
 	},
 };
 
-export default function color(key, shade = 3, a = 1) {
-	return rgba(COLORS[key][`C${shade}`], a);
+function hasShade(color) {
+	return !isNil(color) && color.split('/').length > 1;
+}
+
+function getShade(color) {
+	return color.split(/(\/|@)/)[1];
+}
+
+function getKey(color) {
+	return !isNil(color) && color.split(/(\/|@)/)[0];
+}
+
+function hasAlpha(color) {
+	return !isNil(color) && color.split('@').length > 1;
+}
+
+function getAlpha(color) {
+	const colorProps = color.split(/(\/|@)/);
+
+	return colorProps[colorProps.length - 1];
+}
+
+export default function color(key, shade = 1, a = 1) {
+	const containsShade = hasShade(key);
+	const containsAlpha = hasAlpha(key);
+
+	if (containsShade) { shade = getShade(key); }
+	if (containsAlpha) { a = getAlpha(key); console.log('alpha -> ', a); }
+
+	const colorKey = getKey(key);
+
+	if (!containsShade && !containsAlpha && !COLORS[colorKey]) {
+		return key;
+	}
+
+	return rgba(COLORS[colorKey][`C${shade}`], a);
 }
 
 color.red = rgba(COLORS.red.C1);
