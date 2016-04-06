@@ -42,7 +42,7 @@ export default Avatar;
 
 const avatarStyle = ({src, nameAlign, backgroundColor = 'blue'}) => ({
 	containerStyle: {
-		background: src || !backgroundColor ? null : colors[backgroundColor],
+		backgroundColor: src || !backgroundColor ? null : colors[backgroundColor],
 		color: 'white',
 		position: 'relative',
 		borderRadius: '50%',
