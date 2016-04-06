@@ -12289,8 +12289,9 @@ function Container(_ref) {
 
 	var props = _objectWithoutProperties(_ref, ['backgroundColor', 'color', 'col', 'sm', 'md', 'lg', 'style', 'tagName']);
 
-	var bgc = backgroundColor && _styles.colors[backgroundColor] ? _styles.colors[backgroundColor] : backgroundColor;
-	var c = color ? _styles.colors[color] : color;
+	var bgc = (0, _styles.colors)(backgroundColor) || backgroundColor;
+	console.log(bgc);
+	var c = color ? (0, _styles.colors)(color) : color;
 	var sizes = { sm: sm, md: md, lg: lg };
 	var widthProp = styleWidth(sizes);
 	var width = widthProp && !col ? (0, _utils.w)(sizes[widthProp]) : (0, _utils.w)(col);
@@ -13443,7 +13444,7 @@ function Loader(_ref) {
 
 	return _react2.default.createElement(
 		_Container2.default,
-		{ style: _extends({}, container), fill: false },
+		_extends({ style: _extends({}, container), fill: false }, props),
 		_react2.default.createElement(
 			_radium.StyleRoot,
 			null,
@@ -13529,6 +13530,7 @@ function Media(_ref) {
 
 	var props = _objectWithoutProperties(_ref, ['type', 'src']);
 
+	var style = mediaStyle(props);
 	return _react2.default.createElement(_Container2.default, _extends({
 		tagName: 'img',
 		style: mediaStyle,
@@ -13545,10 +13547,16 @@ Media.propTypes = {
 
 exports.default = Media;
 
-var mediaStyle = {
-	maxWidth: '100%',
-	minWidth: '100%',
-	verticalAlign: 'top'
+var mediaStyle = function mediaStyle(_ref2) {
+	var width = _ref2.width;
+	var height = _ref2.height;
+	return {
+		width: width || null,
+		height: height || null,
+		maxWidth: '100%',
+		minWidth: '100%',
+		verticalAlign: 'top'
+	};
 };
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
@@ -15037,6 +15045,8 @@ exports.default = color;
 
 var _utils = require('../utils');
 
+var _ramda = require('ramda');
+
 var COLORS = {
 	blue: {
 		C1: [94, 181, 240],
@@ -15119,11 +15129,49 @@ var COLORS = {
 	}
 };
 
+function hasShade(color) {
+	return !(0, _ramda.isNil)(color) && color.split('/').length > 1;
+}
+
+function getShade(color) {
+	return color.split(/(\/|@)/)[1];
+}
+
+function getKey(color) {
+	return !(0, _ramda.isNil)(color) && color.split(/(\/|@)/)[0];
+}
+
+function hasAlpha(color) {
+	return !(0, _ramda.isNil)(color) && color.split('@').length > 1;
+}
+
+function getAlpha(color) {
+	var colorProps = color.split(/(\/|@)/);
+
+	return colorProps[colorProps.length - 1];
+}
+
 function color(key) {
-	var shade = arguments.length <= 1 || arguments[1] === undefined ? 3 : arguments[1];
+	var shade = arguments.length <= 1 || arguments[1] === undefined ? 1 : arguments[1];
 	var a = arguments.length <= 2 || arguments[2] === undefined ? 1 : arguments[2];
 
-	return (0, _utils.rgba)(COLORS[key]['C' + shade], a);
+	var containsShade = hasShade(key);
+	var containsAlpha = hasAlpha(key);
+
+	if (containsShade) {
+		shade = getShade(key);
+	}
+	if (containsAlpha) {
+		a = getAlpha(key);console.log('alpha -> ', a);
+	}
+
+	var colorKey = getKey(key);
+
+	if (!containsShade && !containsAlpha && !COLORS[colorKey]) {
+		return key;
+	}
+
+	return (0, _utils.rgba)(COLORS[colorKey]['C' + shade], a);
 }
 
 color.red = (0, _utils.rgba)(COLORS.red.C1);
@@ -15137,7 +15185,7 @@ color.black = (0, _utils.rgba)(COLORS.black.C1);
 color.white = (0, _utils.rgba)(COLORS.white.C1);
 color.gray = (0, _utils.rgba)(COLORS.gray.C2);
 
-},{"../utils":104}],97:[function(require,module,exports){
+},{"../utils":104,"ramda":48}],97:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -15430,7 +15478,7 @@ exports.default = rgba;
 function rgba(arr, alpha) {
 	return 'rgba(' + arr.map(function (v) {
 		return v + ',';
-	}).join('') + '\n\t\t' + (Object.is(alpha, undefined) ? 1 : alpha) + ')';
+	}).join('') + alpha + ')';
 }
 
 },{}],102:[function(require,module,exports){
