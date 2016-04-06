@@ -18,9 +18,9 @@ function Container({
 	tagName,
 	...props
 }) {
-	const bgc = backgroundColor && colors[backgroundColor] ?
-		colors[backgroundColor] : backgroundColor;
-	const c = color ? colors[color] : color;
+	const bgc = colors(backgroundColor) || backgroundColor;
+	console.log(bgc);
+	const c = color ? colors(color) : color;
 	const sizes = { sm, md, lg };
 	const widthProp = styleWidth(sizes);
 	const width = ( widthProp && !col ) ? w(sizes[widthProp]) : w(col);
@@ -73,7 +73,7 @@ Container.propTypes = {
 	])
 };
 
-export default radium(Container);
+export default Container;
 
 const baseStyle = ({bgc = null, c = null, shadow = false, fill = true, width}) => ({
 	backgroundColor: bgc,

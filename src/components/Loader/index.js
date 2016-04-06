@@ -9,7 +9,7 @@ function Loader({size, color, ...props}) {
 	const {container, icon, circle} = style(size, color);
 
 	return (
-		<Container style={{...container}} fill={false}>
+		<Container style={{...container}} fill={false} {...props}>
 			<StyleRoot>
 				<Icon
 					size={100}
