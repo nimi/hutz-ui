@@ -12,7 +12,6 @@ function shouldUpdate(validate, BaseComponent) {
 			return createElement(BaseComponent, this.props);
 		}
 	};
-
 }
 
 export default curryN(2, shouldUpdate);
