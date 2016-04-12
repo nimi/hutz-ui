@@ -88,17 +88,16 @@ const navStyle = {
 		overflow: 'scroll'
 	},
 	header: {
-		backgroundColor: '#F7F7F4',
 		margin: 0,
 		padding: '30px 0px 30px 25px',
-		position: 'fixed',
+		position: 'absolute',
 		zIndex: 1
 	},
 	heading: {
 		fontSize: 40
 	},
 	list: {
-		padding: '185px 0 35px'
+		padding: '185px 0 35px',
 	},
 	text: {
 		fontStyle: 'italic',

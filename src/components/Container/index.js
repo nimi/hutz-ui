@@ -19,7 +19,6 @@ function Container({
 	...props
 }) {
 	const bgc = colors(backgroundColor) || backgroundColor;
-	console.log(bgc);
 	const c = color ? colors(color) : color;
 	const sizes = { sm, md, lg };
 	const widthProp = styleWidth(sizes);
