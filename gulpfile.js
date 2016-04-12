@@ -16,11 +16,9 @@ var harmonize = require('harmonize');
 var taskConfig = {
 
 	component: {
-		name: 'Components',
+		name: 'index',
 		dependencies: [
-			'classnames',
-			'react',
-			'react/addons'
+			'react'
 		],
 		src: 'src',
 		dist: 'dist'

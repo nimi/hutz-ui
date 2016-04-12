@@ -15,7 +15,6 @@ const canUseEventListeners =
 	canUseDOM && !!(window.addEventListener || window.attachEvent);
 
 const canUseViewport = canUseDOM && !!window.screen;
-
 const isTouchDevice = canUseDOM && !!window.ontouchtart;
 
 const isTransform = name => {

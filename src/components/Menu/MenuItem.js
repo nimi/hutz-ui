@@ -10,7 +10,7 @@ function MenuItem({
 	...props
 }) {
 	const baseStyle = {
-		 ...buttonStyles().initialStyle,
+		...buttonStyles().initialStyle,
 		...style.menuItem
 	};
 	const typeStyleMap = new Map([
@@ -59,7 +59,8 @@ const style = {
 		borderRadius: 'none',
 		height: 'inherit',
 		boxSizing: 'border-box',
-		display: 'block'
+		display: 'block',
+		backgroundColor: null,
 	},
 	activeMenuItem: {
 		...buttonStyles().initialStyle[':active']

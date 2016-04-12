@@ -32,6 +32,7 @@ function Button({
 	return (
 		<Component
 			{ ...props }
+			href={href}
 			style={styles}
 		/>
 	);
