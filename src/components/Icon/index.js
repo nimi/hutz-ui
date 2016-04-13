@@ -6,16 +6,20 @@ import icons from '../../icons';
 function Icon({size, type, color, ...props}) {
 	const icon = icons.get(type);
 	const s = size || 25;
+	const styles = Object.assign({},
+		{height: `${s}px`, width: `${s}px`},
+		props.style
+	);
 
 	return (
 		<svg
 			height='100%'
+			width='100%'
 			preserveAspectRatio='xMidYMid meet'
 			viewBox={`0 0 ${s} ${s}`}
 			stroke={ color || 'black' }
 			fill={ color || 'black' }
-			style={{height: `${s}px`, width: `${s}px`, ...props.style}}
-			width="100%"
+			style={styles}
 			{...props}
 		>
 			{(() => {

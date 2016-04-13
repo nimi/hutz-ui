@@ -40,7 +40,6 @@ export default class Nav extends React.Component {
 			{ to: '/tables', label: 'Tables' },
 			{ to: '/dialogs', label: 'Dialogs' },
 			{ to: '/alerts', label: 'Alerts' },
-			{ to: '/inputgroups', label: 'InputGroups' },
 			{ to: '/blocks', label: 'Blocks' },
 			{ to: '/tabpanels', label: 'TabPanels' }
 		]

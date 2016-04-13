@@ -32,7 +32,6 @@ import {
 	DialogView,
 	StepTrackerView,
 	BlockView,
-	InputGroupView,
 	DropdownView,
 	TabPanelView,
 	PaginationView
@@ -70,7 +69,6 @@ const routes = (
 			<Route path="steptrackers" components={StepTrackerView} />
 			<Route path="blocks" components={BlockView} />
 			<Route path="dropdowns" components={DropdownView} />
-			<Route path="inputgroups" components={InputGroupView} />
 			<Route path="pagination" components={PaginationView} />
 			<Route path="tabpanels" components={TabPanelView} />
 		</Route>
