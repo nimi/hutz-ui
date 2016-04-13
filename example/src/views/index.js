@@ -24,3 +24,7 @@ export { default as BreadcrumbsView } from './BreadcrumbsView';
 export { default as DialogView } from './DialogView';
 export { default as StepTrackerView } from './StepTrackerView';
 export { default as BlockView } from './BlockView';
+export { default as DropdownView } from './DropdownView';
+export { default as PaginationView } from './PaginationView';
+export { default as TabPanelView } from './TabPanelView';
+export { default as InputGroupView } from './InputGroupView';

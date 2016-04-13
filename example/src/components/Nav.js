@@ -1,5 +1,6 @@
 import React from 'react';
 import radium from 'radium';
+import Logo from './Logo';
 import { Menu, MenuItem, Container, Text } from '../../../src';
 import { Link, IndexLink } from 'react-router';
 
@@ -40,7 +41,8 @@ export default class Nav extends React.Component {
 			{ to: '/dialogs', label: 'Dialogs' },
 			{ to: '/alerts', label: 'Alerts' },
 			{ to: '/inputgroups', label: 'InputGroups' },
-			{ to: '/blocks', label: 'Blocks' }
+			{ to: '/blocks', label: 'Blocks' },
+			{ to: '/tabpanels', label: 'TabPanels' }
 		]
 	}
 
@@ -56,25 +58,18 @@ export default class Nav extends React.Component {
 		const sortedLinks = this.sortBy(this.props.navItems, 'label');
 
 		return (
-			<nav style={navStyle.container}>
+			<Container tagName='nav' style={navStyle.container}>
 				<Container style={navStyle.header} fill={false}>
-					<h2 style={navStyle.heading}>
-						<IL to="/">
-							<Container tagName='span' color='red'>H</Container>
-							<Container tagName='span' color='green'>U</Container>
-							<Container tagName='span' color='blue'>T</Container>
-							<Container tagName='span' color='yellow'>Z</Container>
-							<span style={{color: '#FFF', fontWeight: 300, textShadow: '3px 0px #B9B9B9'}}>{`UI`}</span>
-						</IL>
-					</h2>
-					<Text style={navStyle.text}>Stateless, functional components</Text>
+					<Logo />
+					<Text style={navStyle.text}>Stateless, functional component for React</Text>
 				</Container>
+
 				<Menu type={3} px={1} style={navStyle.list}>
 					{sortedLinks.map((link, i) =>
 						<L to={link.to} key={i}>{link.label}</L>
 					)}
 				</Menu>
-			</nav>
+			</Container>
 		);
 	}
 }
@@ -89,7 +84,7 @@ const navStyle = {
 	},
 	header: {
 		margin: 0,
-		padding: '30px 0px 30px 25px',
+		padding: '48px 0px 0px 25px',
 		position: 'absolute',
 		zIndex: 1
 	},
@@ -97,10 +92,13 @@ const navStyle = {
 		fontSize: 40
 	},
 	list: {
-		padding: '185px 0 35px',
+		padding: '175px 0 35px',
 	},
 	text: {
 		fontStyle: 'italic',
-		color: '#8C8C8C'
+		color: '#8C8C8C',
+		fontSize: 16,
+		marginTop: 10,
+		paddingRight: 50
 	}
 };
