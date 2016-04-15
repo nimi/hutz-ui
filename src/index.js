@@ -28,3 +28,7 @@ export { default as Breadcrumbs } from './components/Breadcrumbs';
 export { default as Dialog } from './components/Dialog';
 export { default as StepTracker } from './components/StepTracker';
 export { default as Block } from './components/Block';
+export { default as Dropdown } from './components/Dropdown';
+export { default as Pagination } from './components/Pagination';
+export { default as TabPanel } from './components/TabPanel';
+export { default as DropdownMenu } from './components/Dropdown/DropdownMenu';

@@ -1,14 +1,16 @@
 import React, {PropTypes} from 'react';
-import {Container, FlexBox, Heading, Text} from '../../../src';
+import {Container, FlexBox, Heading} from '../../../src';
 import {IndexLink} from 'react-router';
 import radium from 'radium';
 
 const IL = radium(IndexLink);
 
 export default function Logo(props) {
+	const style = logoStyle(props);
+
 	return (
 		<FlexBox align='center' direction='column' style={style.container}>
-			<Heading size='1' style={style.heading}>
+			<Heading size={1} style={style.heading}>
 				<IL to="/">
 					<Container tagName='span' color='red'>H</Container>
 					<Container tagName='span' color='green'>U</Container>
@@ -17,7 +19,6 @@ export default function Logo(props) {
 					<span style={{color: '#FFF', fontWeight: 300, textShadow: '3px 0px #B9B9B9'}}>{`UI`}</span>
 				</IL>
 			</Heading>
-			<Text style={style.text}>Stateless, functional components</Text>
 		</FlexBox>
 	);
 }
@@ -28,16 +29,13 @@ Logo.propTypes = {
 	large: PropTypes.bool
 };
 
-const style = {
+const logoStyle = ({large}) => ({
 	container: {
 		height: '100%',
 		margin:'auto'
 	},
 	heading: {
-		fontSize: 40
-	},
-	text: {
-		fontStyle: 'italic',
-		color: '#8C8C8C'
+		fontSize: large ? 60 : 40,
+		margin: 0
 	}
-};
+});
