@@ -74,6 +74,7 @@ export default function buttonStyles(c) {
 		},
 
 		linkStyle: {
+			border: 'none',
 			backgroundColor: 'transparent',
 			color: buttonColor,
 			':hover': {
