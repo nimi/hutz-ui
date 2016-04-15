@@ -14,6 +14,8 @@ function Menu({
 	px,
 	py,
 	menuItemStyle,
+	backgroundColor,
+	color,
 	...props
 }) {
 	let styles = {
@@ -45,8 +47,10 @@ function Menu({
 							 active={i === activeIndex}
 							 {...child.props}
 							 key={i}
+							 backgroundColor={backgroundColor}
+							 color={color}
 						 >
-							 {child}
+							 {React.cloneElement(child, {...child.props, key: i})}
 						 </MenuItem>
 					 );
 				 }

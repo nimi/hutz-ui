@@ -7,15 +7,18 @@ function MenuItem({
 	name,
 	active,
 	type,
+	backgroundColor,
+	color,
 	...props
 }) {
+	const style = styles({backgroundColor, color});
 	const baseStyle = {
-		...buttonStyles().initialStyle,
-		...style.menuItem
+		...buttonStyles(backgroundColor).initialStyle,
+		...style.base
 	};
 	const typeStyleMap = new Map([
 		[1, { ...baseStyle }],
-		[2, { ...baseStyle, border: null }],
+		[2, { ...baseStyle, border: 'none' }],
 		[3, { ...baseStyle,
 			border: null,
 			boxShadow: `inset -2px 0 0 ${colors.gray}`,
@@ -30,13 +33,13 @@ function MenuItem({
 
 	const itemStyle = type ? typeStyleMap.get(type) : typeStyleMap.get(1);
 
-	const menuItemStyle = active ?
-		{ ...itemStyle, ...style.activeMenuItem } : itemStyle;
+	const menuItemStyle = active ? { ...itemStyle, ...style.active } : itemStyle;
 
 	return (
 		<span>
 			{React.Children.map(props.children, (c, i) =>{
 				 return React.cloneElement(c, {
+					 key: i,
 					 style: { ...menuItemStyle, ...props.style },
 				 });
 			 })}
@@ -47,22 +50,25 @@ function MenuItem({
 MenuItem.displayName = 'MenuItem';
 
 MenuItem.propTypes = {
+	backgroundColor: PropTypes.string,
+	color: PropTypes.string,
 	icon: PropTypes.bool,
 	inline: PropTypes.bool
 };
 
 export default radium(MenuItem);
 
-const style = {
-	menuItem: {
+const styles = ({backgroundColor, color}) => ({
+	base: {
 		textAlign: null,
 		borderRadius: 'none',
 		height: 'inherit',
 		boxSizing: 'border-box',
 		display: 'block',
-		backgroundColor: null,
+		backgroundColor: colors(backgroundColor) || 'transparent',
+		width: '100%'
 	},
-	activeMenuItem: {
-		...buttonStyles().initialStyle[':active']
+	active: {
+		...buttonStyles(backgroundColor).initialStyle[':active']
 	}
-};
+});
