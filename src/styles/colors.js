@@ -110,7 +110,7 @@ export default function color(key, shade = 1, a = 1) {
 	const containsAlpha = hasAlpha(key);
 
 	if (containsShade) { shade = getShade(key); }
-	if (containsAlpha) { a = getAlpha(key); console.log('alpha -> ', a); }
+	if (containsAlpha) { a = getAlpha(key); }
 
 	const colorKey = getKey(key);
 

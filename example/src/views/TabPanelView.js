@@ -37,7 +37,9 @@ export default class TabPanelView extends Component {
 							<Container p={3}>
 								<Heading size={2}>tab 1 content</Heading>
 								<Text>
-									I used to be with it, but then they changed what "it" was,and now what I'm with isn't it. And what's "it" seems weird and scary to me.
+									{`I used to be with it, but then they
+									changed what "it" was,and now what I'm with isn't it.
+									And what's "it" seems weird and scary to me.`}
 								</Text>
 							</Container>
 						</Tab>
@@ -48,7 +50,9 @@ export default class TabPanelView extends Component {
 							<Container p={3}>
 								<Heading size={2}>tab 2 content</Heading>
 								<Text>
-									Hi, you've reached the Corey Hotline -- $4.95 a minute. Here are some words that rhyme with Corey: gory, story, allegory, Montessori...
+									{`Hi, you've reached the Corey Hotline --
+									$4.95 a minute. Here are some words that
+									rhyme with Corey: gory, story, allegory, Montessori...`}
 								</Text>
 							</Container>
 						</Tab>
