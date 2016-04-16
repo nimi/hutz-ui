@@ -33,7 +33,7 @@ const InputStyles = {
 		display: 'block',
 		position: 'absolute',
 		right: '0.5em',
-		bottom: '0'
+		bottom: 0
 	},
 
 	label: {

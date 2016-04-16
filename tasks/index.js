@@ -48,8 +48,6 @@ function initTasks (gulp, config) {
 
 	require('./bump')(gulp, config);
 	require('./dev')(gulp, config);
-	require('./dist')(gulp, config);
-	require('./release')(gulp, config);
 
 	var buildTasks = ['build:dist'];
 	var cleanTasks = ['clean:dist'];

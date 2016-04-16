@@ -18,7 +18,6 @@ export default class Nav extends React.Component {
 			{ to: '/selects', label: 'Selects' },
 			{ to: '/lists', label: 'Lists' },
 			{ to: '/menus', label: 'Menus' },
-			{ to: '/nav', label: 'Navs' },
 			{ to: '/flexbox', label: 'Layout' },
 			{ to: '/headings', label: 'Headings' },
 			{ to: '/icons', label: 'Icons' },
