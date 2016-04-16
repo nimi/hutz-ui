@@ -17,6 +17,9 @@ function Box({
 	return (
 		<Container
 			{ ...props }
+			sm={sm}
+			md={md}
+			lg={lg}
 			style={style}
 		/>
 	);
@@ -33,10 +36,10 @@ Box.propTypes = {
 		'flex-start',
 		'flex-end'
 	]),
-	col: PropTypes.oneOf([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+	col: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
 	fill: PropTypes.bool,
-	lg: PropTypes.oneOf([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
-	md: PropTypes.oneOf([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+	lg: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+	md: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
 	p: PropTypes.oneOf([0, 1, 2, 3, 4]),
 	pb: PropTypes.oneOf([0, 1, 2, 3, 4]),
 	pl: PropTypes.oneOf([0, 1, 2, 3, 4]),
@@ -44,7 +47,7 @@ Box.propTypes = {
 	pt: PropTypes.oneOf([0, 1, 2, 3, 4]),
 	px: PropTypes.oneOf([0, 1, 2, 3, 4]),
 	py: PropTypes.oneOf([0, 1, 2, 3, 4]),
-	sm: PropTypes.oneOf([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])
+	sm: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])
 };
 
 export default Box;

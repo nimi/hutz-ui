@@ -46,11 +46,11 @@ Container.displayName = 'Container';
 Container.propTypes = {
 	backgroundColor: PropTypes.string,
 	circle: PropTypes.bool,
-	col: PropTypes.oneOf([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+	col: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
 	color: PropTypes.string,
 	containerStyle: PropTypes.object,
-	lg: PropTypes.oneOf([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
-	md: PropTypes.oneOf([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+	lg: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+	md: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
 	p: PropTypes.oneOf([0, 1, 2, 3, 4]),
 	pb: PropTypes.oneOf([0, 1, 2, 3, 4]),
 	pl: PropTypes.oneOf([0, 1, 2, 3, 4]),
@@ -64,7 +64,7 @@ Container.propTypes = {
 	mx: PropTypes.oneOf([0, 1, 2, 3, 4]),
 	my: PropTypes.oneOf([0, 1, 2, 3, 4]),
 	round: PropTypes.bool,
-	sm: PropTypes.oneOf([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+	sm: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
 	tagName: PropTypes.oneOfType([
 		PropTypes.string,
 		PropTypes.func,

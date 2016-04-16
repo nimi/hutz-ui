@@ -6,10 +6,10 @@ const MainContainer = React.createClass({
 	render() {
 		return (
 			<FlexBox>
-				<Box col={ 3 } fill={ false }>
+				<Box className='nav' sm={3} md={3} lg={3} fill={ false }>
 					<Nav />
 				</Box>
-				<Box col={ 9 } fill={ true } p={ 2 }>
+				<Box sm={12} md={8} lg={7} fill={ false } py={ 2 } pl={ 2  } pr={ 4 }>
 					{this.props.children}
 				</Box>
 			</FlexBox>
