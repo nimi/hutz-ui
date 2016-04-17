@@ -22,7 +22,7 @@ export default class HomeView extends React.Component {
 					>
 						Github
 					</Button>
-					<Button href='/#/alerts'>View docs</Button>
+					<Button href='#/alerts'>View docs</Button>
 				</FlexBox>
 			</Box>
 		);
