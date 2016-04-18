@@ -60,7 +60,7 @@
     "gulp-util": "^3.0.7",
     "harmonize": "^1.4.4",
     "jsdom": "^7.2.1",
-    "jsdomify": "^1.0.2",
+    "jsdomify": "^2.1.0",
     "merge-stream": "^1.0.0",
     "onchange": "^2.0.0",
     "react-tools": "^0.13.3",
