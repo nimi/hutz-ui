@@ -4,7 +4,7 @@ import { scale, breakpoints } from '../../styles';
 import { mm } from '../../utils/dom';
 
 function FlexBox({
-	width, wrap, direction, align, justify, gutter, sm, md, lg, style = {},
+	width, wrap, direction, align, alignItems, justify, gutter, sm, md, lg, style = {},
 	...props
 }) {
 

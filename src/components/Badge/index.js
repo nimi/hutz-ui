@@ -16,7 +16,7 @@ function Badge({
 			backgroundColor={backgroundColor || 'blue'}
 			round={round}
 			circle={circle || pill}
-			px={!circle && 1}
+			px={!circle ? 1 : null}
 			style={badgeStyle({circle})}
 			{...props}
 		/>

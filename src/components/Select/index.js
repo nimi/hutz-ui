@@ -22,7 +22,7 @@ function Select({
 	return (
 		<Container col={col}>
 			<label
-				labelFor={name}
+				htmlFor={name}
 				style={style.label}
 			>
 				{label}

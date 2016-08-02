@@ -17,6 +17,8 @@ function Input({
 	success,
 	type,
 	value,
+	val,
+	update,
 	...props
 }) {
 	const inputStyles = { ...typeography.input, ...InputStyles.base, ...props.style };
@@ -59,7 +61,9 @@ function Input({
 					{!success && !error ? null :
 						<Container
 							fill={false}
-							style={ InputStyles.icon }>
+							style={InputStyles.icon}
+							update={update}
+						>
 							{<Icon type="check" color={iconColor} />}
 						</Container>}
 			</div>

@@ -18,7 +18,7 @@ export default function TableBody({data, number, ...props}) {
 	);
 
 	return (
-		<tbody {...[props]}>
+		<tbody {...props}>
 			{data.map(renderRow)}
 		</tbody>
 	);
