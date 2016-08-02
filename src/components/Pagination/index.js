@@ -7,15 +7,30 @@ import Button from '../Button';
 import Container from '../Container';
 import { colors } from '../../styles';
 
-function Pagination(props) {
-	const {
+function Pagination({
+	initialSelected,
+	forceSelected,
+	hrefPrefix,
+	totalPages,
+	previousLabel,
+	nextLabel,
+	breakLabel,
+	totalMarginPagesDisplayed,
+	totalPagesDisplayed,
+	...props
+}) {
+
+	const pageProps = {
 		initialSelected,
 		forceSelected,
 		hrefPrefix,
 		totalPages,
 		previousLabel,
-		nextLabel
-	} = props;
+		nextLabel,
+		breakLabel,
+		totalMarginPagesDisplayed,
+		totalPagesDisplayed
+	};
 
 	const styles = Object.assign({},
 		style.container,
@@ -23,13 +38,13 @@ function Pagination(props) {
 	);
 
 	const selected = (
-		initialSelected ? initialSelected :
-		forceSelected ? forceSelected :
-		6
+		initialSelected
+			? initialSelected
+			: forceSelected ? forceSelected : 6
 	);
 
-	const Item = ItemFactory(props);
-	const pages = paginate({...props, selected})
+	const Item = ItemFactory(pageProps);
+	const pages = paginate({...pageProps, selected})
 		.reduce((prev, curr, i) => {
 			prev['key' + i] = Item(curr);
 			return prev;

@@ -16,6 +16,27 @@ function Container({
 	lg,
 	style,
 	tagName,
+	circle,
+	containerStyle,
+	p,
+	pb,
+	pl,
+	pr,
+	pt,
+	py,
+	px,
+	m,
+	mb,
+	ml,
+	mr,
+	mt,
+	mx,
+	my,
+	round,
+	fill,
+	borderLeft, // Deprecated
+	borderColor, // Deprecated
+	update, //Deprecated
 	...props
 }) {
 	const bgc = colors(backgroundColor) || backgroundColor;
@@ -23,23 +44,27 @@ function Container({
 	const sizes = { sm, md, lg };
 	const widthProp = styleWidth(sizes);
 	const width = ( widthProp && !col ) ? w(sizes[widthProp]) : w(col);
-	const Container = tagName || 'div';
-	const containerStyle = Object.assign(
-		baseStyle({width, bgc, c, ...props}),
-		padding(props, scale),
-		margin(props, scale),
-		radii(props),
+	const pd = {p, px, py, pb, pr, pl, pt};
+	const mg = {m, mx, my, mb, mr, ml, mt};
+
+	const Component = tagName || 'div';
+	const cxStyle = Object.assign(
+		baseStyle({width, bgc, c, fill}),
+		padding(pd, scale),
+		margin(mg, scale),
+		radii({round, circle}),
 		style
 	);
 
-
 	return (
-		<Container
+		<Component
 			{ ...props }
-			style={containerStyle}
+			style={cxStyle}
 		/>
 	);
 }
+
+//React.renderToString(Container);
 
 Container.displayName = 'Container';
 
@@ -53,6 +78,8 @@ Container.propTypes = {
 	md: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
 	p: PropTypes.oneOf([0, 1, 2, 3, 4]),
 	pb: PropTypes.oneOf([0, 1, 2, 3, 4]),
+	px: PropTypes.oneOf([0, 1, 2, 3, 4]),
+	py: PropTypes.oneOf([0, 1, 2, 3, 4]),
 	pl: PropTypes.oneOf([0, 1, 2, 3, 4]),
 	pr: PropTypes.oneOf([0, 1, 2, 3, 4]),
 	pt: PropTypes.oneOf([0, 1, 2, 3, 4]),
@@ -65,11 +92,7 @@ Container.propTypes = {
 	my: PropTypes.oneOf([0, 1, 2, 3, 4]),
 	round: PropTypes.bool,
 	sm: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
-	tagName: PropTypes.oneOfType([
-		PropTypes.string,
-		PropTypes.func,
-		PropTypes.element
-	])
+	tagName: PropTypes.any
 };
 
 export default Container;

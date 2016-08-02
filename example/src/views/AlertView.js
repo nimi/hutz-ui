@@ -9,7 +9,7 @@ export default class AlertView extends Component {
 	render() {
 		return (
 			<Container>
-				<Container>
+				<Container tagName={0}>
 					<Heading>Alerts</Heading>
 				</Container>
 				<Example heading='Alert (default)'>
