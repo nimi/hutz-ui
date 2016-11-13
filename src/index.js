@@ -33,3 +33,5 @@ export { default as Pagination } from './components/Pagination';
 export { default as TabPanel } from './components/TabPanel';
 export { default as Tab } from './components/TabPanel/Tab';
 export { default as DropdownMenu } from './components/Dropdown/DropdownMenu';
+
+export { default as colors } from './styles/colors';
