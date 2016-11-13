@@ -1,6 +1,4 @@
 import React, { PropTypes } from 'react';
-import radium from 'radium';
-import Container from '../Container';
 import icons from '../../icons';
 
 function Icon({size, type, color, ...props}) {
@@ -33,7 +31,7 @@ function Icon({size, type, color, ...props}) {
 	);
 }
 
-export default radium(Icon);
+export default Icon;
 
 Icon.displayName = 'Icon';
 

@@ -1,5 +1,4 @@
-import React, { PropTypes, Component } from 'react';
-import radium from 'radium';
+import React, { PropTypes } from 'react';
 import { buttonStyles } from '../../styles';
 
 function Button({
@@ -28,18 +27,20 @@ function Button({
 	if (bt === 'outline') { styles.push(outlineStyle); }
 	if (bt === 'link') { styles.push(linkStyle); }
 	if (props.style) { styles.push(props.style); }
+	
+	const style = Object.assign(...styles);
 
 	return (
 		<Component
 			{ ...props }
 			href={href}
-			style={styles}
+			style={style}
 		/>
 	);
 
 }
 
-export default radium(Button);
+export default Button;
 
 Button.displayName = 'Button';
 

@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 import { typeography, InputStyles } from '../../styles';
 import Icon from '../Icon';
-import radium from 'radium';
 import Container from '../Container';
 import InputText from './InputText';
 import InputTextArea from './InputTextArea';
@@ -9,15 +8,12 @@ import InputCheckbox from './InputCheckbox';
 import InputRange from './InputRange';
 
 function Input({
-	defaultValue,
+	val,
 	error,
 	label,
-	placeholder,
 	size,
 	success,
 	type,
-	value,
-	val,
 	update,
 	...props
 }) {
@@ -88,4 +84,4 @@ Input.defaultProps = {
 	type: 'text'
 };
 
-export default radium(Input);
+export default Input;

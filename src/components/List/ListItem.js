@@ -1,18 +1,15 @@
 import React, { PropTypes } from 'react';
-import radium from 'radium';
-import { colors, typeography, scale } from '../../styles';
-import Container from '../Container';
+import { scale } from '../../styles';
 
 function ListItem({
-	icon,
-	inline,
 	px,
 	py,
 	fill,
+	inline,
 	style = {},
 	...props
 }) {
-	const listItemStyle = listStyle(fill);
+	const listItemStyle = listStyle(fill, inline);
 	const styles = {
 		...listItemStyle,
 		paddingTop: py ? scale[py] : null,
@@ -37,10 +34,10 @@ ListItem.defaultProps = {
 	fill: true
 };
 
-export default radium(ListItem);
+export default ListItem;
 
-const listStyle = (fill) => ({
-	display: 'block',
+const listStyle = (fill, inline) => ({
+	display: inline ? 'inline-block' : 'block',
 	minWidth: 0,
 	minHeight: 0,
 	verticalAlign: 'middle',

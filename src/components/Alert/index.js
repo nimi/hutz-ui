@@ -1,9 +1,9 @@
 import React, { PropTypes } from 'react';
 import FlexBox from '../FlexBox';
 import Icon from '../Icon';
-import { colors, typeColor } from '../../styles';
+import { typeColor } from '../../styles';
 
-function Alert({ message, type, close, ...props }) {
+function Alert({ message, type, close, className, ...props }) {
 	const backgroundColor = typeColor[type] || 'blue';
 	const color = props.color || 'white';
 	const styles = Object.assign({},
@@ -13,6 +13,7 @@ function Alert({ message, type, close, ...props }) {
 
 	return (
 		<FlexBox
+			className={className || 'hutz-alert'}
 			align='center'
 			color={color}
 			backgroundColor={backgroundColor}

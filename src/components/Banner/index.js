@@ -5,6 +5,7 @@ function Banner({
 	align,
 	image,
 	style,
+	className,
 	...props
 }) {
 	const alignItems = alignment[align];
@@ -19,6 +20,7 @@ function Banner({
 			alignItems={alignItems}
 			justify='center'
 			style={styles}
+			className={className || 'hutz-banner'}
 			{...props}
 		/>
 	);

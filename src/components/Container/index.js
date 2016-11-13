@@ -1,8 +1,7 @@
 import React, { PropTypes } from 'react';
-import radium from 'radium';
 import { scale, breakpoints, colors } from '../../styles';
 import { w } from '../../utils';
-import { mm, transitionEnd } from '../../utils/dom';
+import { mm } from '../../utils/dom';
 import padding from '../../utils/padding';
 import margin from '../../utils/margin';
 import radii from '../../utils/radii';
