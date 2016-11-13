@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
-import radium from 'radium';
-import { colors, typeography, InputStyles } from '../../styles';
+import { colors, typeography } from '../../styles';
 import Container from '../Container';
 import ListItem from './ListItem';
 
@@ -40,7 +39,7 @@ List.propTypes = {
 	itemStyle: PropTypes.object
 };
 
-export default radium(List);
+export default List;
 
 var style = {
 	list: {

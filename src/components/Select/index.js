@@ -1,6 +1,4 @@
 import React, { PropTypes } from 'react';
-import radium from 'radium';
-import { w } from '../../utils';
 import { colors, typeography, InputStyles } from '../../styles';
 import Container from '../Container';
 
@@ -45,7 +43,7 @@ Select.propTypes = {
 	options: PropTypes.array.isRequired
 };
 
-export default radium(Select);
+export default Select;
 
 const style = {
 	select: {

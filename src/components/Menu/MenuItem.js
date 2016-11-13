@@ -1,10 +1,7 @@
 import React, { PropTypes } from 'react';
-import radium from 'radium';
-import { colors, typeography, buttonStyles } from '../../styles';
+import { colors, buttonStyles } from '../../styles';
 
 function MenuItem({
-	icon,
-	name,
 	active,
 	type,
 	backgroundColor,
@@ -56,7 +53,7 @@ MenuItem.propTypes = {
 	inline: PropTypes.bool
 };
 
-export default radium(MenuItem);
+export default MenuItem;
 
 const styles = ({backgroundColor, color}) => ({
 	base: {

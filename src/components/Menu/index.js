@@ -1,12 +1,10 @@
 import React, { PropTypes } from 'react';
-import radium from 'radium';
-import { colors, typeography, InputStyles } from '../../styles';
+import { colors, typeography } from '../../styles';
 import List from '../List';
 import MenuItem from './MenuItem';
 import Divider from '../Divider';
 
 function Menu({
-	align,
 	fill,
 	inline,
 	type,
@@ -67,7 +65,7 @@ Menu.propTypes = {
 	menuItemStyle: PropTypes.object
 };
 
-export default radium(Menu);
+export default Menu;
 
 var style = {
 	list: {

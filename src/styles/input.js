@@ -2,7 +2,6 @@ import color from './colors';
 import typeography from './typeography';
 
 const initialColor = color.gray;
-const focusColor = color.blue;
 const errorColor = color.red;
 const successColor = color.green;
 const labelColor = color('gray', 3);
@@ -17,10 +16,7 @@ const InputStyles = {
 		outline: 'none',
 		left: 0,
 		width: '100%',
-		padding: '6px 1px',
-		':focus': {
-			color: color('black', 4)
-		}
+		padding: '6px 1px'
 	},
 
 	container: {
@@ -47,25 +43,15 @@ const InputStyles = {
 	inputContainer: {
 		borderBottom: `solid 2px ${initialColor}`,
 		boxSizing: 'border-box',
-		color: labelColor,
-		':focus': {
-			borderBottom: `solid 2px ${focusColor}`,
-			color: 'black'
-		}
+		color: labelColor
 	},
 
 	error: {
-		borderBottom: `solid 2px ${errorColor}`,
-		':focus': {
-			borderBottom: `solid 2px ${errorColor}`
-		}
+		borderBottom: `solid 2px ${errorColor}`
 	},
 
 	success: {
-		borderBottom: `solid 2px ${successColor}`,
-		':focus': {
-			borderBottom: `solid 2px ${successColor}`
-		}
+		borderBottom: `solid 2px ${successColor}`
 	},
 
 	textarea: {
@@ -73,18 +59,11 @@ const InputStyles = {
 		borderLeft: `solid 2px ${initialColor}`,
 		borderRight: `solid 2px ${initialColor}`,
 		borderBottom: `solid 2px ${initialColor}`,
-		padding: '0 10px',
-		':focus': {
-			borderTop: `solid 2px ${focusColor}`,
-			borderLeft: `solid 2px ${focusColor}`,
-			borderRight: `solid 2px ${focusColor}`,
-			borderBottom: `solid 2px ${focusColor}`
-		}
+		padding: '0 10px'
 	},
 
 	range: {
-		borderBottom: null,
-		':focus': null
+		borderBottom: null
 	},
 
 	label: {

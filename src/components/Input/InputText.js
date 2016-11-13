@@ -1,5 +1,4 @@
 import React, { PropTypes } from 'react';
-import radium from 'radium';
 
 function InputText({
 	defaultValue,
@@ -23,4 +22,4 @@ InputText.propTypes = {
 	type: PropTypes.string
 };
 
-export default radium(InputText);
+export default InputText;

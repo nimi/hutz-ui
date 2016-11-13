@@ -1,7 +1,6 @@
 import React, {PropTypes} from 'react';
-import radium from 'radium';
 import Container from '../Container';
-import {colors, typeography, zIndex} from '../../styles';
+import {colors, zIndex} from '../../styles';
 
 function Tooltip({ text, backgroundColor, width, color, ...props }) {
 	const bgc = colors[backgroundColor] || backgroundColor;

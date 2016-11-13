@@ -4,7 +4,7 @@ import Container from '../Container';
 import Media from '../Media';
 import Icon from '../Icon';
 
-function Avatar({src, icon, letter, size, color, align, name,  backgroundColor, ...props}) {
+function Avatar({src, icon, letter, color, align, name, className, backgroundColor, ...props}) {
 	const nameAlign = name && ('left' || align);
 	const { containerStyle, nameStyle } = avatarStyle({src, nameAlign, backgroundColor});
 	const child = Boolean(src) ?
@@ -13,7 +13,7 @@ function Avatar({src, icon, letter, size, color, align, name,  backgroundColor, 
 		<span>{letter}</span>;
 
 	return (
-		<Container fill={false}>
+		<Container fill={false} className={className || 'hutz-avatar'}>
 			{nameAlign === 'right' ?
 			<span style={nameStyle}>{name}</span> : null}
 			<Container style={{...containerStyle, ...props.style}}>

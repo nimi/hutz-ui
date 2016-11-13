@@ -5,5 +5,3 @@ export default function radii ({round, circle}, r = 2) {
 
 	return Boolean(borderRadius) ? { borderRadius } : {};
 }
-
-export default radii;

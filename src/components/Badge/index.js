@@ -7,6 +7,7 @@ function Badge({
 	round,
 	circle,
 	pill,
+	className,
 	...props
 }) {
 
@@ -18,6 +19,7 @@ function Badge({
 			circle={circle || pill}
 			px={!circle ? 1 : null}
 			style={badgeStyle({circle})}
+			className={className || 'hutz-badge'}
 			{...props}
 		/>
 	);
