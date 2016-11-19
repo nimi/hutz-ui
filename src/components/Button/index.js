@@ -35,7 +35,7 @@ function Button({
 			{ ...props }
 			href={href}
 			style={style}
-			Classname={props.className || 'hutz-button'}
+			classname={props.className || 'hutz-button'}
 		/>
 	);
 

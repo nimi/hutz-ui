@@ -1,6 +1,6 @@
 {
   "name": "hutz-ui",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Hutz is UI component library built on React",
   "main": "lib/index.js",
   "author": "MIT",
