@@ -7,6 +7,7 @@ function Divider({vertical, style = {}, ...props}) {
 			   {...props}
 			   style={{...dividerStyle, ...style}}
 			   tagName='hr'
+			   className={this.props.className || 'hutz-divider'}
 		   />;
 }
 

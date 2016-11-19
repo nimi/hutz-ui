@@ -7,7 +7,9 @@ function DropdownMenu({open, type, ...props}) {
 	if (!open) { return null; }
 
 	return (
-		<Container style={style.container}>
+		<Container
+			style={style.container}
+		>
 			<Menu type={type || 2}>
 				{props.children}
 			</Menu>

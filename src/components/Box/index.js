@@ -21,6 +21,7 @@ function Box({
 			md={md}
 			lg={lg}
 			style={style}
+			className={className || 'hutz-box'}
 		/>
 	);
 }

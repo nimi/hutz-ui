@@ -56,6 +56,7 @@ function Pagination({
 		<Container
 			style={styles}
 			{...props}
+			className={this.props.className || 'hutz-pagination'}
 		>
 			<ul style={style.list}>
 				<li style={style.previous}>

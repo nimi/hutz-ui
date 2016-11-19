@@ -31,6 +31,7 @@ function Menu({
 			py={py || 0}
 			itemStyle={menuItemStyle}
 			style={props.style}
+			className={this.props.className || 'hutz-menu'}
 		>
 			{React.Children.map(props.children, (child, i) => {
 				 if (child.type.displayName === 'Divider') {

@@ -19,6 +19,7 @@ function Dialog({
 		<Container
 			fill={false}
 			style={container}
+			className={this.props.className || 'hutz-dialog'}
 		>
 			<Container
 				fill={false}

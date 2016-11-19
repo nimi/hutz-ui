@@ -39,7 +39,11 @@ function Input({
 		{ ...inputContainerStyles, ...InputStyles.range } : inputContainerStyles;
 
 	return (
-		<Container  fill={false} {...props}>
+		<Container
+			fill={false}
+			{...props}
+			className={this.props.className || 'hutz-input'}
+		>
 			<div style={ containerStyles }>
 				{!label ? null :
 					<label style={ InputStyles.label }>{label}</label>}

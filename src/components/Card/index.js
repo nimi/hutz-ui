@@ -20,7 +20,8 @@ function Card({
 			style={{
 				...props.style,
 				...cardContainerStyle(props)
-			}}
+				}}
+			className={this.props.className || 'hutz-card'}
 		>
 			{(() => title ? <CardHeading t={title} s={subtitle} /> : null)()}
 			{(() => imgSrc ? <CardMedia s={imgSrc} /> : null)()}

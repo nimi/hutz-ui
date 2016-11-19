@@ -26,6 +26,7 @@ function StepTracker({ steps, active, ...props }) {
 			justify='space-between'
 			style={styles}
 			{...props}
+			className={this.props.className || 'hutz-steptracker'}
 		>
 			{stepItems}
 		</FlexBox>

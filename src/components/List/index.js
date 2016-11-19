@@ -20,7 +20,11 @@ function List({
 	styles = inline ? { ...styles, ...style.inline } : styles;
 
 	return (
-		<Container col={col} style={props.style || null}>
+		<Container
+			col={col}
+			style={props.style || null}
+			className={this.props.className || 'hutz-list'}
+		>
 			<ul style={[styles]}>
 				{React.Children.map(props.children, (listItem, i) =>
 					<ListItem fill={fill} inline={inline} px={px} py={py} key={i} style={itemStyle}>

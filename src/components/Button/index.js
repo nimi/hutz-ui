@@ -27,7 +27,7 @@ function Button({
 	if (bt === 'outline') { styles.push(outlineStyle); }
 	if (bt === 'link') { styles.push(linkStyle); }
 	if (props.style) { styles.push(props.style); }
-	
+
 	const style = Object.assign(...styles);
 
 	return (
@@ -35,6 +35,7 @@ function Button({
 			{ ...props }
 			href={href}
 			style={style}
+			className={this.props.className || 'hutz-button'}
 		/>
 	);
 

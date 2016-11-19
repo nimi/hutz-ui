@@ -11,6 +11,7 @@ function Heading({ size, content, ...props }) {
 			tagName={el}
 			style={{...style, ...props.style}}
 			{...props}
+			className={this.props.className || 'hutz-heading'}
 		>
 			{content || props.children}
 		</Container>
