@@ -14,11 +14,11 @@ function Switch({ id, active, onClick, activeColor, ...props }) {
 
 	return (
 		<Container
-			className='hutz-switch'
 			fill={false}
 			style={containerStyle}
 			onClick={onClick}
 			{...props}
+			className={props.className || 'hutz-switch'}
 		>
 			<style dangerouslySetInnerHTML={{__html: css}} />
 			<input

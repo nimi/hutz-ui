@@ -23,7 +23,7 @@ function List({
 		<Container
 			col={col}
 			style={props.style || null}
-			className={this.props.className || 'hutz-list'}
+			className={props.className || 'hutz-list'}
 		>
 			<ul style={[styles]}>
 				{React.Children.map(props.children, (listItem, i) =>

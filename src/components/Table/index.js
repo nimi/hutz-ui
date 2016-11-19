@@ -20,7 +20,7 @@ function Table({ headings, data, number, ...props }) {
 			fill={false}
 			style={styles}
 			{...props}
-			className={this.props.className || 'hutz-table'}
+			className={props.className || 'hutz-table'}
 		>
 			<Container
 				tagName='table'

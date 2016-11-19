@@ -18,7 +18,7 @@ function Text({ small, caps, center, color, content, ...props }) {
 			tagName='p'
 			style={style}
 			{...props}
-			className={this.props.className || 'hutz-text'}
+			className={props.className || 'hutz-text'}
 		>
 			{content || props.children}
 		</Container>

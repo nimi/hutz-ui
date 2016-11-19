@@ -19,7 +19,7 @@ function Select({
 
 	return (
 		<Container col={col}
-			className={this.props.className || 'hutz-select'}
+			className={props.className || 'hutz-select'}
 		>
 			<label
 				htmlFor={name}

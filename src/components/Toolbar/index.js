@@ -11,7 +11,7 @@ function Toolbar({ ...props }) {
 	return (
 		<FlexBox
 			align='center'
-			className={this.props.className || 'hutz-toolbar'}
+			className={props.className || 'hutz-toolbar'}
 			backgroundColor={props.backgroundColor || 'blue'}
 			px={1}
 			style={styles}

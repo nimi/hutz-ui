@@ -16,7 +16,7 @@ function Dropdown({ buttonLabel, ...props }) {
 			fill={false}
 			style={styles}
 			{...props}
-			className={this.props.className || 'hutz-dropdown'}
+			className={props.className || 'hutz-dropdown'}
 		>
 			<Button style={dropdownStyle.button}>
 				{buttonLabel}

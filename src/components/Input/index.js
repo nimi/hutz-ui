@@ -42,7 +42,7 @@ function Input({
 		<Container
 			fill={false}
 			{...props}
-			className={this.props.className || 'hutz-input'}
+			className={props.className || 'hutz-input'}
 		>
 			<div style={ containerStyles }>
 				{!label ? null :

@@ -27,7 +27,7 @@ function FlexBox({
 		<Container
 			{ ...props }
 			style={{ ...flexBoxStyle, ...style }}
-			className={this.props.className || 'hutz-flexbox'}
+			className={props.className || 'hutz-flexbox'}
 		/>
 	);
 }

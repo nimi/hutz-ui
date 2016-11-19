@@ -11,7 +11,7 @@ function Icon({size, type, color, ...props}) {
 
 	return (
 		<svg
-			className={this.props.className || 'hutz-icon'}
+			className={props.className || 'hutz-icon'}
 			height='100%'
 			width='100%'
 			preserveAspectRatio='xMidYMid meet'

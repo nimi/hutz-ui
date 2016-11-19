@@ -24,7 +24,7 @@ function TabPanel({ activeIndex, backgroundColor, color, children, ...props }) {
 		<Container
 			style={styles}
 			{...props}
-			className={this.props.className || 'hutz-tabpanel'}
+			className={props.className || 'hutz-tabpanel'}
 		>
 			<TabPanelHeader
 				headerProps={headerProps}

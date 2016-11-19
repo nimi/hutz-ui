@@ -15,7 +15,7 @@ function ButtonGroup({
 	return (
 		<Container
 			{ ...props }
-			className={this.props.className || 'hutz-buttongroup'}
+			className={props.className || 'hutz-buttongroup'}
 			style={ buttonGroupStyle }
 		>
 			{Children.map(children, (button, i) => {
