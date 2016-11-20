@@ -13,7 +13,7 @@ function Block(props) {
 
 	return (
 		<Container
-			className={className || 'hutz-block'}
+			className={props.className || 'hutz-block'}
 			style={styles}
 			my={2}
 			{...props}
