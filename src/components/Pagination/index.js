@@ -64,13 +64,13 @@ function Pagination({
 		>
 			<ul style={style.list}>
 				<li style={style.previous}>
-					<Button href={previousLink} onClick={(e) => this.props.onPage(e, selected - 1)} style={style.button}>
+					<Button href={previousLink} onClick={(e) => onPage(e, selected - 1)} style={style.button}>
 						{previousLabel}
 					</Button>
 				</li>
 				{createFragment(pages)}
 				<li style={style.next}>
-					<Button href={nextLink} onClick={(e) => this.props.onPage(e, selected + 1)} style={style.button}>
+					<Button href={nextLink} onClick={(e) => onPage(e, selected + 1)} style={style.button}>
 						{nextLabel}
 					</Button>
 				</li>
