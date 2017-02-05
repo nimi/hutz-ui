@@ -1,7 +1,7 @@
 import React, {PropTypes} from 'react';
 import Button from '../Button';
 
-function Page({linkHref, page, onPage}) {
+function Page({linkHref, page, onPage, selected}) {
 	return (
 		<li style={style.item}>
 			<Button href={linkHref} onClick={(e) => onPage(e, page, selected)} style={style.button}>
