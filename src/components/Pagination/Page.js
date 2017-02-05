@@ -1,10 +1,10 @@
 import React, {PropTypes} from 'react';
 import Button from '../Button';
 
-function Page({linkHref, page}) {
+function Page({linkHref, page, onPage}) {
 	return (
 		<li style={style.item}>
-			<Button href={linkHref} style={style.button}>
+			<Button href={linkHref} onClick={() => onPage(page, selected)} style={style.button}>
 				{page}
 			</Button>
 		</li>
@@ -16,7 +16,12 @@ Page.displayName = 'Page';
 Page.propTypes = {
 	linkHref: PropTypes.string.isRequired,
 	page: PropTypes.number.isRequired,
-	selected: PropTypes.bool.isRequired
+	selected: PropTypes.bool.isRequired,
+	onPage: PropTypes.func
+};
+
+Page.defaultProps = {
+	onPage: () => {}
 };
 
 export default Page;

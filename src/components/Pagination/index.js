@@ -17,6 +17,7 @@ function Pagination({
 	breakLabel,
 	totalMarginPagesDisplayed,
 	totalPagesDisplayed,
+	onPage,
 	...props
 }) {
 
@@ -29,7 +30,8 @@ function Pagination({
 		nextLabel,
 		breakLabel,
 		totalMarginPagesDisplayed,
-		totalPagesDisplayed
+		totalPagesDisplayed,
+		onPage
 	};
 
 	const styles = Object.assign({},
@@ -38,9 +40,11 @@ function Pagination({
 	);
 
 	const selected = (
-		initialSelected
+		typeof initialSelected === 'number' && initialSelected >= 0
 			? initialSelected
-			: forceSelected ? forceSelected : 6
+			: typeof forceSelected === 'number' && forceSelected >= 0
+			? forceSelected
+			: 0
 	);
 
 	const Item = ItemFactory(pageProps);
@@ -51,7 +55,7 @@ function Pagination({
 		}, {});
 
 	const previousLink = selected === 0 ? '#' : hrefPrefix + selected;
-	const nextLink = selected === totalPages - 1 ? '#' : hrefPrefix + (selected + 2);
+	const nextLink = selected === totalPages - 1 ? '#' : hrefPrefix + (selected + 1);
 	return (
 		<Container
 			style={styles}
@@ -60,13 +64,13 @@ function Pagination({
 		>
 			<ul style={style.list}>
 				<li style={style.previous}>
-					<Button href={previousLink} style={style.button}>
+					<Button href={previousLink} onClick={() => this.props.onPage(selected - 1)} style={style.button}>
 						{previousLabel}
 					</Button>
 				</li>
 				{createFragment(pages)}
 				<li style={style.next}>
-					<Button href={nextLink} style={style.button}>
+					<Button href={nextLink} onClick={() => this.props.onPage(selected + 1)} style={style.button}>
 						{nextLabel}
 					</Button>
 				</li>
