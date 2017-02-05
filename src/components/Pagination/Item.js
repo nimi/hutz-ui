@@ -9,7 +9,7 @@ function ItemFactory({hrefPrefix, breakLabel, onPage}) {
 				selected={selected}
 				page={page}
 				linkHref={hrefPrefix + page}
-				onPage=(onPage)
+				onPage={onPage}
 			/> :
 			<Break breakLabel={breakLabel} />;
 	};
