@@ -74,13 +74,13 @@ class Pagination extends Component {
 			breakLabel,
 			totalMarginPagesDisplayed,
 			totalPagesDisplayed,
-			onPage
+			onPage: (e, s) => this.handlePage(e, s)
 		};
 
     const styles = Object.assign({}, style.container, this.props.style);
 
     const Item = ItemFactory(pageProps);
-    const pages = paginate({ ...pageProps, onPage: (e, s) => this.handlePage(e, s), selected })
+    const pages = paginate({ ...pageProps, selected })
 			.reduce((prev, curr, i) => {
 	      prev['key' + i] = Item(curr);
 	      return prev;
