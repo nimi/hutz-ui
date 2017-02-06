@@ -12,11 +12,11 @@ class Pagination extends Component {
     super(props);
     const { initialSelected, forceSelected } = props;
     const selected = (
-      typeof initialSelected === 'number' && initialSelected >= 0
+      typeof initialSelected === 'number' && initialSelected >= 1
 			? initialSelected
-			: typeof forceSelected === 'number' && forceSelected >= 0
+			: typeof forceSelected === 'number' && forceSelected >= 1
 			? forceSelected
-			: 0
+			: 1
 		);
     this.state = { selected };
   }
@@ -29,7 +29,7 @@ class Pagination extends Component {
 
   handlePrevPage(event) {
     event.preventDefault();
-    if (this.state.selected > 0) {
+    if (this.state.selected > 1) {
       this.handlePage(event, this.state.selected - 1);
     }
   }
