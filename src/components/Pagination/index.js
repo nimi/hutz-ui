@@ -5,7 +5,6 @@ import ItemFactory from './Item';
 
 import Button from '../Button';
 import Container from '../Container';
-import { colors } from '../../styles';
 
 class Pagination extends Component {
 
@@ -14,11 +13,11 @@ class Pagination extends Component {
     const { initialSelected, forceSelected } = props;
     const selected = (
       typeof initialSelected === 'number' && initialSelected >= 0
-	? initialSelected
-	: typeof forceSelected === 'number' && forceSelected >= 0
-	? forceSelected
-	: 0
-    );
+			? initialSelected
+			: typeof forceSelected === 'number' && forceSelected >= 0
+			? forceSelected
+			: 0
+		);
     this.state = { selected };
   }
 
@@ -50,8 +49,7 @@ class Pagination extends Component {
   }
 
   render() {
-
-    const pageProps = {
+    const {
       initialSelected,
       forceSelected,
       hrefPrefix,
@@ -63,6 +61,19 @@ class Pagination extends Component {
       totalPagesDisplayed,
       onPage
     } = this.props;
+		
+		const pageProps = {
+			initialSelected,
+			forceSelected,
+			hrefPrefix,
+			totalPages,
+			previousLabel,
+			nextLabel,
+			breakLabel,
+			totalMarginPagesDisplayed,
+			totalPagesDisplayed,
+			onPage
+		};
 
     const styles = Object.assign({}, style.container, this.props.style);
 
@@ -77,24 +88,24 @@ class Pagination extends Component {
     const nextLink = selected === totalPages - 1 ? '#' : hrefPrefix + (selected + 1);
 
     return (
-      <Container
-	 style={styles}
-	 {...props}
-	 className={props.className || 'hutz-pagination'}
-	 >
-	<ul style={style.list}>
-	  <li style={style.previous}>
-	    <Button href={previousLink} onClick={(e) => handlePrevPage(e)} style={style.button}>
-	      {previousLabel}
-	    </Button>
-	  </li>
-	  {createFragment(pages)}
-	  <li style={style.next}>
-	    <Button href={nextLink} onClick={(e) => handleNextPage(e)} style={style.button}>
-	      {nextLabel}
-	    </Button>
-	  </li>
-	</ul>
+    	<Container
+				style={styles}
+				{...props}
+				className={props.className || 'hutz-pagination'}
+				>
+				<ul style={style.list}>
+					<li style={style.previous}>
+						<Button href={previousLink} onClick={(e) => this.handlePrevPage(e)} style={style.button}>
+							{previousLabel}
+						</Button>
+					</li>
+					{createFragment(pages)}
+					<li style={style.next}>
+						<Button href={nextLink} onClick={(e) => this.handleNextPage(e)} style={style.button}>
+							{nextLabel}
+						</Button>
+					</li>
+				</ul>
       </Container>
     );
   }
