@@ -22,8 +22,8 @@ class Pagination extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (typeof nextProps.forcePage !== 'undefined') {
-      this.setState({ selected: nextProps.forcePage });
+    if (typeof nextProps.forceSelected !== 'undefined') {
+      this.setState({ selected: nextProps.forceSelected });
     }
   }
 
@@ -36,7 +36,7 @@ class Pagination extends Component {
 
   handleNextPage(event) {
     event.preventDefault();
-    if (this.state.selected < this.props.pageCount - 1) {
+    if (this.state.selected < this.props.totalPages - 1) {
       this.handlePage(event, this.state.selected + 1);
     }
   }
@@ -44,8 +44,8 @@ class Pagination extends Component {
   handlePage(event, selected) {
     event.preventDefault();
     if (this.state.selected === selected) { return; }
-    this.setState({selected});
-    this.props.onPage(selected);
+    this.setState({ selected });
+    this.props.onPage(event, selected);
   }
 
   render() {

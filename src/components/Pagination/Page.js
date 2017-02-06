@@ -4,7 +4,7 @@ import Button from '../Button';
 function Page({linkHref, page, onPage, selected}) {
 	return (
 		<li style={style.item}>
-			<Button href={linkHref} onClick={(e) => onPage(e, page, selected)} style={style.button}>
+			<Button onClick={(e) => onPage(e, page, selected)} style={style.button}>
 				{page}
 			</Button>
 		</li>
