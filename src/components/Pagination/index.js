@@ -59,7 +59,8 @@ class Pagination extends Component {
       breakLabel,
       totalMarginPagesDisplayed,
       totalPagesDisplayed,
-      onPage
+      onPage,
+			selected
     } = this.props;
 		
 		const pageProps = {
@@ -84,24 +85,21 @@ class Pagination extends Component {
 	      return prev;
 	    }, {});
 
-    const previousLink = selected === 0 ? '#' : hrefPrefix + selected;
-    const nextLink = selected === totalPages - 1 ? '#' : hrefPrefix + (selected + 1);
-
     return (
     	<Container
 				style={styles}
-				{...props}
-				className={props.className || 'hutz-pagination'}
+				{...this.props}
+				className={this.props.className || 'hutz-pagination'}
 				>
 				<ul style={style.list}>
 					<li style={style.previous}>
-						<Button href={previousLink} onClick={(e) => this.handlePrevPage(e)} style={style.button}>
+						<Button onClick={(e) => this.handlePrevPage(e)} style={style.button}>
 							{previousLabel}
 						</Button>
 					</li>
 					{createFragment(pages)}
 					<li style={style.next}>
-						<Button href={nextLink} onClick={(e) => this.handleNextPage(e)} style={style.button}>
+						<Button onClick={(e) => this.handleNextPage(e)} style={style.button}>
 							{nextLabel}
 						</Button>
 					</li>
