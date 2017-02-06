@@ -60,7 +60,8 @@ class Pagination extends Component {
       totalMarginPagesDisplayed,
       totalPagesDisplayed,
       onPage,
-			selected
+			selected,
+			...restProps
     } = this.props;
 		
 		const pageProps = {
@@ -80,7 +81,7 @@ class Pagination extends Component {
 
     const Item = ItemFactory(pageProps);
     const pages = paginate({ ...pageProps, onPage: (e, s) => this.handlePage(e, s), selected })
-            .reduce((prev, curr, i) => {
+			.reduce((prev, curr, i) => {
 	      prev['key' + i] = Item(curr);
 	      return prev;
 	    }, {});
@@ -88,7 +89,7 @@ class Pagination extends Component {
     return (
     	<Container
 				style={styles}
-				{...this.props}
+				{...restProps}
 				className={this.props.className || 'hutz-pagination'}
 				>
 				<ul style={style.list}>
