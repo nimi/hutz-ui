@@ -36,7 +36,7 @@ class Pagination extends Component {
 
   handleNextPage(event) {
     event.preventDefault();
-    if (this.state.selected < this.props.totalPages - 1) {
+    if (this.state.selected < this.props.totalPages) {
       this.handlePage(event, this.state.selected + 1);
     }
   }
