@@ -1,7 +1,7 @@
 import React, {PropTypes} from 'react';
 import Button from '../Button';
 
-function Page({linkHref, page, onPage, selected}) {
+function Page({page, onPage, selected}) {
 	return (
 		<li style={style.item}>
 			<Button onClick={(e) => onPage(e, page, selected)} style={style.button}>
@@ -14,7 +14,6 @@ function Page({linkHref, page, onPage, selected}) {
 Page.displayName = 'Page';
 
 Page.propTypes = {
-	linkHref: PropTypes.string.isRequired,
 	page: PropTypes.number.isRequired,
 	selected: PropTypes.bool.isRequired,
 	onPage: PropTypes.func
