@@ -29,7 +29,7 @@ class Pagination extends Component {
 
   handlePrevPage(event) {
     event.preventDefault();
-    if (this.state.selected > 1) {
+    if (this.state.selected > 0) {
       this.handlePage(event, this.state.selected - 1);
     }
   }
@@ -77,7 +77,6 @@ class Pagination extends Component {
     };
 
     const { selected } = this.state;
-    console.log(selected);
     const styles = Object.assign({}, style.container, this.props.style);
 
     const Item = ItemFactory(pageProps);

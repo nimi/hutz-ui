@@ -19,7 +19,6 @@ export default function paginate({
 	totalPagesDisplayed,
 	totalMarginPagesDisplayed
 }) {
-
 	if (totalPages < totalPagesDisplayed) {
 		return Array(totalPages).fill().map((_, i) => {
 			return {type: 'page', page: i + 1, selected: selected === i};

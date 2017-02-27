@@ -4,7 +4,7 @@ import Button from '../Button';
 function Page({page, onPage, selected}) {
 	return (
 		<li style={style.item} className={`hutz-ui-page-item${selected ? ' active' : ''}`}>
-			<Button onClick={(e) => onPage(e, page - 1, selected)} style={style.button}>
+			<Button onClick={(e) => onPage(e, page, selected)} style={style.button}>
 				{page}
 			</Button>
 		</li>
