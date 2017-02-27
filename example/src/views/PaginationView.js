@@ -13,7 +13,7 @@ export default class PaginationView extends Component {
 					<Heading>Paginations</Heading>
 				</Container>
 				<Example heading='Pagination'>
-					<Pagination />
+					<Pagination initialSelected={0} />
 				</Example>
 			</Container>
 		);

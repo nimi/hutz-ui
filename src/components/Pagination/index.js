@@ -13,11 +13,11 @@ class Pagination extends Component {
     const { initialSelected, forceSelected } = props;
     const selected = (
       typeof initialSelected === 'number' && initialSelected >= 1
-			? initialSelected
-			: typeof forceSelected === 'number' && forceSelected >= 1
-			? forceSelected
-			: 1
-		);
+	? initialSelected
+	: typeof forceSelected === 'number' && forceSelected >= 1
+	? forceSelected
+	: 0
+    );
     this.state = { selected };
   }
 
@@ -60,51 +60,52 @@ class Pagination extends Component {
       totalMarginPagesDisplayed,
       totalPagesDisplayed,
       onPage,
-			selected,
-			...restProps
+      ...restProps
     } = this.props;
-		
-		const pageProps = {
-			initialSelected,
-			forceSelected,
-			hrefPrefix,
-			totalPages,
-			previousLabel,
-			nextLabel,
-			breakLabel,
-			totalMarginPagesDisplayed,
-			totalPagesDisplayed,
-			onPage: (e, s) => this.handlePage(e, s)
-		};
 
+    const pageProps = {
+      initialSelected,
+      forceSelected,
+      hrefPrefix,
+      totalPages,
+      previousLabel,
+      nextLabel,
+      breakLabel,
+      totalMarginPagesDisplayed,
+      totalPagesDisplayed,
+      onPage: (e, s) => this.handlePage(e, s)
+    };
+
+    const { selected } = this.state;
+    console.log(selected);
     const styles = Object.assign({}, style.container, this.props.style);
 
     const Item = ItemFactory(pageProps);
     const pages = paginate({ ...pageProps, selected })
-			.reduce((prev, curr, i) => {
+            .reduce((prev, curr, i) => {
 	      prev['key' + i] = Item(curr);
 	      return prev;
 	    }, {});
 
     return (
-    	<Container
-				style={styles}
-				{...restProps}
-				className={this.props.className || 'hutz-pagination'}
-				>
-				<ul style={style.list}>
-					<li style={style.previous}>
-						<Button onClick={(e) => this.handlePrevPage(e)} style={style.button}>
-							{previousLabel}
-						</Button>
-					</li>
-					{createFragment(pages)}
-					<li style={style.next}>
-						<Button onClick={(e) => this.handleNextPage(e)} style={style.button}>
-							{nextLabel}
-						</Button>
-					</li>
-				</ul>
+      <Container
+	 style={styles}
+	 {...restProps}
+	 className={this.props.className || 'hutz-pagination'}
+	 >
+	<ul style={style.list}>
+	  <li style={style.previous}>
+	    <Button onClick={(e) => this.handlePrevPage(e)} style={style.button}>
+	      {previousLabel}
+	    </Button>
+	  </li>
+	  {createFragment(pages)}
+	  <li style={style.next}>
+	    <Button onClick={(e) => this.handleNextPage(e)} style={style.button}>
+	      {nextLabel}
+	    </Button>
+	  </li>
+	</ul>
       </Container>
     );
   }
@@ -135,12 +136,14 @@ Pagination.propTypes = {
 
 Pagination.defaultProps = {
   totalPages: 100,
-  totalPagesDisplayed: 3,
-  totalMarginPagesDisplayed: 2,
+  totalPagesDisplayed: 6,
+  totalMarginPagesDisplayed: 1,
+  initialSelected: 0,
   previousLabel: '<',
   nextLabel: '>',
   breakLabel: '...',
-  hrefPrefix: '/page/'
+  hrefPrefix: '/page/',
+  onPage: () => {}
 };
 
 export default Pagination;

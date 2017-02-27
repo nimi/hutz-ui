@@ -2,8 +2,9 @@ import React, {PropTypes} from 'react';
 import Button from '../Button';
 
 function Page({page, onPage, selected}) {
+	console.log(selected);
 	return (
-		<li style={style.item}>
+		<li style={style.item} className={`hutz-ui-page-item${selected ? ' active' : ''}`}>
 			<Button onClick={(e) => onPage(e, page, selected)} style={style.button}>
 				{page}
 			</Button>
